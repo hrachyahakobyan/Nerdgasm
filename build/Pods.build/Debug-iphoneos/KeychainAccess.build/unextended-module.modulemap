@@ -1,0 +1,10 @@
+framework module KeychainAccess {
+  umbrella header "KeychainAccess-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module KeychainAccess.__Swift {
+    exclude header "KeychainAccess-Swift.h"
+}
