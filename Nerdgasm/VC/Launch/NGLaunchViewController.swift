@@ -12,8 +12,25 @@ class NGLaunchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let _ = NGUser.userInfo() {
+            if !NGUser.tokenIsValid(){
+                self.performSegue(withIdentifier: "login", sender: nil)
+            } else {
+                self.performSegue(withIdentifier: "users", sender: nil)
+            }
+        } else {
+            self.performSegue(withIdentifier: "login", sender: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +38,6 @@ class NGLaunchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 

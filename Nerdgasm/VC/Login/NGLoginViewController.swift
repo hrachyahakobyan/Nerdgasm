@@ -7,28 +7,83 @@
 //
 
 import UIKit
-import SwiftValidator
 import RxSwift
+import Moya
 
 class NGLoginViewController: UIViewController {
-
-    fileprivate let validator = Validator()
     
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     
-    @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var signInResultLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    private let disposeBag = DisposeBag()
+    private var provider = RxMoyaProvider<NGService>()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        activityIndicator.hidesWhenStopped = true
         passwordTextField.isSecureTextEntry = true
-        validator.registerField(usernameTextField, errorLabel: usernameLabel, rules: [RequiredRule(), MinLengthRule(length: 6, message: "Username must be at least 6 characters long"), MaxLengthRule(length:30, message: "Username must be at most 30 characters long")])
-        validator.registerField(passwordTextField, rules: [PasswordRule()])
+        let viewModel = NGLoginViewModel(
+            input: (
+                username: usernameTextField.rx.text.asDriver(),
+                password: passwordTextField.rx.text.asDriver(),
+                loginTaps: signInButton.rx.tap.asDriver()
+            ),
+            dependency: (
+                provider: self.provider,
+                validationService: NGDefaultLoginValidationService.sharedLoginValidationService
+            )
+        )
+        
+        viewModel.loginEnabled
+            .drive(onNext: { [weak self] valid  in
+            self?.signInButton.isEnabled = valid
+            self?.signInButton.alpha = valid ? 1.0 : 0.5
+            })
+        .addDisposableTo(disposeBag)
+
+        viewModel.loggingIn
+            .drive(activityIndicator.rx.animating)
+            .addDisposableTo(disposeBag)
+        
+        viewModel.loggingIn
+            .map{!$0}
+            .drive(signUpButton.rx.enabled)
+            .addDisposableTo(disposeBag)
+        
+        viewModel.loggedIn
+            .drive(onNext: { result in
+                switch result {
+                case .success(let user, let token):
+                    user.saveToUserDefaults()
+                    NGUser.setToken(token: token)
+                    self.signInResultLabel.text = ""
+                    self.dismiss(animated: true, completion: nil)
+                case .failure(let error):
+                    switch error {
+                    case .NoConnection:
+                        self.signInResultLabel.text = "Could not connect to the Internet"
+                    case .NotFound:
+                        self.signInResultLabel.text = "Incorrect username/password"
+                    default:
+                        self.signInResultLabel.text = "Unknown error"
+                    }
+                }
+            })
+            .addDisposableTo(disposeBag)
+        
+        let tapBackground = UITapGestureRecognizer()
+        tapBackground.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+                })
+            .addDisposableTo(disposeBag)
+        view.addGestureRecognizer(tapBackground)
         
         // Do any additional setup after loading the view.
     }
@@ -38,26 +93,5 @@ class NGLoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func signInAction(sender: UIButton) {
-        validator.validate(self)
-    }
-
-    @IBAction func signUpAction(sender: UIButton) {
-    }
 }
 
-extension NGLoginViewController: ValidationDelegate{
-    func validationSuccessful() {
-        
-    }
-    
-    func validationFailed(_ errors: [(Validatable, ValidationError)]) {
-        
-    }
-}
-
-extension NGLoginViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        validator.validate(self)
-    }
-}
