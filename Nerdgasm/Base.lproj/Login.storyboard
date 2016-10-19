@@ -144,15 +144,24 @@
                                     <constraint firstAttribute="width" constant="150" id="5fG-lR-pJV"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zo2-e1-8ec">
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonAction:" destination="Ios-8V-sx7" eventType="touchUpInside" id="p3a-Gs-YZQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UEx-M4-qZN" firstAttribute="centerX" secondItem="CP2-0f-E6O" secondAttribute="centerX" id="1kD-CL-xiz"/>
                             <constraint firstItem="UEx-M4-qZN" firstAttribute="centerY" secondItem="CP2-0f-E6O" secondAttribute="centerY" id="FjE-Ah-OGl"/>
+                            <constraint firstAttribute="trailing" secondItem="Zo2-e1-8ec" secondAttribute="trailing" constant="15" id="Pl2-HJ-SwD"/>
+                            <constraint firstItem="Zo2-e1-8ec" firstAttribute="top" secondItem="raL-ue-lkS" secondAttribute="bottom" constant="10" id="sQD-8n-rY5"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="xdZ-pw-akb" id="tsO-yP-N2F"/>
+                        <outlet property="cancelButton" destination="Zo2-e1-8ec" id="CPH-AW-oDv"/>
                         <outlet property="passwordLabel" destination="ZYv-69-g5o" id="8HW-hP-p1G"/>
                         <outlet property="passwordTextField" destination="j1j-2f-Upy" id="ezq-bR-sqr"/>
                         <outlet property="repeatPasswordLabel" destination="q4g-Yo-Ewv" id="umM-eA-ssf"/>

@@ -32,11 +32,19 @@ public enum NGNetworkError: Swift.Error{
     }
 }
 
-enum NGService{
+protocol NGServiceType {
+    
+}
+
+enum NGService: NGServiceType{
     case Signin(username: String, password: String)
     case Signup(username: String, password: String)
-    case Signout
     case UsernameAvailable(username: String)
+}
+
+enum NGAuthenticatedService: NGServiceType {
+    case Signout
+    case Users
 }
 
 extension NGService: TargetType{
@@ -50,8 +58,6 @@ extension NGService: TargetType{
             return "/users/login"
         case .Signup(_, _):
             return "/users"
-        case .Signout:
-            return "/users/signout"
         case .UsernameAvailable(_):
             return "/users/username"
         }
@@ -71,8 +77,6 @@ extension NGService: TargetType{
             return ["username" : username, "password" : password]
         case .Signup(let username, let password):
             return ["username" : username, "password" : password]
-        case .Signout:
-            return nil
         case .UsernameAvailable(let username):
             return ["username" : username]
         }
@@ -82,3 +86,49 @@ extension NGService: TargetType{
         return .request
     }
 }
+
+extension NGAuthenticatedService: TargetType{
+    var baseURL: URL {
+        return URL(string: "https://www.hhakobyan.com/nerdgasm/api/v1")!
+    }
+    
+    var path: String{
+        switch self {
+        case .Signout:
+            return "/users/signout"
+        case .Users:
+            return "/users"
+        }
+    }
+    
+    var method: Moya.Method {
+        switch self {
+        case .Users:
+            return .GET
+        default:
+            return .POST
+        }
+    }
+    
+    var sampleData: Data {
+        return Data()
+    }
+    
+    var parameters: [String: Any]? {
+        switch self {
+        case .Signout:
+            return nil
+        case .Users:
+            return nil
+        }
+    }
+    
+    var task: Task{
+        return .request
+    }
+}
+
+func url(_ route: TargetType) -> String {
+    return route.baseURL.appendingPathComponent(route.path).absoluteString
+}
+

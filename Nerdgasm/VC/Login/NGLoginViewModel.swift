@@ -28,13 +28,10 @@ class NGLoginViewModel {
         password: Driver<String>,
         loginTaps: Driver<Void>
         ),
-         dependency: (
-        provider: RxMoyaProvider<NGService>,
         validationService: NGLoginValidationService
-        )
         ) {
-        let provider = dependency.provider
-        let validationService = dependency.validationService
+        let networking = NGNetworking.newDefaultNetworking()
+        let validationService = validationService
         
         validatedUsername = input.username
             .map { username in
@@ -55,7 +52,7 @@ class NGLoginViewModel {
         
         loggedIn = input.loginTaps.withLatestFrom(usernameAndPassword)
             .flatMapLatest{ (username, password) in
-                    return provider.request(NGService.Signin(username: username, password: password))
+                    return networking.request(NGService.Signin(username: username, password: password))
                         .filterSuccessfulStatusCodes()
                         .do(onNext: nil, onError: { err in
                             print(err)

@@ -19,10 +19,7 @@ class NGLoginViewController: UIViewController {
     
     @IBOutlet weak var signInResultLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     private let disposeBag = DisposeBag()
-    private var provider = RxMoyaProvider<NGService>()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +31,7 @@ class NGLoginViewController: UIViewController {
                 password: passwordTextField.rx.text.asDriver(),
                 loginTaps: signInButton.rx.tap.asDriver()
             ),
-            dependency: (
-                provider: self.provider,
                 validationService: NGDefaultLoginValidationService.sharedLoginValidationService
-            )
         )
         
         viewModel.loginEnabled

@@ -22,7 +22,7 @@ class NGSignupViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var usernameExistsActivityIndicator: UIActivityIndicatorView!
     private let disposeBag = DisposeBag()
-    private let provider = RxMoyaProvider<NGService>()
+    @IBOutlet weak var cancelButton: UIButton!
     private var latestUsername: Observable<String> {
         return usernameTextField.rx.text
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -42,10 +42,7 @@ class NGSignupViewController: UIViewController {
                 repeatedPassword: repeatPasswordTextField.rx.text.asDriver(),
                 loginTaps: signupButton.rx.tap.asDriver()
             ),
-            dependency: (
-                provider: self.provider,
                 validationService: NGDefaultSignupValidationService.sharedSignupValidationService
-            )
         )
         
         viewModel.signupEnabled
@@ -53,6 +50,11 @@ class NGSignupViewController: UIViewController {
                 self?.signupButton.isEnabled = valid
                 self?.signupButton.alpha = valid ? 1.0 : 0.5
                 })
+            .addDisposableTo(disposeBag)
+        
+        viewModel.signingUp
+            .map{!$0}
+            .drive(cancelButton.rx.enabled)
             .addDisposableTo(disposeBag)
         
         viewModel.validatedUsername
@@ -109,6 +111,13 @@ class NGSignupViewController: UIViewController {
     }
     
 
+    @IBAction func cancelButtonAction(_ sender: UIButton) {
+        if !sender.isEnabled {
+            return
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     /*
     // MARK: - Navigation
 

@@ -19,6 +19,7 @@
 		5445959D1DB4AC6A002BD140 /* NGLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5445959C1DB4AC6A002BD140 /* NGLoginViewModel.swift */; };
 		5445959F1DB4AD6B002BD140 /* NGLoginValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5445959E1DB4AD6B002BD140 /* NGLoginValidationService.swift */; };
 		544FB7411DA77CBB006EAB6E /* NGSignupBindingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544FB7401DA77CBB006EAB6E /* NGSignupBindingExtensions.swift */; };
+		545E75541DB8046200815D06 /* NGNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545E75531DB8046200815D06 /* NGNetworking.swift */; };
 		545EC4611D983DFD005B4BFF /* NGKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545EC4601D983DFD005B4BFF /* NGKeychain.swift */; };
 		545EC4651D984668005B4BFF /* NGRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545EC4641D984668005B4BFF /* NGRealm.swift */; };
 		546592A31DB6B509005E3313 /* NGLoginBindingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546592A21DB6B509005E3313 /* NGLoginBindingExtensions.swift */; };
@@ -59,6 +60,7 @@
 		5445959C1DB4AC6A002BD140 /* NGLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginViewModel.swift; path = VC/Login/NGLoginViewModel.swift; sourceTree = "<group>"; };
 		5445959E1DB4AD6B002BD140 /* NGLoginValidationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginValidationService.swift; path = VC/Login/NGLoginValidationService.swift; sourceTree = "<group>"; };
 		544FB7401DA77CBB006EAB6E /* NGSignupBindingExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGSignupBindingExtensions.swift; path = VC/Login/NGSignupBindingExtensions.swift; sourceTree = "<group>"; };
+		545E75531DB8046200815D06 /* NGNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGNetworking.swift; path = Managers/Networking/NGNetworking.swift; sourceTree = "<group>"; };
 		545EC4601D983DFD005B4BFF /* NGKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGKeychain.swift; path = Managers/NGKeychain.swift; sourceTree = "<group>"; };
 		545EC4641D984668005B4BFF /* NGRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGRealm.swift; path = Managers/NGRealm.swift; sourceTree = "<group>"; };
 		546592A21DB6B509005E3313 /* NGLoginBindingExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginBindingExtensions.swift; path = VC/Login/NGLoginBindingExtensions.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				54BA940B1D9EA5CB00B65B30 /* NGService.swift */,
+				545E75531DB8046200815D06 /* NGNetworking.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				54684AD31D9FBCBD00EBE138 /* NGSignupViewController.swift in Sources */,
 				5414F08E1D9712D100D30EDF /* AppDelegate.swift in Sources */,
 				5414F0B31D97178200D30EDF /* NGLoginViewController.swift in Sources */,
+				545E75541DB8046200815D06 /* NGNetworking.swift in Sources */,
 				54AA50DC1DA4DCBD00539076 /* ActivityIndicator.swift in Sources */,
 				54684AD91D9FE58200EBE138 /* NGSignupViewModel.swift in Sources */,
 				54DF06F71D984842007541EB /* NGUserInfo.swift in Sources */,

@@ -50,14 +50,10 @@ protocol NGSignupValidationService{
 }
 
 class NGDefaultSignupValidationService: NGSignupValidationService{
-    let provider: RxMoyaProvider<NGService>
+    let networking = NGNetworking.newDefaultNetworking()
     let minPasswordCount = 8
     let minUsernameCount = 6
-    static let sharedSignupValidationService = NGDefaultSignupValidationService(provider: RxMoyaProvider<NGService>())
-    
-    init (provider: RxMoyaProvider<NGService>){
-        self.provider = provider
-    }
+    static let sharedSignupValidationService = NGDefaultSignupValidationService()
     
     func validateUsername(_ username: String) -> Observable<NGSignupValidationResult> {
         if username.characters.count == 0 {
@@ -74,7 +70,7 @@ class NGDefaultSignupValidationService: NGSignupValidationService{
         
         let loadingValue = NGSignupValidationResult.validating
         
-        return provider.request(NGService.UsernameAvailable(username: username))
+        return networking.request(NGService.UsernameAvailable(username: username))
             .debug()
             .filterSuccessfulStatusCodes()
             .mapJSON()

@@ -39,13 +39,10 @@ class NGSignupViewModel {
             repeatedPassword: Driver<String>,
             loginTaps: Driver<Void>
         ),
-         dependency: (
-            provider: RxMoyaProvider<NGService>,
-            validationService: NGSignupValidationService
-        )
+         validationService: NGSignupValidationService
         ) {
-        let provider = dependency.provider
-        let validationService = dependency.validationService
+        let networking = NGNetworking.newDefaultNetworking()
+        let validationService = validationService
         
         /**
          Notice how no subscribe call is being made.
@@ -77,7 +74,7 @@ class NGSignupViewModel {
 
         signedUp = input.loginTaps.withLatestFrom(usernameAndPassword)
             .flatMapLatest { (username, password) in
-                    return provider.request(NGService.Signup(username: username, password: password))
+                    return networking.request(NGService.Signup(username: username, password: password))
                                     .filterSuccessfulStatusCodes()
                                     .mapJSON()
                                     .map { json in
