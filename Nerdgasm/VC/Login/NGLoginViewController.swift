@@ -53,9 +53,8 @@ class NGLoginViewController: UIViewController {
         viewModel.loggedIn
             .drive(onNext: { result in
                 switch result {
-                case .success(let user, let token):
-                    user.saveToUserDefaults()
-                    NGUser.setToken(token: token)
+                case .success(let credentials):
+                    credentials.synchronize()
                     self.signInResultLabel.text = ""
                     self.dismiss(animated: true, completion: nil)
                 case .failure(let error):

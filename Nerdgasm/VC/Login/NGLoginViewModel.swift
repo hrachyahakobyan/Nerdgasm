@@ -13,7 +13,7 @@ import Moya
 import Result
 import Gloss
 
-typealias NGLoginResult = Result<(NGUser, String), NGNetworkError>
+typealias NGLoginResult = Result<NGUserCredentials, NGNetworkError>
 
 class NGLoginViewModel {
     
@@ -72,11 +72,11 @@ class NGLoginViewModel {
                             guard let user: NGUser = NGUser(json: userData) else {
                                 throw NGNetworkError.Unknown
                             }
-                            return (user, access_token)
+                            return NGUserCredentials(user: user, token: access_token)
                         }
                         .mapToFailable()
                         .trackActivity(loggingIn)
-                        .catchError{.just(.failure(.Error($0)))}
+                        .catchError{.just(.failure(toNgError(err: $0)))}
                         .asDriver(onErrorJustReturn: .failure(.NoConnection))
         }
         
@@ -100,27 +100,7 @@ extension ObservableType{
         return self
             .map(Result<E, NGNetworkError>.success)
             .catchError{ err in
-                if type(of: err) == Moya.Error.self {
-                    let moyaErr = err as! Moya.Error
-                    switch moyaErr {
-                    case .statusCode(let response):
-                        switch response.statusCode{
-                            case 404:
-                                return .just(.failure(.NotFound))
-                            case 401:
-                                return .just(.failure(.Unauthorized))
-                            default:
-                                return .just(.failure(.Unknown))
-                        }
-                    case .underlying(let err):
-                        return .just(.failure(.Error(err)))
-                    default:
-                        return .just(.failure(.Unknown))
-                    }
-                }
-                else {
-                    return .just(.failure(.Error(err)))
-                }
+                return .just(.failure(toNgError(err: err)))
         }
     }
 }

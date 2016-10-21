@@ -26,6 +26,10 @@
 		54684AD31D9FBCBD00EBE138 /* NGSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54684AD21D9FBCBD00EBE138 /* NGSignupViewController.swift */; };
 		54684AD71D9FD53200EBE138 /* NGSignupValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54684AD61D9FD53200EBE138 /* NGSignupValidationService.swift */; };
 		54684AD91D9FE58200EBE138 /* NGSignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54684AD81D9FE58200EBE138 /* NGSignupViewModel.swift */; };
+		547B511D1DB95F0900F1BB1D /* NGUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B511C1DB95F0900F1BB1D /* NGUserProfileViewController.swift */; };
+		547B51201DB95FD200F1BB1D /* Tabbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 547B511E1DB95FD200F1BB1D /* Tabbar.storyboard */; };
+		547B51221DB9610600F1BB1D /* NGUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B51211DB9610600F1BB1D /* NGUserViewModel.swift */; };
+		547B51241DB962D500F1BB1D /* NGUserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B51231DB962D500F1BB1D /* NGUserCredentials.swift */; };
 		54AA50DC1DA4DCBD00539076 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AA50DB1DA4DCBD00539076 /* ActivityIndicator.swift */; };
 		54BA940C1D9EA5CB00B65B30 /* NGService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA940B1D9EA5CB00B65B30 /* NGService.swift */; };
 		54CC1B3E1DB4081D008568F5 /* NGUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC1B3D1DB4081D008568F5 /* NGUser.swift */; };
@@ -67,6 +71,10 @@
 		54684AD21D9FBCBD00EBE138 /* NGSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGSignupViewController.swift; path = VC/Login/NGSignupViewController.swift; sourceTree = "<group>"; };
 		54684AD61D9FD53200EBE138 /* NGSignupValidationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGSignupValidationService.swift; path = VC/Login/NGSignupValidationService.swift; sourceTree = "<group>"; };
 		54684AD81D9FE58200EBE138 /* NGSignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGSignupViewModel.swift; path = VC/Login/NGSignupViewModel.swift; sourceTree = "<group>"; };
+		547B511C1DB95F0900F1BB1D /* NGUserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUserProfileViewController.swift; path = VC/Users/NGUserProfileViewController.swift; sourceTree = "<group>"; };
+		547B511F1DB95FD200F1BB1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Tabbar.storyboard; sourceTree = "<group>"; };
+		547B51211DB9610600F1BB1D /* NGUserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUserViewModel.swift; path = VC/Users/NGUserViewModel.swift; sourceTree = "<group>"; };
+		547B51231DB962D500F1BB1D /* NGUserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUserCredentials.swift; path = Models/NGUserCredentials.swift; sourceTree = "<group>"; };
 		54AA50DB1DA4DCBD00539076 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		54BA940B1D9EA5CB00B65B30 /* NGService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGService.swift; path = Managers/Networking/NGService.swift; sourceTree = "<group>"; };
 		54CC1B3D1DB4081D008568F5 /* NGUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUser.swift; path = Models/NGUser.swift; sourceTree = "<group>"; };
@@ -177,6 +185,7 @@
 			children = (
 				5414F0B81D97190A00D30EDF /* Login.storyboard */,
 				5414F0911D9712D100D30EDF /* Main.storyboard */,
+				547B511E1DB95FD200F1BB1D /* Tabbar.storyboard */,
 				5414F0961D9712D100D30EDF /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
@@ -186,6 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				5414F7451DB5EC31004E96F8 /* NGUsersViewController.swift */,
+				547B511C1DB95F0900F1BB1D /* NGUserProfileViewController.swift */,
+				547B51211DB9610600F1BB1D /* NGUserViewModel.swift */,
 			);
 			name = Users;
 			sourceTree = "<group>";
@@ -213,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				54CC1B3D1DB4081D008568F5 /* NGUser.swift */,
+				547B51231DB962D500F1BB1D /* NGUserCredentials.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -330,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				547B51201DB95FD200F1BB1D /* Tabbar.storyboard in Resources */,
 				5414F0BA1D97190A00D30EDF /* Login.storyboard in Resources */,
 				5414F0981D9712D100D30EDF /* LaunchScreen.storyboard in Resources */,
 				5414F0951D9712D100D30EDF /* Assets.xcassets in Resources */,
@@ -403,10 +416,13 @@
 				546592A31DB6B509005E3313 /* NGLoginBindingExtensions.swift in Sources */,
 				5445959F1DB4AD6B002BD140 /* NGLoginValidationService.swift in Sources */,
 				54684AD71D9FD53200EBE138 /* NGSignupValidationService.swift in Sources */,
+				547B51221DB9610600F1BB1D /* NGUserViewModel.swift in Sources */,
 				5414F0B01D97149C00D30EDF /* NGLaunchViewController.swift in Sources */,
 				54684AD31D9FBCBD00EBE138 /* NGSignupViewController.swift in Sources */,
 				5414F08E1D9712D100D30EDF /* AppDelegate.swift in Sources */,
+				547B51241DB962D500F1BB1D /* NGUserCredentials.swift in Sources */,
 				5414F0B31D97178200D30EDF /* NGLoginViewController.swift in Sources */,
+				547B511D1DB95F0900F1BB1D /* NGUserProfileViewController.swift in Sources */,
 				545E75541DB8046200815D06 /* NGNetworking.swift in Sources */,
 				54AA50DC1DA4DCBD00539076 /* ActivityIndicator.swift in Sources */,
 				54684AD91D9FE58200EBE138 /* NGSignupViewModel.swift in Sources */,
@@ -461,6 +477,14 @@
 				5414F0B91D97190A00D30EDF /* Base */,
 			);
 			name = Login.storyboard;
+			sourceTree = "<group>";
+		};
+		547B511E1DB95FD200F1BB1D /* Tabbar.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				547B511F1DB95FD200F1BB1D /* Base */,
+			);
+			name = Tabbar.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

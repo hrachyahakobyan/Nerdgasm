@@ -13,8 +13,6 @@ class NGUser: NSObject, NSCoding{
     enum Keys: String {
         case IdKey = "Id"
         case UsernameKey = "Username"
-        case TokenKey = "AccessToken"
-        case UserKey = "User"
     }
     
     public let username: String
@@ -42,29 +40,5 @@ class NGUser: NSObject, NSCoding{
         self.id = aDecoder.decodeInteger(forKey: Keys.IdKey.rawValue)
         self.username = username
         super.init()
-    }
-    
-    func saveToUserDefaults(userDefaults: UserDefaults = UserDefaults.standard){
-        let data = NSKeyedArchiver.archivedData(withRootObject: self)
-        userDefaults.set(data, forKey: Keys.UserKey.rawValue)
-        userDefaults.synchronize()
-    }
-    
-    static func userInfo(userDefaults: UserDefaults = UserDefaults.standard) -> NGUser? {
-        guard let data = userDefaults.object(forKey: Keys.UserKey.rawValue) as? Data else {return nil}
-        return (NSKeyedUnarchiver.unarchiveObject(with: data) as? NGUser)
-    }
-    
-    static func tokenIsValid() -> Bool {
-        guard let token = UserDefaults.standard.object(forKey: Keys.TokenKey.rawValue) as? String else { return false }
-        return token.characters.count != 0
-    }
-    
-    static func token() -> String? {
-        return UserDefaults.standard.object(forKey: Keys.TokenKey.rawValue) as? String
-    }
-    
-    static func setToken(token: String) {
-        UserDefaults.standard.set(token, forKey: Keys.TokenKey.rawValue)
     }
 }

@@ -32,6 +32,37 @@ public enum NGNetworkError: Swift.Error{
     }
 }
 
+func toNgError(err: Swift.Error) -> NGNetworkError{
+    if type(of: err) == Moya.Error.self {
+        let moyaErr = err as! Moya.Error
+        switch moyaErr {
+        case .statusCode(let response):
+            switch response.statusCode{
+            case 404:
+                return .NotFound
+            case 401:
+                return .Unauthorized
+            default:
+                return .Unknown
+            }
+        case .underlying(let err):
+            return .Error(err)
+        default:
+            return .Unknown
+        }
+    }
+    else {
+        return .Error(err)
+    }
+}
+
+func isunAuhtorized(error: Swift.Error) -> Bool {
+    guard case NGNetworkError.Unauthorized = toNgError(err: error) else {
+        return false
+    }
+    return true
+}
+
 protocol NGServiceType {
     
 }
@@ -95,7 +126,7 @@ extension NGAuthenticatedService: TargetType{
     var path: String{
         switch self {
         case .Signout:
-            return "/users/signout"
+            return "/users/logout"
         case .Users:
             return "/users"
         }

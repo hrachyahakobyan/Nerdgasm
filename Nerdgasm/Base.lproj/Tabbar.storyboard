@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="XOT-oL-Vur">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Profile-->
+        <scene sceneID="yFO-BO-pSE">
+            <objects>
+                <viewController id="lit-zU-o0R" customClass="NGUserProfileViewController" customModule="Nerdgasm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yQp-EF-ewe"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cn3-Iu-eRL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AKo-2p-uEz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnR-8b-OfL">
+                                <state key="normal" title="Sign out"/>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="EP0-qb-lvD"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EP0-qb-lvD" firstAttribute="centerY" secondItem="NnR-8b-OfL" secondAttribute="centerY" id="4Lx-vS-3wH"/>
+                            <constraint firstItem="EP0-qb-lvD" firstAttribute="leading" secondItem="NnR-8b-OfL" secondAttribute="trailing" constant="8" symbolic="YES" id="CpW-8n-aW0"/>
+                            <constraint firstItem="NnR-8b-OfL" firstAttribute="leading" secondItem="AKo-2p-uEz" secondAttribute="leading" constant="10" id="SIL-2j-SKL"/>
+                            <constraint firstItem="NnR-8b-OfL" firstAttribute="top" secondItem="yQp-EF-ewe" secondAttribute="bottom" id="o57-Ah-y71"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" id="yXQ-mT-ydx"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="EP0-qb-lvD" id="StO-AO-ihJ"/>
+                        <outlet property="signoutButton" destination="NnR-8b-OfL" id="j4Q-7W-Fd5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wmR-Xb-arl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2154" y="2146"/>
+        </scene>
+        <!--Users-->
+        <scene sceneID="gKh-o9-23C">
+            <objects>
+                <viewController id="wyb-HC-7yF" customClass="NGUsersViewController" customModule="Nerdgasm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qig-zg-pKQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Msi-It-Myx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EAP-XE-Nxr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Users" id="PWu-aU-HPb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G3h-a0-J1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2154" y="1492"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="XQP-l8-I02">
+            <objects>
+                <tabBarController id="XOT-oL-Vur" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="c8A-CX-blr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="wyb-HC-7yF" kind="relationship" relationship="viewControllers" id="PoS-uI-JeD"/>
+                        <segue destination="lit-zU-o0R" kind="relationship" relationship="viewControllers" id="Pcp-oj-PVR"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zln-fD-rT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="1728"/>
+        </scene>
+    </scenes>
+</document>

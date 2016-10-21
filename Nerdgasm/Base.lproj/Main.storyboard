@@ -22,12 +22,12 @@
                     <navigationItem key="navigationItem" id="ITo-3K-zyQ"/>
                     <connections>
                         <segue destination="RvT-tw-aQb" kind="presentation" identifier="login" id="e2X-Ku-TAK"/>
-                        <segue destination="DxN-iW-Kj0" kind="show" identifier="users" id="3Te-hz-HBz"/>
+                        <segue destination="OBD-p9-2jo" kind="show" identifier="tabbar" animates="NO" id="ZHf-bv-boj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UKY-Th-8c5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="924" y="1568"/>
+            <point key="canvasLocation" x="311" y="1729"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5GC-jb-sh1">
@@ -43,25 +43,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5C-DX-9sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="180" y="1569"/>
-        </scene>
-        <!--Users View Controller-->
-        <scene sceneID="s9M-9g-XBq">
-            <objects>
-                <viewController id="DxN-iW-Kj0" customClass="NGUsersViewController" customModule="Nerdgasm" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="5az-Wj-ot2"/>
-                        <viewControllerLayoutGuide type="bottom" id="oEY-u7-8Of"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oa5-ZB-al1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g8O-vP-dZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1705" y="1198"/>
+            <point key="canvasLocation" x="-396" y="1730"/>
         </scene>
         <!--Login-->
         <scene sceneID="Rfx-Vg-1mN">
@@ -69,7 +51,15 @@
                 <viewControllerPlaceholder storyboardName="Login" id="RvT-tw-aQb" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GLZ-mI-Fsk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1434" y="1568"/>
+            <point key="canvasLocation" x="778" y="2166"/>
+        </scene>
+        <!--Tabbar-->
+        <scene sceneID="aa3-e9-vxm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Tabbar" id="OBD-p9-2jo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UNt-nu-5gC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1196" y="1728"/>
         </scene>
     </scenes>
 </document>
