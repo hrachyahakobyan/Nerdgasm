@@ -21,7 +21,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ITo-3K-zyQ"/>
                     <connections>
-                        <segue destination="RvT-tw-aQb" kind="presentation" identifier="login" id="e2X-Ku-TAK"/>
+                        <segue destination="RvT-tw-aQb" kind="presentation" identifier="login" animates="NO" id="e2X-Ku-TAK"/>
                         <segue destination="OBD-p9-2jo" kind="show" identifier="tabbar" animates="NO" id="ZHf-bv-boj"/>
                     </connections>
                 </viewController>

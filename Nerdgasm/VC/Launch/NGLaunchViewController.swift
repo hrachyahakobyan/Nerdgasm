@@ -23,12 +23,12 @@ class NGLaunchViewController: UIViewController {
         super.viewDidAppear(animated)
         if let credential = NGUserCredentials.credentials() {
             if credential.access_token.characters.count == 0{
-                self.performSegue(withIdentifier: "login", sender: nil)
+                self.performSegue(withIdentifier: R.segue.nGLaunchViewController.login, sender: nil)
             } else {
-                self.performSegue(withIdentifier: "tabbar", sender: nil)
+                self.performSegue(withIdentifier: R.segue.nGLaunchViewController.tabbar, sender: nil)
             }
         } else {
-            self.performSegue(withIdentifier: "login", sender: nil)
+            self.performSegue(withIdentifier: R.segue.nGLaunchViewController.login, sender: nil)
         }
     }
 

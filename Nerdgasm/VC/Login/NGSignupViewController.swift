@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import Moya
+import RxCocoa
 
 class NGSignupViewController: UIViewController {
 
@@ -23,10 +24,11 @@ class NGSignupViewController: UIViewController {
     @IBOutlet weak var usernameExistsActivityIndicator: UIActivityIndicatorView!
     private let disposeBag = DisposeBag()
     @IBOutlet weak var cancelButton: UIButton!
-    private var latestUsername: Observable<String> {
-        return usernameTextField.rx.text
+    private var latestUsername: Driver<String> {
+        return usernameTextField.rx.text.orEmpty
             .throttle(0.5, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
     }
     
     override func viewDidLoad() {
@@ -37,9 +39,9 @@ class NGSignupViewController: UIViewController {
         repeatPasswordTextField.isSecureTextEntry = true
         let viewModel = NGSignupViewModel(
             input: (
-                username: latestUsername.asDriver(onErrorJustReturn: ""),
-                password: passwordTextField.rx.text.asDriver(),
-                repeatedPassword: repeatPasswordTextField.rx.text.asDriver(),
+                username: latestUsername,
+                password: passwordTextField.rx.text.orEmpty.asDriver(),
+                repeatedPassword: repeatPasswordTextField.rx.text.orEmpty.asDriver(),
                 loginTaps: signupButton.rx.tap.asDriver()
             ),
                 validationService: NGDefaultSignupValidationService.sharedSignupValidationService
@@ -84,7 +86,7 @@ class NGSignupViewController: UIViewController {
         viewModel.signedUp
             .drive(onNext: { result in
                 switch result {
-                    case .success(let user):
+                    case .success( _):
                         self.dismiss(animated: true, completion: nil)
                     case .failure(let error):
                         self.present(UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert), animated: true)

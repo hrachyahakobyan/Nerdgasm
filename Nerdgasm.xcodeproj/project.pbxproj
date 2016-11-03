@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		540D3AB51DC08AF900E4433E /* NGMyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D3AB41DC08AF900E4433E /* NGMyProfileViewModel.swift */; };
+		540D3AB71DC08BCD00E4433E /* NGMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D3AB61DC08BCD00E4433E /* NGMyProfileViewController.swift */; };
+		540EC0411DBAB21900F7E9D8 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540EC03F1DBAB21900F7E9D8 /* UserTableViewCell.swift */; };
+		540EC0421DBAB21900F7E9D8 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540EC0401DBAB21900F7E9D8 /* UserTableViewCell.xib */; };
+		541139F81DC12AAD00082498 /* RxSwiftCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541139F71DC12AAC00082498 /* RxSwiftCustom.swift */; };
+		541433821DB9F12F00E66799 /* UIViewController+UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541433811DB9F12F00E66799 /* UIViewController+UserCredentials.swift */; };
+		541433841DB9F5D400E66799 /* NGMeSignoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541433831DB9F5D400E66799 /* NGMeSignoutViewModel.swift */; };
 		5414F08E1D9712D100D30EDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5414F08D1D9712D100D30EDF /* AppDelegate.swift */; };
 		5414F0931D9712D100D30EDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5414F0911D9712D100D30EDF /* Main.storyboard */; };
 		5414F0951D9712D100D30EDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5414F0941D9712D100D30EDF /* Assets.xcassets */; };
@@ -19,8 +26,6 @@
 		5445959D1DB4AC6A002BD140 /* NGLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5445959C1DB4AC6A002BD140 /* NGLoginViewModel.swift */; };
 		5445959F1DB4AD6B002BD140 /* NGLoginValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5445959E1DB4AD6B002BD140 /* NGLoginValidationService.swift */; };
 		544FB7411DA77CBB006EAB6E /* NGSignupBindingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544FB7401DA77CBB006EAB6E /* NGSignupBindingExtensions.swift */; };
-		545E75541DB8046200815D06 /* NGNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545E75531DB8046200815D06 /* NGNetworking.swift */; };
-		545EC4611D983DFD005B4BFF /* NGKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545EC4601D983DFD005B4BFF /* NGKeychain.swift */; };
 		545EC4651D984668005B4BFF /* NGRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545EC4641D984668005B4BFF /* NGRealm.swift */; };
 		546592A31DB6B509005E3313 /* NGLoginBindingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546592A21DB6B509005E3313 /* NGLoginBindingExtensions.swift */; };
 		54684AD31D9FBCBD00EBE138 /* NGSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54684AD21D9FBCBD00EBE138 /* NGSignupViewController.swift */; };
@@ -31,9 +36,15 @@
 		547B51221DB9610600F1BB1D /* NGUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B51211DB9610600F1BB1D /* NGUserViewModel.swift */; };
 		547B51241DB962D500F1BB1D /* NGUserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B51231DB962D500F1BB1D /* NGUserCredentials.swift */; };
 		54AA50DC1DA4DCBD00539076 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AA50DB1DA4DCBD00539076 /* ActivityIndicator.swift */; };
-		54BA940C1D9EA5CB00B65B30 /* NGService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BA940B1D9EA5CB00B65B30 /* NGService.swift */; };
+		54B7FB8B1DC3EC31002B854A /* NGService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B7FB891DC3EC31002B854A /* NGService.swift */; };
+		54B7FB8D1DC3ECBD002B854A /* NGNetworking .swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B7FB8C1DC3ECBD002B854A /* NGNetworking .swift */; };
+		54C7FB081DBD244E00BD7430 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C7FB071DBD244E00BD7430 /* R.generated.swift */; };
 		54CC1B3E1DB4081D008568F5 /* NGUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC1B3D1DB4081D008568F5 /* NGUser.swift */; };
 		54DF06F71D984842007541EB /* NGUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DF06F61D984842007541EB /* NGUserInfo.swift */; };
+		54F0E03F1DBDE5C100F0B2F7 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54F0E03D1DBDE5C000F0B2F7 /* UserProfile.storyboard */; };
+		54F0E0421DBDE63300F0B2F7 /* NGMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F0E0411DBDE63300F0B2F7 /* NGMeViewController.swift */; };
+		54F0E0451DBDE78B00F0B2F7 /* NGMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F0E0431DBDE78B00F0B2F7 /* NGMeTableViewCell.swift */; };
+		54F0E0461DBDE78B00F0B2F7 /* NGMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F0E0441DBDE78B00F0B2F7 /* NGMeTableViewCell.xib */; };
 		CF15ABB4CFFF1AD3967DF92E /* Pods_Nerdgasm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D1C8F4D28DEC4B34ABDE24D /* Pods_Nerdgasm.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +59,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		540D3AB41DC08AF900E4433E /* NGMyProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGMyProfileViewModel.swift; path = VC/Me/NGMyProfileViewModel.swift; sourceTree = "<group>"; };
+		540D3AB61DC08BCD00E4433E /* NGMyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGMyProfileViewController.swift; path = VC/Me/NGMyProfileViewController.swift; sourceTree = "<group>"; };
+		540EC03F1DBAB21900F7E9D8 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTableViewCell.swift; path = VC/Users/UserTableViewCell.swift; sourceTree = "<group>"; };
+		540EC0401DBAB21900F7E9D8 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserTableViewCell.xib; path = VC/Users/UserTableViewCell.xib; sourceTree = "<group>"; };
+		541139F71DC12AAC00082498 /* RxSwiftCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxSwiftCustom.swift; path = "RxSwift+Extra/RxSwiftCustom.swift"; sourceTree = "<group>"; };
+		541433811DB9F12F00E66799 /* UIViewController+UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+UserCredentials.swift"; path = "VC/UIViewController+UserCredentials.swift"; sourceTree = "<group>"; };
+		541433831DB9F5D400E66799 /* NGMeSignoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGMeSignoutViewModel.swift; path = VC/Users/NGMeSignoutViewModel.swift; sourceTree = "<group>"; };
 		5414F08A1D9712D100D30EDF /* Nerdgasm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nerdgasm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5414F08D1D9712D100D30EDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5414F0921D9712D100D30EDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -64,8 +82,6 @@
 		5445959C1DB4AC6A002BD140 /* NGLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginViewModel.swift; path = VC/Login/NGLoginViewModel.swift; sourceTree = "<group>"; };
 		5445959E1DB4AD6B002BD140 /* NGLoginValidationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginValidationService.swift; path = VC/Login/NGLoginValidationService.swift; sourceTree = "<group>"; };
 		544FB7401DA77CBB006EAB6E /* NGSignupBindingExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGSignupBindingExtensions.swift; path = VC/Login/NGSignupBindingExtensions.swift; sourceTree = "<group>"; };
-		545E75531DB8046200815D06 /* NGNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGNetworking.swift; path = Managers/Networking/NGNetworking.swift; sourceTree = "<group>"; };
-		545EC4601D983DFD005B4BFF /* NGKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGKeychain.swift; path = Managers/NGKeychain.swift; sourceTree = "<group>"; };
 		545EC4641D984668005B4BFF /* NGRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGRealm.swift; path = Managers/NGRealm.swift; sourceTree = "<group>"; };
 		546592A21DB6B509005E3313 /* NGLoginBindingExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginBindingExtensions.swift; path = VC/Login/NGLoginBindingExtensions.swift; sourceTree = "<group>"; };
 		54684AD21D9FBCBD00EBE138 /* NGSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGSignupViewController.swift; path = VC/Login/NGSignupViewController.swift; sourceTree = "<group>"; };
@@ -76,9 +92,15 @@
 		547B51211DB9610600F1BB1D /* NGUserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUserViewModel.swift; path = VC/Users/NGUserViewModel.swift; sourceTree = "<group>"; };
 		547B51231DB962D500F1BB1D /* NGUserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUserCredentials.swift; path = Models/NGUserCredentials.swift; sourceTree = "<group>"; };
 		54AA50DB1DA4DCBD00539076 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
-		54BA940B1D9EA5CB00B65B30 /* NGService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGService.swift; path = Managers/Networking/NGService.swift; sourceTree = "<group>"; };
+		54B7FB891DC3EC31002B854A /* NGService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGService.swift; path = Managers/NGService.swift; sourceTree = "<group>"; };
+		54B7FB8C1DC3ECBD002B854A /* NGNetworking .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NGNetworking .swift"; path = "Managers/NGNetworking .swift"; sourceTree = "<group>"; };
+		54C7FB071DBD244E00BD7430 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		54CC1B3D1DB4081D008568F5 /* NGUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUser.swift; path = Models/NGUser.swift; sourceTree = "<group>"; };
 		54DF06F61D984842007541EB /* NGUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUserInfo.swift; path = Managers/NGUserInfo.swift; sourceTree = "<group>"; };
+		54F0E03E1DBDE5C000F0B2F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserProfile.storyboard; sourceTree = "<group>"; };
+		54F0E0411DBDE63300F0B2F7 /* NGMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGMeViewController.swift; path = VC/Me/NGMeViewController.swift; sourceTree = "<group>"; };
+		54F0E0431DBDE78B00F0B2F7 /* NGMeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGMeTableViewCell.swift; path = VC/Me/NGMeTableViewCell.swift; sourceTree = "<group>"; };
+		54F0E0441DBDE78B00F0B2F7 /* NGMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NGMeTableViewCell.xib; path = VC/Me/NGMeTableViewCell.xib; sourceTree = "<group>"; };
 		8D1C8F4D28DEC4B34ABDE24D /* Pods_Nerdgasm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nerdgasm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF5822295E9ED0C681965EDC /* Pods-Nerdgasm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nerdgasm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Nerdgasm/Pods-Nerdgasm.debug.xcconfig"; sourceTree = "<group>"; };
 		EB145A71D77CED0AAA39E92C /* Pods-Nerdgasm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nerdgasm.release.xcconfig"; path = "Pods/Target Support Files/Pods-Nerdgasm/Pods-Nerdgasm.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +148,7 @@
 		5414F08C1D9712D100D30EDF /* Nerdgasm */ = {
 			isa = PBXGroup;
 			children = (
+				54C7FB071DBD244E00BD7430 /* R.generated.swift */,
 				54CC1B3C1DB407FE008568F5 /* Models */,
 				545EC45F1D983DDE005B4BFF /* Managers */,
 				54AA50DA1DA4DC9500539076 /* RxSwift+Extra */,
@@ -150,9 +173,11 @@
 		5414F0AD1D97146300D30EDF /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				54F0E0401DBDE5EF00F0B2F7 /* Me */,
 				5414F7441DB5EAFC004E96F8 /* Users */,
 				5414F0B11D97176C00D30EDF /* Login */,
 				5414F0AE1D97146C00D30EDF /* Launch */,
+				541433811DB9F12F00E66799 /* UIViewController+UserCredentials.swift */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -186,6 +211,7 @@
 				5414F0B81D97190A00D30EDF /* Login.storyboard */,
 				5414F0911D9712D100D30EDF /* Main.storyboard */,
 				547B511E1DB95FD200F1BB1D /* Tabbar.storyboard */,
+				54F0E03D1DBDE5C000F0B2F7 /* UserProfile.storyboard */,
 				5414F0961D9712D100D30EDF /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
@@ -197,6 +223,8 @@
 				5414F7451DB5EC31004E96F8 /* NGUsersViewController.swift */,
 				547B511C1DB95F0900F1BB1D /* NGUserProfileViewController.swift */,
 				547B51211DB9610600F1BB1D /* NGUserViewModel.swift */,
+				540EC03F1DBAB21900F7E9D8 /* UserTableViewCell.swift */,
+				540EC0401DBAB21900F7E9D8 /* UserTableViewCell.xib */,
 			);
 			name = Users;
 			sourceTree = "<group>";
@@ -206,7 +234,6 @@
 			children = (
 				54DF06FC1D984B89007541EB /* Networking */,
 				545EC4641D984668005B4BFF /* NGRealm.swift */,
-				545EC4601D983DFD005B4BFF /* NGKeychain.swift */,
 				54DF06F61D984842007541EB /* NGUserInfo.swift */,
 			);
 			name = Managers;
@@ -216,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				54AA50DB1DA4DCBD00539076 /* ActivityIndicator.swift */,
+				541139F71DC12AAC00082498 /* RxSwiftCustom.swift */,
 			);
 			name = "RxSwift+Extra";
 			sourceTree = "<group>";
@@ -232,10 +260,23 @@
 		54DF06FC1D984B89007541EB /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				54BA940B1D9EA5CB00B65B30 /* NGService.swift */,
-				545E75531DB8046200815D06 /* NGNetworking.swift */,
+				54B7FB8C1DC3ECBD002B854A /* NGNetworking .swift */,
+				54B7FB891DC3EC31002B854A /* NGService.swift */,
 			);
 			name = Networking;
+			sourceTree = "<group>";
+		};
+		54F0E0401DBDE5EF00F0B2F7 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				54F0E0411DBDE63300F0B2F7 /* NGMeViewController.swift */,
+				54F0E0431DBDE78B00F0B2F7 /* NGMeTableViewCell.swift */,
+				541433831DB9F5D400E66799 /* NGMeSignoutViewModel.swift */,
+				540D3AB41DC08AF900E4433E /* NGMyProfileViewModel.swift */,
+				54F0E0441DBDE78B00F0B2F7 /* NGMeTableViewCell.xib */,
+				540D3AB61DC08BCD00E4433E /* NGMyProfileViewController.swift */,
+			);
+			name = Me;
 			sourceTree = "<group>";
 		};
 		79E687DC7442D71F9696835C /* Frameworks */ = {
@@ -263,6 +304,7 @@
 			buildConfigurationList = 5414F0A71D9712D100D30EDF /* Build configuration list for PBXNativeTarget "Nerdgasm" */;
 			buildPhases = (
 				D229AA25E8938BFB71B690BA /* [CP] Check Pods Manifest.lock */,
+				54C7FB061DBD239B00BD7430 /* ShellScript */,
 				5414F0861D9712D100D30EDF /* Sources */,
 				5414F0871D9712D100D30EDF /* Frameworks */,
 				5414F0881D9712D100D30EDF /* Resources */,
@@ -342,10 +384,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54F0E0461DBDE78B00F0B2F7 /* NGMeTableViewCell.xib in Resources */,
+				54F0E03F1DBDE5C100F0B2F7 /* UserProfile.storyboard in Resources */,
 				547B51201DB95FD200F1BB1D /* Tabbar.storyboard in Resources */,
 				5414F0BA1D97190A00D30EDF /* Login.storyboard in Resources */,
 				5414F0981D9712D100D30EDF /* LaunchScreen.storyboard in Resources */,
 				5414F0951D9712D100D30EDF /* Assets.xcassets in Resources */,
+				540EC0421DBAB21900F7E9D8 /* UserTableViewCell.xib in Resources */,
 				5414F0931D9712D100D30EDF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +405,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		54C7FB061DBD239B00BD7430 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"";
+		};
 		D08ED3955DBB8937E53F73D1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -413,24 +471,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				54CC1B3E1DB4081D008568F5 /* NGUser.swift in Sources */,
+				54B7FB8D1DC3ECBD002B854A /* NGNetworking .swift in Sources */,
 				546592A31DB6B509005E3313 /* NGLoginBindingExtensions.swift in Sources */,
+				54C7FB081DBD244E00BD7430 /* R.generated.swift in Sources */,
 				5445959F1DB4AD6B002BD140 /* NGLoginValidationService.swift in Sources */,
+				541139F81DC12AAD00082498 /* RxSwiftCustom.swift in Sources */,
+				541433841DB9F5D400E66799 /* NGMeSignoutViewModel.swift in Sources */,
+				540D3AB51DC08AF900E4433E /* NGMyProfileViewModel.swift in Sources */,
+				540EC0411DBAB21900F7E9D8 /* UserTableViewCell.swift in Sources */,
 				54684AD71D9FD53200EBE138 /* NGSignupValidationService.swift in Sources */,
 				547B51221DB9610600F1BB1D /* NGUserViewModel.swift in Sources */,
 				5414F0B01D97149C00D30EDF /* NGLaunchViewController.swift in Sources */,
+				540D3AB71DC08BCD00E4433E /* NGMyProfileViewController.swift in Sources */,
 				54684AD31D9FBCBD00EBE138 /* NGSignupViewController.swift in Sources */,
 				5414F08E1D9712D100D30EDF /* AppDelegate.swift in Sources */,
 				547B51241DB962D500F1BB1D /* NGUserCredentials.swift in Sources */,
+				54B7FB8B1DC3EC31002B854A /* NGService.swift in Sources */,
 				5414F0B31D97178200D30EDF /* NGLoginViewController.swift in Sources */,
 				547B511D1DB95F0900F1BB1D /* NGUserProfileViewController.swift in Sources */,
-				545E75541DB8046200815D06 /* NGNetworking.swift in Sources */,
+				54F0E0421DBDE63300F0B2F7 /* NGMeViewController.swift in Sources */,
 				54AA50DC1DA4DCBD00539076 /* ActivityIndicator.swift in Sources */,
 				54684AD91D9FE58200EBE138 /* NGSignupViewModel.swift in Sources */,
+				541433821DB9F12F00E66799 /* UIViewController+UserCredentials.swift in Sources */,
 				54DF06F71D984842007541EB /* NGUserInfo.swift in Sources */,
 				544FB7411DA77CBB006EAB6E /* NGSignupBindingExtensions.swift in Sources */,
-				545EC4611D983DFD005B4BFF /* NGKeychain.swift in Sources */,
 				5414F7461DB5EC31004E96F8 /* NGUsersViewController.swift in Sources */,
-				54BA940C1D9EA5CB00B65B30 /* NGService.swift in Sources */,
+				54F0E0451DBDE78B00F0B2F7 /* NGMeTableViewCell.swift in Sources */,
 				545EC4651D984668005B4BFF /* NGRealm.swift in Sources */,
 				5445959D1DB4AC6A002BD140 /* NGLoginViewModel.swift in Sources */,
 			);
@@ -485,6 +551,14 @@
 				547B511F1DB95FD200F1BB1D /* Base */,
 			);
 			name = Tabbar.storyboard;
+			sourceTree = "<group>";
+		};
+		54F0E03D1DBDE5C000F0B2F7 /* UserProfile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				54F0E03E1DBDE5C000F0B2F7 /* Base */,
+			);
+			name = UserProfile.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -586,7 +660,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Nerdgasm/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nerdgasm.Nerdgasm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -602,7 +676,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Nerdgasm/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nerdgasm.Nerdgasm;
 				PRODUCT_NAME = "$(TARGET_NAME)";

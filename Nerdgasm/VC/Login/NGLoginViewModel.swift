@@ -54,9 +54,6 @@ class NGLoginViewModel {
             .flatMapLatest{ (username, password) in
                     return networking.request(NGService.Signin(username: username, password: password))
                         .filterSuccessfulStatusCodes()
-                        .do(onNext: nil, onError: { err in
-                            print(err)
-                            }, onCompleted: nil, onSubscribe: nil, onDispose: nil)
                         .mapJSON()
                         .map{ json in
                             print(json)
@@ -93,14 +90,4 @@ class NGLoginViewModel {
             .distinctUntilChanged()
     }
 
-}
-
-extension ObservableType{
-    public func mapToFailable() -> Observable<Result<E, NGNetworkError>>{
-        return self
-            .map(Result<E, NGNetworkError>.success)
-            .catchError{ err in
-                return .just(.failure(toNgError(err: err)))
-        }
-    }
 }

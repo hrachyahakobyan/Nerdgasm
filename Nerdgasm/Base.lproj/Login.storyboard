@@ -47,27 +47,30 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dex-kx-jAD">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dex-kx-jAD">
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WG9-Vo-eMX"/>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="T9x-r4-hep"/>
                                 </constraints>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WG9-Vo-eMX"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="YMG-iN-u3Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="2fC-ns-8x2"/>
                             <constraint firstItem="YMG-iN-u3Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KoO-lh-Lf4"/>
-                            <constraint firstItem="YMG-iN-u3Q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="TCO-cr-VtH"/>
+                            <constraint firstItem="WG9-Vo-eMX" firstAttribute="top" secondItem="YMG-iN-u3Q" secondAttribute="bottom" id="Vlk-Dh-0XR"/>
+                            <constraint firstItem="WG9-Vo-eMX" firstAttribute="centerX" secondItem="YMG-iN-u3Q" secondAttribute="centerX" id="pgX-5q-ofX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="x0I-t8-R0v"/>
                     <connections>
                         <outlet property="activityIndicator" destination="WG9-Vo-eMX" id="OhA-Em-PfW"/>
+                        <outlet property="inputFieldsView" destination="YMG-iN-u3Q" id="67k-jW-tjn"/>
                         <outlet property="passwordTextField" destination="2Ez-8k-XKI" id="eoE-CE-DDz"/>
                         <outlet property="signInButton" destination="ZYB-vv-8D6" id="3jD-8b-mKP"/>
                         <outlet property="signInResultLabel" destination="Dex-kx-jAD" id="8TV-cJ-F6n"/>
@@ -100,7 +103,7 @@
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bcw-wM-Hkt">
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dgf-vi-kSc"/>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="60u-Fb-6xV">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="60u-Fb-6xV">
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -120,7 +123,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZYv-69-g5o">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZYv-69-g5o">
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -130,7 +133,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q4g-Yo-Ewv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q4g-Yo-Ewv">
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -138,7 +141,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovS-2c-gMd">
                                         <state key="normal" title="Sign up"/>
                                     </button>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xdZ-pw-akb"/>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="5fG-lR-pJV"/>
@@ -150,11 +152,14 @@
                                     <action selector="cancelButtonAction:" destination="Ios-8V-sx7" eventType="touchUpInside" id="p3a-Gs-YZQ"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xdZ-pw-akb"/>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UEx-M4-qZN" firstAttribute="centerX" secondItem="CP2-0f-E6O" secondAttribute="centerX" id="1kD-CL-xiz"/>
                             <constraint firstItem="UEx-M4-qZN" firstAttribute="centerY" secondItem="CP2-0f-E6O" secondAttribute="centerY" id="FjE-Ah-OGl"/>
+                            <constraint firstItem="xdZ-pw-akb" firstAttribute="centerX" secondItem="UEx-M4-qZN" secondAttribute="centerX" id="Lrc-dI-7Of"/>
+                            <constraint firstItem="xdZ-pw-akb" firstAttribute="top" secondItem="UEx-M4-qZN" secondAttribute="bottom" id="OLR-Hm-gPo"/>
                             <constraint firstAttribute="trailing" secondItem="Zo2-e1-8ec" secondAttribute="trailing" constant="15" id="Pl2-HJ-SwD"/>
                             <constraint firstItem="Zo2-e1-8ec" firstAttribute="top" secondItem="raL-ue-lkS" secondAttribute="bottom" constant="10" id="sQD-8n-rY5"/>
                         </constraints>

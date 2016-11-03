@@ -10,34 +10,61 @@ import RxSwift
 import Moya
 import RxCocoa
 import Result
+import Gloss
 
-typealias NGUserLougoutResult = Result<Void, NGNetworkError>
+typealias NGUserSearchResult = Result<[NGUser], NGNetworkError>
 
 class NGUserViewModel {
-    let loggingOut: Driver<Bool>
-    let loggedOut: Driver<NGUserLougoutResult>
     
-    init(loggingOutTaps: Driver<Void>, access_token: String){
+    let users: Driver<NGUserSearchResult>
+    let cleanUsers: Driver<[NGUser]>
+    let errors: Driver<NGNetworkError>
+    let searching: Driver<Bool>
+    
+    init(userQuery: Driver<String>, access_token: String){
         let networking = NGAuthorizedNetworking.newAuthorizedNetworking(access_token)
         
-        let loggingOut = ActivityIndicator()
-        self.loggingOut = loggingOut.asDriver()
+        let searching = ActivityIndicator()
+        self.searching = searching.asDriver()
         
-        loggedOut = loggingOutTaps
-            .flatMapLatest{
-                return networking.request(NGAuthenticatedService.Signout)
-                    .filterSuccessfulStatusCodes()
-                    .map{_ in .success()}
-                    .trackActivity(loggingOut)
-                    .catchError{ err in
-                        if isunAuhtorized(error: err){
-                            return .just(.success(Void()))
-                        } else {
-                            return .just(.failure(toNgError(err: err)))
+        users = userQuery
+            .debug()
+            .flatMapLatest{query in
+                print("Searching \(query)")
+                return networking.request(NGAuthenticatedService.SearchUsers(query: query))
+                        .filterSuccessfulStatusCodes()
+                        .mapJSON()
+                        .map{ json -> [NGUser] in
+                            guard let data: [JSON] = "data" <~~ (json as! JSON) else {
+                                throw NGNetworkError.Unknown
+                            }
+                            return [NGUser].from(jsonArray: data) ?? []
                         }
+                        .mapToFailable()
+                        .trackActivity(searching)
+                        .asDriver(onErrorJustReturn: .failure(NGNetworkError.NoConnection))
+            }
+  
+        
+        cleanUsers = users
+                    .filter{result in
+                        guard case NGUserSearchResult.success(_) = result else {
+                            return false
+                        }
+                        return true
                     }
-                    .asDriver(onErrorJustReturn: NGUserLougoutResult.failure(.NoConnection))
-        }
+                    .map{try! $0.dematerialize()}
+                    .asDriver(onErrorJustReturn: [])
+        
+        errors = users
+                .filter{result in
+                    guard case NGUserSearchResult.failure(_) = result else {
+                        return false
+                    }
+                    return true
+                }
+                .map{$0.error!}
+                .asDriver(onErrorJustReturn: NGNetworkError.Unknown)
 
     }
 }

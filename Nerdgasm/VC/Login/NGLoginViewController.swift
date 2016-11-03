@@ -17,18 +17,32 @@ class NGLoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     
+    @IBOutlet weak var inputFieldsView: UIStackView!
     @IBOutlet weak var signInResultLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     private let disposeBag = DisposeBag()
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         activityIndicator.hidesWhenStopped = true
         passwordTextField.isSecureTextEntry = true
+        signInResultLabel.textColor = UIColor.red
+        
+        let allTaps = Observable.of(signInButton.rx.tap, signUpButton.rx.tap)
+                            .merge()
+                            .asDriver(onErrorJustReturn: Void())
+        allTaps
+            .drive(onNext: { _ in
+                    self.view.endEditing(true)
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
         let viewModel = NGLoginViewModel(
             input: (
-                username: usernameTextField.rx.text.asDriver(),
-                password: passwordTextField.rx.text.asDriver(),
+                username: usernameTextField.rx.text.orEmpty.asDriver(),
+                password: passwordTextField.rx.text.orEmpty.asDriver(),
                 loginTaps: signInButton.rx.tap.asDriver()
             ),
                 validationService: NGDefaultLoginValidationService.sharedLoginValidationService
@@ -78,7 +92,8 @@ class NGLoginViewController: UIViewController {
             .addDisposableTo(disposeBag)
         view.addGestureRecognizer(tapBackground)
         
-        // Do any additional setup after loading the view.
+        //let x = R.segue.login
+               // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

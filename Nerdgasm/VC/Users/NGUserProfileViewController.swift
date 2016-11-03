@@ -18,34 +18,38 @@ class NGUserProfileViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let credentials = NGUserCredentials.credentials() else {
-            self.navigationController?.popToRootViewController(animated: true)
-            return
-        }
-        activityIndicator.hidesWhenStopped = true
-        let viewmodel = NGUserViewModel(loggingOutTaps: signoutButton.rx.tap.asDriver(), access_token: credentials.access_token)
-        
-        viewmodel.loggingOut
-            .map{!$0}
-            .drive(signoutButton.rx.enabled)
-            .addDisposableTo(disposeeBag)
-        
-        viewmodel.loggingOut
-            .drive(activityIndicator.rx.animating)
-            .addDisposableTo(disposeeBag)
-        
-        viewmodel.loggedOut
-            .drive(onNext: { result in
-                switch result {
-                case .success:
-                    NGUserCredentials.reset()
-                    self.navigationController?.popToRootViewController(animated: true)
-                case .failure(let error):
-                    self.present(UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert), animated: true)
-                }
-            })
-            .addDisposableTo(disposeeBag)
-        
+//        guard let credentials = NGUserCredentials.credentials() else {
+//            self.navigationController?.popToRootViewController(animated: true)
+//            return
+//        }
+//        activityIndicator.hidesWhenStopped = true
+//        let viewmodel = NGUserLogoutViewModel(loggingOutTaps: signoutButton.rx.tap.asDriver(), access_token: credentials.access_token)
+//        
+//        viewmodel.loggingOut
+//            .map{!$0}
+//            .drive(signoutButton.rx.enabled)
+//            .addDisposableTo(disposeeBag)
+//        
+//        viewmodel.loggingOut
+//            .drive(activityIndicator.rx.animating)
+//            .addDisposableTo(disposeeBag)
+//        
+//        viewmodel.loggedOut
+//            .drive(onNext: { result in
+//                switch result {
+//                case .success:
+//                    NGUserCredentials.reset()
+//                    self.navigationController?.popToRootViewController(animated: true)
+//                case .failure(let error):
+//                    guard case NGNetworkError.Unauthorized = error else {
+//                        self.present(UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert), animated: true)
+//                        return
+//                    }
+//                    self.resetAndPopToLaunch()
+//                }
+//            })
+//            .addDisposableTo(disposeeBag)
+//        
         // Do any additional setup after loading the view.
     }
 
