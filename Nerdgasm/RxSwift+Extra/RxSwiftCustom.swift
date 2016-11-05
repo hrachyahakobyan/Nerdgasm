@@ -28,7 +28,6 @@ extension ObservableType where E == Response {
         return self
             .mapJSON()
             .map{ json in
-                print(json)
                 guard let data: JSON = "data" <~~ (json as! JSON) else {
                     throw NGNetworkError.Unknown
                 }

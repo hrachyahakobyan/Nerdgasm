@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class NGUserCredentials: NSObject, NSCoding {
     var user: NGUser
     var access_token: String
     private static let userDefaults = UserDefaults.standard
+    static let rxCredentials = BehaviorSubject<NGUserCredentials?>(value: credentials())
+    static let loggedIn: Driver<Bool> = rxCredentials.takeLast(1).map{
+                                    $0 != nil && $0?.access_token.characters.count != 0
+                                }.asDriver(onErrorJustReturn: false)
+    
     
     init(user: NGUser, token: String){
         self.user = user
@@ -27,6 +34,7 @@ class NGUserCredentials: NSObject, NSCoding {
     
     static func reset(){
         userDefaults.removeObject(forKey: Keys.Credentials.rawValue)
+        rxCredentials.onNext(nil)
     }
     
     static func credentials() -> NGUserCredentials? {
@@ -37,7 +45,7 @@ class NGUserCredentials: NSObject, NSCoding {
     func synchronize(){
         let data = NSKeyedArchiver.archivedData(withRootObject: self)
         NGUserCredentials.userDefaults.set(data, forKey: Keys.Credentials.rawValue)
-        NGUserCredentials.userDefaults.synchronize()
+        NGUserCredentials.rxCredentials.onNext(self)
     }
     
     func encode(with aCoder: NSCoder) {

@@ -19,7 +19,7 @@ class NGMyProfileViewModel {
     let disposeBag = DisposeBag()
     
     init(user: Driver<NGUser>, updateUserTaps: Driver<Void>, access_token: String){
-        let networking = NGAuthorizedNetworking.newAuthorizedNetworking(access_token)
+        let networking = NGAuthorizedNetworking.sharedNetworking
         
         let updating = ActivityIndicator()
         self.updatingUser = updating.asDriver()

@@ -28,6 +28,7 @@ class NGOnlineProvider<Target>: RxMoyaProvider<Target> where Target: TargetType 
     }
 }
 
+
 protocol NGNetworkingType {
     associatedtype T: TargetType, NGServiceType
     var provider: NGOnlineProvider<T> { get }
@@ -36,11 +37,15 @@ protocol NGNetworkingType {
 struct NGNetworking: NGNetworkingType {
     typealias T = NGService
     let provider: NGOnlineProvider<NGService>
+    static let sharedNetworking = NGNetworking(provider: newProvider([]))
 }
 
 struct NGAuthorizedNetworking: NGNetworkingType {
+    static var accessToken: String? = ""
     typealias T = NGAuthenticatedService
     let provider: NGOnlineProvider<NGAuthenticatedService>
+    static let sharedNetworking = NGAuthorizedNetworking(provider: newProvider([]))
+    static let disposeBag = DisposeBag()
 }
 
 // "Public" interfaces
@@ -56,27 +61,32 @@ extension NGAuthorizedNetworking {
     }
 }
 
-// Static methods
-extension NGNetworkingType {
-    
-    static func newDefaultNetworking() -> NGNetworking {
-        return NGNetworking(provider: newProvider([]))
-    }
-    
-    static func newAuthorizedNetworking(_ accessToken: String) -> NGAuthorizedNetworking {
-        return NGAuthorizedNetworking(provider: newProvider([], accessToken: accessToken))
-    }
-    
-    static func endpointsClosure<T>(_ accessToken: String? = nil) -> (T) -> Endpoint<T> where T: TargetType, T: NGServiceType {
+extension NGAuthorizedNetworking{
+    static func endpointsClosure<T>() -> (T) -> Endpoint<T> where T: TargetType, T: NGServiceType {
         return { target in
             var endpoint: Endpoint<T> = Endpoint<T>(URL: url(target), sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
-            
             if let accessToken = accessToken {
                 let field = String(format: "Bearer %@", accessToken)
                 endpoint = endpoint.endpointByAddingHTTPHeaderFields(["Authorization": field])
             }
-            print(endpoint.httpHeaderFields)
             return endpoint
+        }
+    }
+    
+    static func newProvider<T>(_ plugins: [PluginType]) -> NGOnlineProvider<T> where T: TargetType, T: NGServiceType {
+        return NGOnlineProvider(endpointClosure: NGAuthorizedNetworking.endpointsClosure(),
+                                requestClosure: NGAuthorizedNetworking.endpointResolver(),
+                                stubClosure: {_ in Moya.StubBehavior.never},
+                                plugins: plugins)
+    }
+}
+
+// Static methods
+extension NGNetworkingType {
+    
+    static func endpointsClosure<T>() -> (T) -> Endpoint<T> where T: TargetType, T: NGServiceType {
+        return { target in
+            return Endpoint<T>(URL: url(target), sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
         }
     }
     
@@ -88,11 +98,13 @@ extension NGNetworkingType {
             closure(.success(request))
         }
     }
+    
+    
+    static func newProvider<T>(_ plugins: [PluginType]) -> NGOnlineProvider<T> where T: TargetType, T: NGServiceType {
+        return NGOnlineProvider(endpointClosure: NGNetworking.endpointsClosure(),
+                                requestClosure: NGNetworking.endpointResolver(),
+                                stubClosure: {_ in Moya.StubBehavior.never},
+                                plugins: plugins)
+    }
 }
 
-private func newProvider<T>(_ plugins: [PluginType], accessToken: String? = nil) -> NGOnlineProvider<T> where T: TargetType, T: NGServiceType {
-    return NGOnlineProvider(endpointClosure: NGNetworking.endpointsClosure(accessToken),
-                          requestClosure: NGNetworking.endpointResolver(),
-                          stubClosure: {_ in Moya.StubBehavior.never},
-                          plugins: plugins)
-}

@@ -21,16 +21,14 @@ class NGUserViewModel {
     let errors: Driver<NGNetworkError>
     let searching: Driver<Bool>
     
-    init(userQuery: Driver<String>, access_token: String){
-        let networking = NGAuthorizedNetworking.newAuthorizedNetworking(access_token)
+    init(userQuery: Driver<String>){
+        let networking = NGAuthorizedNetworking.sharedNetworking
         
         let searching = ActivityIndicator()
         self.searching = searching.asDriver()
         
         users = userQuery
-            .debug()
             .flatMapLatest{query in
-                print("Searching \(query)")
                 return networking.request(NGAuthenticatedService.SearchUsers(query: query))
                         .filterSuccessfulStatusCodes()
                         .mapJSON()

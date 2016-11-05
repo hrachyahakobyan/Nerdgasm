@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import RxSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
-    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+    let disposeBag = DisposeBag()
+    
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        NGUserCredentials.rxCredentials
+            .subscribe(onNext: { cred in
+                NGAuthorizedNetworking.accessToken = cred?.access_token
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

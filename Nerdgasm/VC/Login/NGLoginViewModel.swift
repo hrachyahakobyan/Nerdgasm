@@ -30,7 +30,7 @@ class NGLoginViewModel {
         ),
         validationService: NGLoginValidationService
         ) {
-        let networking = NGNetworking.newDefaultNetworking()
+        let networking = NGNetworking.sharedNetworking
         let validationService = validationService
         
         validatedUsername = input.username
@@ -56,7 +56,6 @@ class NGLoginViewModel {
                         .filterSuccessfulStatusCodes()
                         .mapJSON()
                         .map{ json in
-                            print(json)
                             guard let data: JSON = "data" <~~ (json as! JSON) else {
                                 throw NGNetworkError.Unknown
                             }

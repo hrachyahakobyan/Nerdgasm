@@ -41,7 +41,7 @@ class NGSignupViewModel {
         ),
          validationService: NGSignupValidationService
         ) {
-        let networking = NGNetworking.newDefaultNetworking()
+        let networking = NGNetworking.sharedNetworking
         let validationService = validationService
         
         /**
@@ -78,7 +78,6 @@ class NGSignupViewModel {
                                     .filterSuccessfulStatusCodes()
                                     .mapJSON()
                                     .map { json in
-                                        print(json)
                                         guard let data: JSON = "data" <~~ (json as! JSON) else { return .failure(.Unknown) }
                                         if let user: NGUser = NGUser(json: data) {
                                             return .success(user)

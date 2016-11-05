@@ -8,10 +8,3 @@
 
 import Foundation
 import UIKit
-
-extension UIViewController {
-    func resetAndPopToLaunch() {
-        NGUserCredentials.reset()
-        self.navigationController?.popToRootViewController(animated: false)
-    }
-}

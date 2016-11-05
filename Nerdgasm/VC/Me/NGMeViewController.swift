@@ -25,10 +25,6 @@ class NGMeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let credentials = NGUserCredentials.credentials() else {
-            self.navigationController?.popToRootViewController(animated: true)
-            return
-        }
         tableView.allowsMultipleSelection = false
         tableView.register(R.nib.nGMeTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.meCell.identifier)
         data.bindTo(tableView.rx.items(cellIdentifier: R.reuseIdentifier.meCell.identifier)) { index, model, cell in
@@ -50,7 +46,7 @@ class NGMeViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
         
-       let model = NGMeSignoutViewModel(loggingOutTaps: signoutTaps, access_token: credentials.access_token)
+       let model = NGMeSignoutViewModel(loggingOutTaps: signoutTaps, access_token: NGUserCredentials.credentials()!.access_token)
         
         model.loggingOut
             .map{!$0}
@@ -62,13 +58,12 @@ class NGMeViewController: UIViewController {
                 switch result {
                 case .success:
                     NGUserCredentials.reset()
-                    self.navigationController?.popToRootViewController(animated: true)
                 case .failure(let error):
                     guard case NGNetworkError.Unauthorized = error else {
                         self.present(UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert), animated: true)
                         return
                     }
-                    self.resetAndPopToLaunch()
+                    NGUserCredentials.reset()
                 }
             })
             .addDisposableTo(disposeBag)

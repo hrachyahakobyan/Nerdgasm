@@ -28,12 +28,19 @@ class NGUsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.hidesWhenStopped = true
-        guard let credentials = NGUserCredentials.credentials() else {
-            self.navigationController?.popToRootViewController(animated: true)
-            return
+        tableView.register(R.nib.userTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.userCell.identifier)
+        let tapBackground = UITapGestureRecognizer()
+        tapBackground.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+                })
+            .addDisposableTo(disposeBag)
+        view.addGestureRecognizer(tapBackground)
+        setupRx()
         }
-        tableView.register(UINib.init(nibName: "UserTableViewCell", bundle: nil), forCellReuseIdentifier: "UserCell")
-        let model = NGUserViewModel(userQuery: latestQuery, access_token: credentials.access_token)
+    
+    func setupRx() {
+        let model = NGUserViewModel(userQuery: latestQuery)
         
         tableView
             .rx.itemSelected
@@ -49,7 +56,7 @@ class NGUsersViewController: UIViewController {
             .addDisposableTo(disposeBag)
         
         model.cleanUsers
-            .drive(tableView.rx.items(cellIdentifier: "UserCell")) { index, model, cell in
+            .drive(tableView.rx.items(cellIdentifier: R.reuseIdentifier.userCell.identifier)) { index, model, cell in
                 let usercell = cell as! UserTableViewCell
                 usercell.user = model
             }
@@ -57,26 +64,17 @@ class NGUsersViewController: UIViewController {
         
         model.errors
             .drive(onNext: { err in
-                print("Error \(err)")
                 guard case NGNetworkError.Unauthorized = err else {
                     let alert = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
                     self.present(alert, animated: true)
                     return
                 }
-                self.resetAndPopToLaunch()
+                NGUserCredentials.reset()
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
-        let tapBackground = UITapGestureRecognizer()
-        tapBackground.rx.event
-            .subscribe(onNext: { [weak self] _ in
-                self?.view.endEditing(true)
-                })
-            .addDisposableTo(disposeBag)
-        view.addGestureRecognizer(tapBackground)
-
-        
+       
     }
     
     override func didReceiveMemoryWarning() {

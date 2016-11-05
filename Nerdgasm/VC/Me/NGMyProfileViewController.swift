@@ -39,11 +39,7 @@ class NGMyProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let credentials = NGUserCredentials.credentials() else {
-            resetAndPopToLaunch()
-            return
-        }
-        
+        let credentials = NGUserCredentials.credentials()!
         firstnameTextField.text = credentials.user.firstname
         lastNameTextField.text = credentials.user.lastname
         let modelInput = Driver.combineLatest(firstnameTextField.rx.text.orEmpty.asDriver(),
@@ -78,7 +74,7 @@ class NGMyProfileViewController: UIViewController {
                     guard case NGNetworkError.Unauthorized = err else {
                         return
                     }
-                    self.resetAndPopToLaunch()
+                    NGUserCredentials.reset()
                 }
                 }, onCompleted: nil, onDisposed: {print("Dismposed")})
             .addDisposableTo(disposeBag)

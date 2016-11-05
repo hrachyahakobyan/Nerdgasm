@@ -50,7 +50,7 @@ protocol NGSignupValidationService{
 }
 
 class NGDefaultSignupValidationService: NGSignupValidationService{
-    let networking = NGNetworking.newDefaultNetworking()
+    let networking = NGNetworking.sharedNetworking
     let minPasswordCount = 8
     let minUsernameCount = 6
     static let sharedSignupValidationService = NGDefaultSignupValidationService()
