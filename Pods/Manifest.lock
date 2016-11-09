@@ -1,0 +1,51 @@
+PODS:
+  - Alamofire (4.0.1)
+  - Gloss (1.0.0)
+  - IQKeyboardManagerSwift (4.0.7)
+  - Moya (8.0.0-beta.3):
+    - Moya/Core (= 8.0.0-beta.3)
+  - Moya/Core (8.0.0-beta.3):
+    - Alamofire (~> 4.0.0)
+    - Result
+  - Moya/RxSwift (8.0.0-beta.3):
+    - Moya/Core
+    - RxSwift
+  - R.swift (3.1.0):
+    - R.swift.Library (~> 3.0.2)
+  - R.swift.Library (3.0.2)
+  - Result (3.0.0)
+  - RxCocoa (3.0.0):
+    - RxSwift (~> 3.0)
+  - RxDataSources (1.0.0):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
+  - RxSwift (3.0.0)
+  - TTTAttributedLabel (2.0.0)
+
+DEPENDENCIES:
+  - Gloss (~> 1.0)
+  - IQKeyboardManagerSwift
+  - Moya (= 8.0.0-beta.3)
+  - Moya/RxSwift
+  - R.swift
+  - RxCocoa (~> 3.0)
+  - RxDataSources (~> 1.0)
+  - RxSwift (~> 3.0)
+  - TTTAttributedLabel
+
+SPEC CHECKSUMS:
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Gloss: 014789e9e69ca18f127eacca999f4c9b0bff6d58
+  IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
+  Moya: f83c7f81eaa28cb0151549dfcf1f3fda4440bb50
+  R.swift: 14400e5784224d1e4e59a8fc5549198c7e8fe360
+  R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
+  Result: 1b3e431f37cbcd3ad89c6aa9ab0ae55515fae3b6
+  RxCocoa: 0a2f3ae381cf16f4021a4cee7a4420f83058a965
+  RxDataSources: 824693e84d00781d0a5e5cedc1ff95ce9250aacd
+  RxSwift: a930cd662f5b4a7ca9dc3518585dba91dadf497c
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+
+PODFILE CHECKSUM: 8d100a472e4f679e678c91fa0e31eb2e770ebfc7
+
+COCOAPODS: 1.2.0.beta.1
