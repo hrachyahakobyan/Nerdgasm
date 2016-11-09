@@ -14,12 +14,10 @@ import Gloss
 
 typealias NGPostsResult = Result<[(NGPost, NGUser)], NGNetworkError>
 
-struct NGPostsViewModel{
+struct NGPostsViewModel: NGViewModelType{
     
     let gettingPosts: Driver<Bool>
     let results: Driver<NGPostsResult>
-    let posts: Driver<[(NGPost, NGUser)]>
-    let errors: Driver<NGNetworkError>
     
     init(threads: Driver<NGThread>, reloadAction: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
@@ -43,27 +41,6 @@ struct NGPostsViewModel{
                             .trackActivity(gettingPosts)
                             .asDriver(onErrorJustReturn: .failure(NGNetworkError.NoConnection))
                     })
-        
-        posts = results
-            .filter{result in
-                guard case NGPostsResult.success(_) = result else {
-                    return false
-                }
-                return true
-            }
-            .map{try! $0.dematerialize()}
-            .asDriver(onErrorJustReturn: [])
-        
-        errors = results
-            .filter{result in
-                guard case NGPostsResult.failure(_) = result else {
-                    return false
-                }
-                return true
-            }
-            .map{$0.error!}
-            .asDriver(onErrorJustReturn: NGNetworkError.Unknown)
- 
-    }
+        }
     
 }

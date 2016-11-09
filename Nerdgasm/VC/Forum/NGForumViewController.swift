@@ -71,14 +71,14 @@ class NGForumViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
         
-        model.threads
+        model.filteredThreads()
             .drive(tableView.rx.items(cellIdentifier: R.reuseIdentifier.threadCell.identifier)) { index, model, cell in
                 let usercell = cell as! NGThreadTableViewCell
                 usercell.thread = model
             }
             .addDisposableTo(disposeBag)
 
-        model.errors
+        model.errors()
             .drive(onNext: { err in
                 guard case NGNetworkError.Unauthorized = err else {
                     print(err)

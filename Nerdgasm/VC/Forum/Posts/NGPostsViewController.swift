@@ -56,14 +56,14 @@ class NGPostsViewController: UIViewController {
         
         let model = NGPostsViewModel(threads: threadVar.asDriver(), reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))
         
-        model.posts
+        model.clean()
             .drive(tableView.rx.items(cellIdentifier: R.reuseIdentifier.postCell.identifier)) { index, model, cell in
                 let postCell = cell as! NGPostTableViewCell
                 postCell.post = model
             }
             .addDisposableTo(disposeBag)
         
-        model.errors
+        model.errors()
             .drive(onNext: { err in
                 guard case NGNetworkError.Unauthorized = err else {
                     print(err)

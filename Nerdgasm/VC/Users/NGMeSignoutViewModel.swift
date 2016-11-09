@@ -13,16 +13,16 @@ import Result
 
 typealias NGSignoutResult = Result<Void, NGNetworkError>
 
-class NGMeSignoutViewModel {
+class NGMeSignoutViewModel: NGViewModelType {
     let loggingOut: Driver<Bool>
-    let loggedOut: Driver<NGSignoutResult>
+    let results: Driver<NGSignoutResult>
     
     init(loggingOutTaps: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
         let loggingOut = ActivityIndicator()
         self.loggingOut = loggingOut.asDriver()
         
-        loggedOut = loggingOutTaps
+        results = loggingOutTaps
             .flatMapLatest{
                 return networking.request(NGAuthenticatedService.Signout)
                     .filterSuccessfulStatusCodes()

@@ -15,7 +15,7 @@ import Gloss
 
 typealias NGSignupResult = Result<NGUser, NGNetworkError>
 
-class NGSignupViewModel {
+class NGSignupViewModel: NGViewModelType {
 
     let validatedUsername: Driver<NGValidationResult>
     let validatedPassword: Driver<NGValidationResult>
@@ -25,7 +25,7 @@ class NGSignupViewModel {
     let signupEnabled: Driver<Bool>
     
     // Has user signed up
-    let signedUp: Driver<NGSignupResult>
+    let results: Driver<NGSignupResult>
     
     // Is signing up process in progress
     let signingUp: Driver<Bool>
@@ -72,7 +72,7 @@ class NGSignupViewModel {
         let signingUp = ActivityIndicator()
         self.signingUp = signingUp.asDriver()
 
-        signedUp = input.loginTaps.withLatestFrom(usernameAndPassword)
+        results = input.loginTaps.withLatestFrom(usernameAndPassword)
             .flatMapLatest { (username, password) in
                     return networking.request(NGService.Signup(username: username, password: password))
                                     .filterSuccessfulStatusCodes()

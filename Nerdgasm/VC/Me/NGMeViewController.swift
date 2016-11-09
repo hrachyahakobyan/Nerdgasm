@@ -54,7 +54,7 @@ class NGMeViewController: UIViewController {
             .drive(tableView.rx.allowsSelection)
             .addDisposableTo(disposeBag)
         
-        model.loggedOut
+        model.results
             .drive(onNext: { result in
                 switch result {
                 case .success:

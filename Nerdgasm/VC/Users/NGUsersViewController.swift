@@ -59,14 +59,14 @@ class NGUsersViewController: UIViewController {
             .drive(activityIndicator.rx.isAnimating)
             .addDisposableTo(disposeBag)
         
-        model.cleanUsers
+        model.clean()
             .drive(tableView.rx.items(cellIdentifier: R.reuseIdentifier.userCell.identifier)) { index, model, cell in
                 let usercell = cell as! UserTableViewCell
                 usercell.user = model
             }
             .addDisposableTo(disposeBag)
         
-        model.errors
+        model.errors()
             .drive(onNext: { err in
                 guard case NGNetworkError.Unauthorized = err else {
                     let alert = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)

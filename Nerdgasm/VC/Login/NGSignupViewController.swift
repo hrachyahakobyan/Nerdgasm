@@ -83,7 +83,7 @@ class NGSignupViewController: UIViewController {
             .drive(usernameLabel.rx.isHidden)
             .addDisposableTo(disposeBag)
         
-        viewModel.signedUp
+        viewModel.results
             .drive(onNext: { result in
                 switch result {
                     case .success( _):

@@ -64,7 +64,7 @@ class NGLoginViewController: UIViewController {
             .drive(signUpButton.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
-        viewModel.loggedIn
+        viewModel.results
             .drive(onNext: { result in
                 switch result {
                 case .success(let credentials):

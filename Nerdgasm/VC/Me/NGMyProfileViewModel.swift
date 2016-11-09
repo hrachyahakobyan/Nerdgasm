@@ -13,8 +13,8 @@ import Result
 
 typealias NGUserUpdateResult = Result<NGUser, NGNetworkError>
 
-class NGMyProfileViewModel {
-    let updatedUser: Driver<NGUserUpdateResult>
+class NGMyProfileViewModel: NGViewModelType {
+    let results: Driver<NGUserUpdateResult>
     let updatingUser: Driver<Bool>
     let disposeBag = DisposeBag()
     
@@ -24,7 +24,7 @@ class NGMyProfileViewModel {
         let updating = ActivityIndicator()
         self.updatingUser = updating.asDriver()
         
-        updatedUser = updateUserTaps.withLatestFrom(user)
+        results = updateUserTaps.withLatestFrom(user)
             .flatMapLatest{ user in
                 return networking.request(NGAuthenticatedService.UpdateMe(firstname: user.firstname, lastname: user.lastname))
                         .filterSuccessfulStatusCodes()

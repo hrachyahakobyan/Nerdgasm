@@ -15,12 +15,12 @@ import Gloss
 
 typealias NGLoginResult = Result<NGUserCredentials, NGNetworkError>
 
-class NGLoginViewModel {
+class NGLoginViewModel: NGViewModelType {
     
     let validatedUsername: Driver<Bool>
     let validatedPassword: Driver<Bool>
     let loginEnabled: Driver<Bool>
-    let loggedIn: Driver<NGLoginResult>
+    let results: Driver<NGLoginResult>
     let loggingIn: Driver<Bool>
     
     init(input: (
@@ -50,7 +50,7 @@ class NGLoginViewModel {
         let loggingIn = ActivityIndicator()
         self.loggingIn = loggingIn.asDriver()
         
-        loggedIn = input.loginTaps.withLatestFrom(usernameAndPassword)
+        results = input.loginTaps.withLatestFrom(usernameAndPassword)
             .flatMapLatest{ (username, password) in
                     return networking.request(NGService.Signin(username: username, password: password))
                         .filterSuccessfulStatusCodes()

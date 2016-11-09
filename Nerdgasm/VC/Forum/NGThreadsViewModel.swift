@@ -15,20 +15,19 @@ import Foundation
 
 typealias NGThreadsResult = Result<[NGThread], NGNetworkError>
 
-class NGThreadsViewModel: NSObject {
-    
-    let threads: Driver<[NGThread]>
-    let result: Driver<NGThreadsResult>
-    let errors: Driver<NGNetworkError>
+class NGThreadsViewModel: NGViewModelType {
+
+    let results: Driver<NGThreadsResult>
     let searching: Driver<Bool>
+    private let query: Driver<String>
     
     init(query: Driver<String>, reloadAction: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
-        
+        self.query = query
         let searching = ActivityIndicator()
         self.searching = searching.asDriver()
         
-        result = reloadAction
+        results = reloadAction
                     .flatMapLatest{ _ in
                         print("Fetching")
                         return networking.request(NGAuthenticatedService.GetThreads)
@@ -41,30 +40,11 @@ class NGThreadsViewModel: NSObject {
                                 .trackActivity(searching)
                                 .asDriver(onErrorJustReturn: .failure(NGNetworkError.NoConnection))
                     }
-        
-        let rawThreads = result
-            .filter{result in
-                guard case NGThreadsResult.success(_) = result else {
-                    return false
-                }
-                return true
-            }
-            .map{try! $0.dematerialize()}
-            .asDriver(onErrorJustReturn: [])
-        
-        errors = result
-            .filter{result in
-                guard case NGThreadsResult.failure(_) = result else {
-                    return false
-                }
-                return true
-            }
-            .map{$0.error!}
-            .asDriver(onErrorJustReturn: NGNetworkError.Unknown)
-        
-        threads = Driver.combineLatest(rawThreads, query) { (ts, query) -> [NGThread] in
+    }
+    
+    func filteredThreads() -> Driver<[NGThread]>{
+        return Driver.combineLatest(clean(), self.query) { (ts, query) -> [NGThread] in
             return ts.filter{ query.isEmpty || $0.title.lowercased().range(of: query.lowercased()) != nil }
         }
     }
-
 }

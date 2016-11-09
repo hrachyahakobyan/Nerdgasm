@@ -14,10 +14,10 @@ import Result
 
 typealias CreatePostResult = Result<NGPost, NGNetworkError>
 
-struct NGCreatePostViewModel{
+struct NGCreatePostViewModel: NGViewModelType{
     
     let creating: Driver<Bool>
-    let posts: Driver<CreatePostResult>
+    let results: Driver<CreatePostResult>
     let validatedContent: Driver<NGValidationResult>
     let createEnabled: Driver<Bool>
     
@@ -42,7 +42,7 @@ struct NGCreatePostViewModel{
             enabled
             }.filter{$0}
         
-        posts = validTaps.withLatestFrom(threadAndContent)
+        results = validTaps.withLatestFrom(threadAndContent)
             .flatMapLatest({ (content, thread) in
                 print("Creating post content \(content)")
                 return networking.request(NGAuthenticatedService.CreatePost(thread_id: thread.id, content: content))

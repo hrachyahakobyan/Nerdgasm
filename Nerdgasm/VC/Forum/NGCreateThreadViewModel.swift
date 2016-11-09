@@ -14,10 +14,10 @@ import Result
 
 typealias NGCreateThreadResult = Result<(NGThread, NGPost), NGNetworkError>
 
-struct NGCreateThreadViewModel {
+struct NGCreateThreadViewModel: NGViewModelType {
     
     let creatingThread: Driver<Bool>
-    let createdThread: Driver<NGCreateThreadResult>
+    let results: Driver<NGCreateThreadResult>
     let createEnabled: Driver<Bool>
     let validatedTitle: Driver<NGValidationResult>
     let validatedContent: Driver<NGValidationResult>
@@ -47,7 +47,7 @@ struct NGCreateThreadViewModel {
             enabled
             }.filter{$0}
         
-        createdThread = validTaps.withLatestFrom(titleAndContent)
+        results = validTaps.withLatestFrom(titleAndContent)
             .flatMapLatest({ (title, content) in
                 print("Creating thread \(title) content \(content)")
                 return networking.request(NGAuthenticatedService.CreateThread(title: title, content: content))

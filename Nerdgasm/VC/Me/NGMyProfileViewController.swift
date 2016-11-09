@@ -64,7 +64,7 @@ class NGMyProfileViewController: UIViewController {
             .drive(navigationItem.rightBarButtonItem!.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
-        model.updatedUser
+        model.results
             .drive(onNext:{result in
                 switch result {
                 case .success(let user):

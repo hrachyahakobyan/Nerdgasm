@@ -54,7 +54,7 @@ class NGCreatePostViewController: UIViewController {
             .drive(saveItem.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
-        model.posts
+        model.results
             .drive(onNext: { result in
                 switch result{
                 case .success(_):

@@ -58,7 +58,7 @@ class NGCreateThreadViewController: UIViewController {
             .drive(saveItem.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
-        model.createdThread
+        model.results
             .drive(onNext: { result in
                 switch result{
                 case .success(_):

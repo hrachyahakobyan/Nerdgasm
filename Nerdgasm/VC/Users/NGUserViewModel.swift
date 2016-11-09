@@ -14,11 +14,10 @@ import Gloss
 
 typealias NGUserSearchResult = Result<[NGUser], NGNetworkError>
 
-class NGUserViewModel {
+class NGUserViewModel: NGViewModelType {
     
-    let users: Driver<NGUserSearchResult>
-    let cleanUsers: Driver<[NGUser]>
-    let errors: Driver<NGNetworkError>
+    typealias T = [NGUser]
+    let results: Driver<NGUserSearchResult>
     let searching: Driver<Bool>
     
     init(userQuery: Driver<String>){
@@ -27,7 +26,7 @@ class NGUserViewModel {
         let searching = ActivityIndicator()
         self.searching = searching.asDriver()
         
-        users = userQuery
+        results = userQuery
             .flatMapLatest{query in
                 return networking.request(NGAuthenticatedService.SearchUsers(query: query))
                         .filterSuccessfulStatusCodes()
@@ -43,26 +42,26 @@ class NGUserViewModel {
                         .asDriver(onErrorJustReturn: .failure(NGNetworkError.NoConnection))
             }
   
-        
-        cleanUsers = users
-                    .filter{result in
-                        guard case NGUserSearchResult.success(_) = result else {
-                            return false
-                        }
-                        return true
-                    }
-                    .map{try! $0.dematerialize()}
-                    .asDriver(onErrorJustReturn: [])
-        
-        errors = users
-                .filter{result in
-                    guard case NGUserSearchResult.failure(_) = result else {
-                        return false
-                    }
-                    return true
-                }
-                .map{$0.error!}
-                .asDriver(onErrorJustReturn: NGNetworkError.Unknown)
+//        
+//        cleanUsers = results
+//                    .filter{result in
+//                        guard case NGUserSearchResult.success(_) = result else {
+//                            return false
+//                        }
+//                        return true
+//                    }
+//                    .map{try! $0.dematerialize()}
+//                    .asDriver(onErrorJustReturn: [])
+//        
+//        errors = results
+//                .filter{result in
+//                    guard case NGUserSearchResult.failure(_) = result else {
+//                        return false
+//                    }
+//                    return true
+//                }
+//                .map{$0.error!}
+//                .asDriver(onErrorJustReturn: NGNetworkError.Unknown)
 
     }
 }
