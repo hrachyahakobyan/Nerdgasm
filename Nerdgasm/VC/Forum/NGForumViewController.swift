@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class NGForumViewController: UIViewController {
+class NGForumViewController: NGAuthenticatedViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -59,9 +59,6 @@ class NGForumViewController: UIViewController {
         tableView
             .rx.itemSelected
             .subscribe {indexPath in
-                if self.searchBar.isFirstResponder == true {
-                    self.view.endEditing(true)
-                }
                 guard let cell = self.tableView.cellForRow(at: indexPath.element!) as? NGThreadTableViewCell else {return}
                 guard let thread = cell.thread else {return}
                 self.tableView.deselectRow(at: indexPath.element!, animated: false)
@@ -80,14 +77,19 @@ class NGForumViewController: UIViewController {
 
         model.errors()
             .drive(onNext: { err in
-                guard case NGNetworkError.Unauthorized = err else {
-                    print(err)
-                    return
-                }
-                NGUserCredentials.reset()
+               self.handleError(error: err)
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
+
+        let tapBackground = UITapGestureRecognizer()
+        tapBackground.cancelsTouchesInView = false
+        tapBackground.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+                })
+            .addDisposableTo(disposeBag)
+        view.addGestureRecognizer(tapBackground)
 
         // Do any additional setup after loading the view.
     }

@@ -23,10 +23,11 @@
 		540EC0411DBAB21900F7E9D8 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540EC03F1DBAB21900F7E9D8 /* UserTableViewCell.swift */; };
 		540EC0421DBAB21900F7E9D8 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540EC0401DBAB21900F7E9D8 /* UserTableViewCell.xib */; };
 		541139F81DC12AAD00082498 /* RxSwiftCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541139F71DC12AAC00082498 /* RxSwiftCustom.swift */; };
+		54124FDE1DD3B35100A62722 /* NGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54124FDD1DD3B35100A62722 /* NGViewController.swift */; };
+		54124FE01DD3B6B200A62722 /* NGAuthenticatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54124FDF1DD3B6B200A62722 /* NGAuthenticatedViewController.swift */; };
 		5412AE961DD3994F00177AA0 /* NGViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5412AE951DD3994F00177AA0 /* NGViewModelType.swift */; };
 		5413741A1DCD175D0016E5EA /* NGForumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541374191DCD175D0016E5EA /* NGForumViewController.swift */; };
 		5413741C1DCD1B1D0016E5EA /* NGTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5413741B1DCD1B1D0016E5EA /* NGTabBarController.swift */; };
-		541433821DB9F12F00E66799 /* UIViewController+UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541433811DB9F12F00E66799 /* UIViewController+UserCredentials.swift */; };
 		541433841DB9F5D400E66799 /* NGMeSignoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541433831DB9F5D400E66799 /* NGMeSignoutViewModel.swift */; };
 		5414F08E1D9712D100D30EDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5414F08D1D9712D100D30EDF /* AppDelegate.swift */; };
 		5414F0931D9712D100D30EDF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5414F0911D9712D100D30EDF /* Main.storyboard */; };
@@ -50,7 +51,6 @@
 		547533961DD0A32300235361 /* NGPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547533941DD0A32300235361 /* NGPostTableViewCell.swift */; };
 		547533971DD0A32300235361 /* NGPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 547533951DD0A32300235361 /* NGPostTableViewCell.xib */; };
 		547533991DD0AB0B00235361 /* NGCreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547533981DD0AB0B00235361 /* NGCreatePostViewController.swift */; };
-		547B511D1DB95F0900F1BB1D /* NGUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B511C1DB95F0900F1BB1D /* NGUserProfileViewController.swift */; };
 		547B51221DB9610600F1BB1D /* NGUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B51211DB9610600F1BB1D /* NGUserViewModel.swift */; };
 		547B51241DB962D500F1BB1D /* NGUserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547B51231DB962D500F1BB1D /* NGUserCredentials.swift */; };
 		54AA50DC1DA4DCBD00539076 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54AA50DB1DA4DCBD00539076 /* ActivityIndicator.swift */; };
@@ -58,7 +58,6 @@
 		54B7FB8D1DC3ECBD002B854A /* NGNetworking .swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B7FB8C1DC3ECBD002B854A /* NGNetworking .swift */; };
 		54C7FB081DBD244E00BD7430 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C7FB071DBD244E00BD7430 /* R.generated.swift */; };
 		54CC1B3E1DB4081D008568F5 /* NGUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC1B3D1DB4081D008568F5 /* NGUser.swift */; };
-		54F0E03F1DBDE5C100F0B2F7 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54F0E03D1DBDE5C000F0B2F7 /* UserProfile.storyboard */; };
 		54F0E0421DBDE63300F0B2F7 /* NGMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F0E0411DBDE63300F0B2F7 /* NGMeViewController.swift */; };
 		54F0E0451DBDE78B00F0B2F7 /* NGMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F0E0431DBDE78B00F0B2F7 /* NGMeTableViewCell.swift */; };
 		54F0E0461DBDE78B00F0B2F7 /* NGMeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F0E0441DBDE78B00F0B2F7 /* NGMeTableViewCell.xib */; };
@@ -92,10 +91,11 @@
 		540EC03F1DBAB21900F7E9D8 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTableViewCell.swift; path = VC/Users/UserTableViewCell.swift; sourceTree = "<group>"; };
 		540EC0401DBAB21900F7E9D8 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserTableViewCell.xib; path = VC/Users/UserTableViewCell.xib; sourceTree = "<group>"; };
 		541139F71DC12AAC00082498 /* RxSwiftCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxSwiftCustom.swift; path = "RxSwift+Extra/RxSwiftCustom.swift"; sourceTree = "<group>"; };
+		54124FDD1DD3B35100A62722 /* NGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGViewController.swift; path = VC/NGViewController.swift; sourceTree = "<group>"; };
+		54124FDF1DD3B6B200A62722 /* NGAuthenticatedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGAuthenticatedViewController.swift; path = VC/NGAuthenticatedViewController.swift; sourceTree = "<group>"; };
 		5412AE951DD3994F00177AA0 /* NGViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGViewModelType.swift; path = Models/NGViewModelType.swift; sourceTree = "<group>"; };
 		541374191DCD175D0016E5EA /* NGForumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGForumViewController.swift; path = VC/Forum/NGForumViewController.swift; sourceTree = "<group>"; };
 		5413741B1DCD1B1D0016E5EA /* NGTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGTabBarController.swift; path = VC/NGTabBarController.swift; sourceTree = "<group>"; };
-		541433811DB9F12F00E66799 /* UIViewController+UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+UserCredentials.swift"; path = "VC/UIViewController+UserCredentials.swift"; sourceTree = "<group>"; };
 		541433831DB9F5D400E66799 /* NGMeSignoutViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGMeSignoutViewModel.swift; path = VC/Users/NGMeSignoutViewModel.swift; sourceTree = "<group>"; };
 		5414F08A1D9712D100D30EDF /* Nerdgasm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nerdgasm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5414F08D1D9712D100D30EDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,7 +123,6 @@
 		547533941DD0A32300235361 /* NGPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGPostTableViewCell.swift; path = VC/Forum/Posts/NGPostTableViewCell.swift; sourceTree = "<group>"; };
 		547533951DD0A32300235361 /* NGPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NGPostTableViewCell.xib; path = VC/Forum/Posts/NGPostTableViewCell.xib; sourceTree = "<group>"; };
 		547533981DD0AB0B00235361 /* NGCreatePostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGCreatePostViewController.swift; path = VC/Forum/Posts/NGCreatePostViewController.swift; sourceTree = "<group>"; };
-		547B511C1DB95F0900F1BB1D /* NGUserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUserProfileViewController.swift; path = VC/Users/NGUserProfileViewController.swift; sourceTree = "<group>"; };
 		547B51211DB9610600F1BB1D /* NGUserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUserViewModel.swift; path = VC/Users/NGUserViewModel.swift; sourceTree = "<group>"; };
 		547B51231DB962D500F1BB1D /* NGUserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUserCredentials.swift; path = Models/NGUserCredentials.swift; sourceTree = "<group>"; };
 		54AA50DB1DA4DCBD00539076 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -131,7 +130,6 @@
 		54B7FB8C1DC3ECBD002B854A /* NGNetworking .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NGNetworking .swift"; path = "Managers/NGNetworking .swift"; sourceTree = "<group>"; };
 		54C7FB071DBD244E00BD7430 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		54CC1B3D1DB4081D008568F5 /* NGUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUser.swift; path = Models/NGUser.swift; sourceTree = "<group>"; };
-		54F0E03E1DBDE5C000F0B2F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserProfile.storyboard; sourceTree = "<group>"; };
 		54F0E0411DBDE63300F0B2F7 /* NGMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGMeViewController.swift; path = VC/Me/NGMeViewController.swift; sourceTree = "<group>"; };
 		54F0E0431DBDE78B00F0B2F7 /* NGMeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGMeTableViewCell.swift; path = VC/Me/NGMeTableViewCell.swift; sourceTree = "<group>"; };
 		54F0E0441DBDE78B00F0B2F7 /* NGMeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NGMeTableViewCell.xib; path = VC/Me/NGMeTableViewCell.xib; sourceTree = "<group>"; };
@@ -249,9 +247,10 @@
 				54F0E0401DBDE5EF00F0B2F7 /* Me */,
 				5414F7441DB5EAFC004E96F8 /* Users */,
 				5414F0B11D97176C00D30EDF /* Login */,
-				541433811DB9F12F00E66799 /* UIViewController+UserCredentials.swift */,
 				5413741B1DCD1B1D0016E5EA /* NGTabBarController.swift */,
 				540B40081DCFC3EB002F9FBD /* ViewFromNib.swift */,
+				54124FDD1DD3B35100A62722 /* NGViewController.swift */,
+				54124FDF1DD3B6B200A62722 /* NGAuthenticatedViewController.swift */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -276,7 +275,6 @@
 				5414F0911D9712D100D30EDF /* Main.storyboard */,
 				546188121DCF434A00F03B8D /* Me.storyboard */,
 				5461880F1DCF42A400F03B8D /* Forum.storyboard */,
-				54F0E03D1DBDE5C000F0B2F7 /* UserProfile.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -285,7 +283,6 @@
 			isa = PBXGroup;
 			children = (
 				5414F7451DB5EC31004E96F8 /* NGUsersViewController.swift */,
-				547B511C1DB95F0900F1BB1D /* NGUserProfileViewController.swift */,
 				547B51211DB9610600F1BB1D /* NGUserViewModel.swift */,
 				540EC03F1DBAB21900F7E9D8 /* UserTableViewCell.swift */,
 				540EC0401DBAB21900F7E9D8 /* UserTableViewCell.xib */,
@@ -452,7 +449,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				54F0E0461DBDE78B00F0B2F7 /* NGMeTableViewCell.xib in Resources */,
-				54F0E03F1DBDE5C100F0B2F7 /* UserProfile.storyboard in Resources */,
 				5414F0BA1D97190A00D30EDF /* Login.storyboard in Resources */,
 				546188111DCF42A400F03B8D /* Forum.storyboard in Resources */,
 				540B40051DCFC188002F9FBD /* NGPostsHeaderView.xib in Resources */,
@@ -541,6 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54CC1B3E1DB4081D008568F5 /* NGUser.swift in Sources */,
+				54124FE01DD3B6B200A62722 /* NGAuthenticatedViewController.swift in Sources */,
 				5461881A1DCF52F400F03B8D /* NGCreateThreadValidationService.swift in Sources */,
 				54B7FB8D1DC3ECBD002B854A /* NGNetworking .swift in Sources */,
 				540A69BD1DCE6F80009B9673 /* NGThread.swift in Sources */,
@@ -565,13 +562,12 @@
 				547B51241DB962D500F1BB1D /* NGUserCredentials.swift in Sources */,
 				54B7FB8B1DC3EC31002B854A /* NGService.swift in Sources */,
 				540B400B1DCFC4ED002F9FBD /* NGPostsViewController.swift in Sources */,
+				54124FDE1DD3B35100A62722 /* NGViewController.swift in Sources */,
 				5414F0B31D97178200D30EDF /* NGLoginViewController.swift in Sources */,
-				547B511D1DB95F0900F1BB1D /* NGUserProfileViewController.swift in Sources */,
 				54F0E0421DBDE63300F0B2F7 /* NGMeViewController.swift in Sources */,
 				54AA50DC1DA4DCBD00539076 /* ActivityIndicator.swift in Sources */,
 				54684AD91D9FE58200EBE138 /* NGSignupViewModel.swift in Sources */,
 				540B40091DCFC3EB002F9FBD /* ViewFromNib.swift in Sources */,
-				541433821DB9F12F00E66799 /* UIViewController+UserCredentials.swift in Sources */,
 				5461881C1DCF5D6600F03B8D /* NGValidation.swift in Sources */,
 				546188181DCF501300F03B8D /* NGPost.swift in Sources */,
 				5414F7461DB5EC31004E96F8 /* NGUsersViewController.swift in Sources */,
@@ -635,14 +631,6 @@
 				546188131DCF434A00F03B8D /* Base */,
 			);
 			name = Me.storyboard;
-			sourceTree = "<group>";
-		};
-		54F0E03D1DBDE5C000F0B2F7 /* UserProfile.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				54F0E03E1DBDE5C000F0B2F7 /* Base */,
-			);
-			name = UserProfile.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

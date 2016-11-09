@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class NGMyProfileViewController: UIViewController {
+class NGMyProfileViewController: NGAuthenticatedViewController {
 
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var firstnameTextField: UITextField!
@@ -71,10 +71,7 @@ class NGMyProfileViewController: UIViewController {
                     credentials.user = user
                     credentials.synchronize()
                 case .failure(let err):
-                    guard case NGNetworkError.Unauthorized = err else {
-                        return
-                    }
-                    NGUserCredentials.reset()
+                    self.handleError(error: err)
                 }
                 }, onCompleted: nil, onDisposed: {print("Dismposed")})
             .addDisposableTo(disposeBag)

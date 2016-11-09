@@ -11,7 +11,7 @@ import RxSwift
 import Moya
 import RxCocoa
 
-class NGSignupViewController: UIViewController {
+class NGSignupViewController: NGViewController {
 
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var passwordLabel: UILabel!
@@ -89,7 +89,7 @@ class NGSignupViewController: UIViewController {
                     case .success( _):
                         self.dismiss(animated: true, completion: nil)
                     case .failure(let error):
-                        self.present(UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert), animated: true)
+                        self.handleError(error: error)
                 }
             })
             .addDisposableTo(disposeBag)

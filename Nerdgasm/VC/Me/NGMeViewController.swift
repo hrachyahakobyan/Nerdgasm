@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-class NGMeViewController: UIViewController {
+class NGMeViewController: NGAuthenticatedViewController {
 
     @IBOutlet weak var tableView: UITableView!
     let rowCount = 2
@@ -25,6 +25,7 @@ class NGMeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        automaticallyAdjustsScrollViewInsets = false
         navigationItem.title = "Me"
         tableView.allowsMultipleSelection = false
         tableView.register(R.nib.nGMeTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.meCell.identifier)
@@ -60,11 +61,7 @@ class NGMeViewController: UIViewController {
                 case .success:
                     NGUserCredentials.reset()
                 case .failure(let error):
-                    guard case NGNetworkError.Unauthorized = error else {
-                        self.present(UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert), animated: true)
-                        return
-                    }
-                    NGUserCredentials.reset()
+                    self.handleError(error: error)
                 }
             })
             .addDisposableTo(disposeBag)

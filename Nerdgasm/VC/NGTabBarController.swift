@@ -15,6 +15,7 @@ class NGTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NGUserCredentials.loggedIn.drive(onNext: { logged in
             print("Logged \(logged)")
             if logged == false && self.presentedViewController == nil {

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class NGCreatePostViewController: UIViewController {
+class NGCreatePostViewController: NGAuthenticatedViewController {
 
     @IBOutlet weak var contentTextView: UITextView!
     
@@ -60,11 +60,7 @@ class NGCreatePostViewController: UIViewController {
                 case .success(_):
                     print("Created post")
                 case .failure(let err):
-                    guard case NGNetworkError.Unauthorized = err else {
-                        print(err)
-                        return
-                    }
-                    NGUserCredentials.reset()
+                    self.handleError(error: err)
                 }
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)

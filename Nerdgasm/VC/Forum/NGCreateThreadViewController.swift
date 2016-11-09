@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-class NGCreateThreadViewController: UIViewController {
+class NGCreateThreadViewController: NGAuthenticatedViewController {
 
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var titleTextView: UITextView!
@@ -64,11 +64,7 @@ class NGCreateThreadViewController: UIViewController {
                 case .success(_):
                     print("Created thread")
                 case .failure(let err):
-                    guard case NGNetworkError.Unauthorized = err else {
-                        print(err)
-                        return
-                    }
-                    NGUserCredentials.reset()
+                    self.handleError(error: err)
                 }
                 }, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)

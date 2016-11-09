@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class NGPostsViewController: UIViewController {
+class NGPostsViewController: NGAuthenticatedViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -65,11 +65,7 @@ class NGPostsViewController: UIViewController {
         
         model.errors()
             .drive(onNext: { err in
-                guard case NGNetworkError.Unauthorized = err else {
-                    print(err)
-                    return
-                }
-                NGUserCredentials.reset()
+                self.handleError(error: err)
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         

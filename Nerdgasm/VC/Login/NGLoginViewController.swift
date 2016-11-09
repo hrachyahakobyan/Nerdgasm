@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import Moya
 
-class NGLoginViewController: UIViewController {
+class NGLoginViewController: NGViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
