@@ -67,7 +67,7 @@ extension NGAuthorizedNetworking{
             var endpoint: Endpoint<T> = Endpoint<T>(URL: url(target), sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
             if let accessToken = accessToken {
                 let field = String(format: "Bearer %@", accessToken)
-                endpoint = endpoint.endpointByAddingHTTPHeaderFields(["Authorization": field])
+                endpoint = endpoint.adding(newHttpHeaderFields:["Authorization": field])
             }
             return endpoint
         }

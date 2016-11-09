@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

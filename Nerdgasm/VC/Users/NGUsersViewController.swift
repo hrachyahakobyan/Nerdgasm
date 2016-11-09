@@ -19,7 +19,7 @@ class NGUsersViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     let disposeBag = DisposeBag()
     private var latestQuery: Driver<String> {
-        return searchBar.rx.text
+        return searchBar.rx.text.orEmpty
             .throttle(0.4, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .asDriver(onErrorJustReturn: "")
@@ -27,7 +27,11 @@ class NGUsersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Users"
+        automaticallyAdjustsScrollViewInsets = false
         activityIndicator.hidesWhenStopped = true
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 70
         tableView.register(R.nib.userTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.userCell.identifier)
         let tapBackground = UITapGestureRecognizer()
         tapBackground.rx.event
@@ -52,7 +56,7 @@ class NGUsersViewController: UIViewController {
             .addDisposableTo(disposeBag)
         
         model.searching
-            .drive(activityIndicator.rx.animating)
+            .drive(activityIndicator.rx.isAnimating)
             .addDisposableTo(disposeBag)
         
         model.cleanUsers

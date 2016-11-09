@@ -52,16 +52,16 @@ class NGMyProfileViewController: UIViewController {
         })
         
         
-        let model = NGMyProfileViewModel(user: modelInput, updateUserTaps: navigationItem.rightBarButtonItem!.rx.tap.asDriver(), access_token: credentials.access_token)
+        let model = NGMyProfileViewModel(user: modelInput, updateUserTaps: navigationItem.rightBarButtonItem!.rx.tap.asDriver())
         
         model.updatingUser
             .map{!$0}
-            .drive(navigationItem.leftBarButtonItem!.rx.enabled)
+            .drive(navigationItem.leftBarButtonItem!.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
         model.updatingUser
             .map{!$0}
-            .drive(navigationItem.rightBarButtonItem!.rx.enabled)
+            .drive(navigationItem.rightBarButtonItem!.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
         model.updatedUser

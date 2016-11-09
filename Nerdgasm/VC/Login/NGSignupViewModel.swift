@@ -17,9 +17,9 @@ typealias NGSignupResult = Result<NGUser, NGNetworkError>
 
 class NGSignupViewModel {
 
-    let validatedUsername: Driver<NGSignupValidationResult>
-    let validatedPassword: Driver<NGSignupValidationResult>
-    let validatedPasswordRepeated: Driver<NGSignupValidationResult>
+    let validatedUsername: Driver<NGValidationResult>
+    let validatedPassword: Driver<NGValidationResult>
+    let validatedPasswordRepeated: Driver<NGValidationResult>
     
     // Is signup button enabled
     let signupEnabled: Driver<Bool>
@@ -56,7 +56,7 @@ class NGSignupViewModel {
             .flatMapLatest { username in
                 return validationService.validateUsername(username)
                     .trackActivity(checkingUsername)
-                    .asDriver(onErrorJustReturn: .failed(message: "Error connecting server"))
+                    .asDriver(onErrorJustReturn: NGSignupValidationResult.failed(message: "Error connecting server"))
             }
         
         validatedPassword = input.password

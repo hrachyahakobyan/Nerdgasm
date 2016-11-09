@@ -15,7 +15,7 @@ class NGUserCredentials: NSObject, NSCoding {
     var access_token: String
     private static let userDefaults = UserDefaults.standard
     static let rxCredentials = BehaviorSubject<NGUserCredentials?>(value: credentials())
-    static let loggedIn: Driver<Bool> = rxCredentials.takeLast(1).map{
+    static let loggedIn: Driver<Bool> = rxCredentials.map{
                                     $0 != nil && $0?.access_token.characters.count != 0
                                 }.asDriver(onErrorJustReturn: false)
     

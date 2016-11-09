@@ -17,7 +17,7 @@ class NGMeSignoutViewModel {
     let loggingOut: Driver<Bool>
     let loggedOut: Driver<NGSignoutResult>
     
-    init(loggingOutTaps: Driver<Void>, access_token: String){
+    init(loggingOutTaps: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
         let loggingOut = ActivityIndicator()
         self.loggingOut = loggingOut.asDriver()

@@ -83,6 +83,10 @@ enum NGAuthenticatedService: NGServiceType {
     case Signout
     case SearchUsers(query: String)
     case UpdateMe(firstname: String, lastname: String)
+    case GetThreads
+    case CreateThread(title: String, content: String)
+    case CreatePost(thread_id: Int, content: String)
+    case GetPosts(thread_id: Int)
 }
 
 extension NGService: TargetType{
@@ -102,7 +106,7 @@ extension NGService: TargetType{
     }
     
     var method: Moya.Method {
-        return .POST
+        return .post
     }
     
     var sampleData: Data {
@@ -138,15 +142,23 @@ extension NGAuthenticatedService: TargetType{
             return "/users/search"
         case .UpdateMe(_, _):
             return "/me"
+        case .GetThreads:
+            return "/threads"
+        case .CreateThread(_, _):
+            return "/me/thread"
+        case .CreatePost(_, _):
+            return "/me/post"
+        case .GetPosts(let thread_id):
+            return "/threads/\(thread_id)/posts"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .SearchUsers(_):
-            return .GET
+        case .SearchUsers(_), .GetThreads, .GetPosts(_):
+            return .get
         default:
-            return .POST
+            return .post
         }
     }
     
@@ -156,12 +168,18 @@ extension NGAuthenticatedService: TargetType{
     
     var parameters: [String: Any]? {
         switch self {
-        case .Signout:
+        case .Signout, .GetThreads:
             return nil
         case .SearchUsers(let query):
             return ["query" : query]
         case .UpdateMe(let firstname, let lastname):
             return ["firstname" : firstname, "lastname" : lastname]
+        case .CreateThread(let title, let content):
+            return ["title" : title, "content" : content]
+        case .CreatePost(let thread_id, let content):
+            return ["thread_id" : thread_id, "content" : content]
+        case .GetPosts(_):
+            return ["expand" : "user"]
         }
     }
     

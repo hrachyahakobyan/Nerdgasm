@@ -56,12 +56,12 @@ class NGLoginViewController: UIViewController {
         .addDisposableTo(disposeBag)
 
         viewModel.loggingIn
-            .drive(activityIndicator.rx.animating)
+            .drive(activityIndicator.rx.isAnimating)
             .addDisposableTo(disposeBag)
         
         viewModel.loggingIn
             .map{!$0}
-            .drive(signUpButton.rx.enabled)
+            .drive(signUpButton.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
         viewModel.loggedIn

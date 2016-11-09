@@ -72,7 +72,6 @@ class NGLoginViewModel {
                         }
                         .mapToFailable()
                         .trackActivity(loggingIn)
-                        .catchError{.just(.failure(toNgError(err: $0)))}
                         .asDriver(onErrorJustReturn: .failure(.NoConnection))
         }
         

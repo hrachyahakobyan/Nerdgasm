@@ -15,20 +15,16 @@ class NGTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
         NGUserCredentials.loggedIn.drive(onNext: { logged in
             print("Logged \(logged)")
             if logged == false && self.presentedViewController == nil {
-                let _ = self.navigationController?.popToRootViewController(animated: false)
-                self.performSegue(withIdentifier: R.segue.nGTabBarController.login.identifier, sender: nil)
+                DispatchQueue.main.async {
+                    let _ = self.navigationController?.popToRootViewController(animated: false)
+                    self.performSegue(withIdentifier: R.segue.nGTabBarController.login.identifier, sender: nil)
+                }
             }
-        }, onCompleted: nil, onDisposed: nil)
-        .addDisposableTo(disposeBag)
+            }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
     }
 
     override func didReceiveMemoryWarning() {

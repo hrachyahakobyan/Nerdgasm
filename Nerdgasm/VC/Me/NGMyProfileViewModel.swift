@@ -18,7 +18,7 @@ class NGMyProfileViewModel {
     let updatingUser: Driver<Bool>
     let disposeBag = DisposeBag()
     
-    init(user: Driver<NGUser>, updateUserTaps: Driver<Void>, access_token: String){
+    init(user: Driver<NGUser>, updateUserTaps: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
         
         let updating = ActivityIndicator()
@@ -37,7 +37,6 @@ class NGMyProfileViewModel {
                         }
                         .mapToFailable()
                         .trackActivity(updating)
-                        .catchError{.just(.failure(toNgError(err: $0)))}
                         .asDriver(onErrorJustReturn: .failure(.NoConnection))
                 }
     }

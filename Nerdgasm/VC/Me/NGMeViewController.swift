@@ -25,6 +25,7 @@ class NGMeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Me"
         tableView.allowsMultipleSelection = false
         tableView.register(R.nib.nGMeTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.meCell.identifier)
         data.bindTo(tableView.rx.items(cellIdentifier: R.reuseIdentifier.meCell.identifier)) { index, model, cell in
@@ -46,7 +47,7 @@ class NGMeViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
         
-       let model = NGMeSignoutViewModel(loggingOutTaps: signoutTaps, access_token: NGUserCredentials.credentials()!.access_token)
+       let model = NGMeSignoutViewModel(loggingOutTaps: signoutTaps)
         
         model.loggingOut
             .map{!$0}

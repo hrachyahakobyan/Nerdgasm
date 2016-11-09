@@ -10,15 +10,40 @@ import Foundation
 import RxSwift
 import Moya
 import Gloss
+import RxCocoa
 
-enum NGSignupValidationResult{
+enum NGSignupValidationResult: NGValidationResult{
     case OK(message: String)
     case empty
     case validating
     case failed(message: String)
-}
-
-extension NGSignupValidationResult {
+    
+    var textColor: UIColor {
+        switch self {
+        case .OK:
+            return ValidationColors.okColor
+        case .empty:
+            return UIColor.black
+        case .validating:
+            return UIColor.black
+        case .failed:
+            return ValidationColors.errorColor
+        }
+    }
+    
+    var description: String {
+        switch self {
+        case let .OK(message):
+            return message
+        case .empty:
+            return ""
+        case .validating:
+            return "validating ..."
+        case let .failed(message):
+            return message
+        }
+    }
+    
     var isValid: Bool {
         switch self {
         case .OK:
@@ -44,9 +69,9 @@ struct NGUsernameExistsResult{
 }
 
 protocol NGSignupValidationService{
-    func validateUsername(_ username: String) -> Observable<NGSignupValidationResult>
-    func validatePassword(_ password: String) -> NGSignupValidationResult
-    func validateRepeatedPassword(_ password: String, repeatedPassword: String) -> NGSignupValidationResult
+    func validateUsername(_ username: String) -> Observable<NGValidationResult>
+    func validatePassword(_ password: String) -> NGValidationResult
+    func validateRepeatedPassword(_ password: String, repeatedPassword: String) -> NGValidationResult
 }
 
 class NGDefaultSignupValidationService: NGSignupValidationService{
@@ -55,17 +80,17 @@ class NGDefaultSignupValidationService: NGSignupValidationService{
     let minUsernameCount = 6
     static let sharedSignupValidationService = NGDefaultSignupValidationService()
     
-    func validateUsername(_ username: String) -> Observable<NGSignupValidationResult> {
+    func validateUsername(_ username: String) -> Observable<NGValidationResult> {
         if username.characters.count == 0 {
-            return .just(.empty)
+            return .just(NGSignupValidationResult.empty)
         }
         
         if username.characters.count < minUsernameCount {
-            return .just(.failed(message: "Username must be at least \(minUsernameCount) characters"))
+            return .just(NGSignupValidationResult.failed(message: "Username must be at least \(minUsernameCount) characters"))
         }
         
         if username.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) != nil {
-            return .just(.failed(message: "Username can only contain numbers or digits"))
+            return .just(NGSignupValidationResult.failed(message: "Username can only contain numbers or digits"))
         }
         
         let loadingValue = NGSignupValidationResult.validating
@@ -76,45 +101,45 @@ class NGDefaultSignupValidationService: NGSignupValidationService{
             .mapJSON()
             .map { json in
                 guard let validJson = json as? JSON else {
-                    return .failed(message: "Invalid response")
+                    return NGSignupValidationResult.failed(message: "Invalid response")
                 }
                 guard let result = NGUsernameExistsResult(json: validJson) else {
-                    return .failed(message: "Invalid response")
+                    return NGSignupValidationResult.failed(message: "Invalid response")
                 }
                 if result.usernameExists {
-                    return .failed(message: "Username already taken")
+                    return NGSignupValidationResult.failed(message: "Username already taken")
                 }
                 else {
-                    return .OK(message: "Username available")
+                    return NGSignupValidationResult.OK(message: "Username available")
                 }
             }
-            .catchErrorJustReturn(.failed(message: "Check internet connection"))
+            .catchErrorJustReturn(NGSignupValidationResult.failed(message: "Check internet connection"))
             .startWith(loadingValue)
     }
     
-    func validatePassword(_ password: String) -> NGSignupValidationResult {
+    func validatePassword(_ password: String) -> NGValidationResult {
         let numberOfCharacters = password.characters.count
         if numberOfCharacters == 0 {
-            return .empty
+            return NGSignupValidationResult.empty
         }
         
         if numberOfCharacters < minPasswordCount {
-            return .failed(message: "Password must be at least \(minPasswordCount) characters")
+            return NGSignupValidationResult.failed(message: "Password must be at least \(minPasswordCount) characters")
         }
         
-        return .OK(message: "Password acceptable")
+        return NGSignupValidationResult.OK(message: "Password acceptable")
     }
     
-    func validateRepeatedPassword(_ password: String, repeatedPassword: String) -> NGSignupValidationResult {
+    func validateRepeatedPassword(_ password: String, repeatedPassword: String) -> NGValidationResult {
         if repeatedPassword.characters.count == 0 {
-            return .empty
+            return NGSignupValidationResult.empty
         }
         
         if repeatedPassword == password {
-            return .OK(message: "Password repeated")
+            return NGSignupValidationResult.OK(message: "Password repeated")
         }
         else {
-            return .failed(message: "Passwords do not match")
+            return NGSignupValidationResult.failed(message: "Passwords do not match")
         }
     }
     

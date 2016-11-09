@@ -34,6 +34,17 @@ extension ObservableType where E == Response {
                 return data
         }
     }
+    
+    public func mapJSONDataArray() -> Observable<[JSON]>{
+        return self
+            .mapJSON()
+            .map{ json in
+                guard let data: [JSON] = "data" <~~ (json as! JSON) else {
+                    throw NGNetworkError.Unknown
+                }
+                return data
+        }
+    }
 }
 
 

@@ -15,7 +15,7 @@
                 <frame key="frameInset" width="328" height="106"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aEV-sq-w9z">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aEV-sq-w9z">
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utQ-EW-k3R">
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
@@ -33,7 +33,7 @@
                 <constraints>
                     <constraint firstItem="aEV-sq-w9z" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="RSi-Ny-ezj"/>
                     <constraint firstItem="aEV-sq-w9z" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rjy-zK-6J7"/>
-                    <constraint firstItem="aEV-sq-w9z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xTs-YS-20w"/>
+                    <constraint firstItem="aEV-sq-w9z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="xTs-YS-20w"/>
                     <constraint firstItem="aEV-sq-w9z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="y6c-ic-cU4"/>
                 </constraints>
             </tableViewCellContentView>

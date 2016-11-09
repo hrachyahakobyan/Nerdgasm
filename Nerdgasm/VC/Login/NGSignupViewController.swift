@@ -56,7 +56,7 @@ class NGSignupViewController: UIViewController {
         
         viewModel.signingUp
             .map{!$0}
-            .drive(cancelButton.rx.enabled)
+            .drive(cancelButton.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
         viewModel.validatedUsername
@@ -72,15 +72,15 @@ class NGSignupViewController: UIViewController {
             .addDisposableTo(disposeBag)
         
         viewModel.signingUp
-            .drive(activityIndicator.rx.animating)
+            .drive(activityIndicator.rx.isAnimating)
             .addDisposableTo(disposeBag)
         
         viewModel.checkingUsername
-            .drive(usernameExistsActivityIndicator.rx.animating)
+            .drive(usernameExistsActivityIndicator.rx.isAnimating)
             .addDisposableTo(disposeBag)
         
         viewModel.checkingUsername
-            .drive(usernameLabel.rx.hidden)
+            .drive(usernameLabel.rx.isHidden)
             .addDisposableTo(disposeBag)
         
         viewModel.signedUp
