@@ -33,7 +33,7 @@ class NGUser: NSObject, NSCoding, Decodable, Encodable{
     
     convenience required init?(json: JSON){
         guard let username: String = "username" <~~ json else {return nil}
-        guard let id: Int = "id" <~~ json else {return nil}
+        guard let id: Int = ConverterHelper.toInt(val: json["id"]) else {return nil}
         self.init(username: username, id: id)
         self.firstname = ("firstname" <~~ json ?? "")
         self.lastname = ("lastname" <~~ json ?? "")

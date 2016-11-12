@@ -14,6 +14,7 @@ struct NGPost: Decodable{
     let thread_id: Int
     let content: String
     let dateString: String
+    let date: Int
     
     enum Keys: String{
         case Id = "id"
@@ -27,6 +28,7 @@ struct NGPost: Decodable{
         guard let id: Int = Keys.Id.rawValue <~~ json else {return nil}
         guard let thread_id: Int = Keys.ThreadId.rawValue <~~ json else {return nil}
         guard let unix: Int  = Keys.Date.rawValue <~~ json else {return nil}
+        self.date = unix
         self.content = content
         self.id = id
         self.thread_id = thread_id

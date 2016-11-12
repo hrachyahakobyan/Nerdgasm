@@ -23,7 +23,8 @@ struct NGCreatePostViewModel: NGViewModelType{
     
     init(content: Driver<String>, thread: Driver<NGThread>, createTaps: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
-        let validationService = NGCreateThreadValidationService.sharedCreateThreadValidationService
+        let validationService = NGCreateThreadValidationService()
+        validationService.optionalContent = false
         
         let creating = ActivityIndicator()
         self.creating = creating.asDriver()

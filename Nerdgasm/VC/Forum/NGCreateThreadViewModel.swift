@@ -24,7 +24,8 @@ struct NGCreateThreadViewModel: NGViewModelType {
     
     init(title: Driver<String>, content: Driver<String>, createTaps: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
-        let validationService = NGCreateThreadValidationService.sharedCreateThreadValidationService
+        let validationService = NGCreateThreadValidationService()
+        validationService.optionalContent = true
         
         let creating = ActivityIndicator()
         creatingThread = creating.asDriver()

@@ -30,6 +30,8 @@ class NGCreateThreadViewController: NGAuthenticatedViewController {
         let titleInput = titleTextView.rx.text.orEmpty
                          .map{$0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)}
                          .asDriver(onErrorJustReturn: "")
+                         .startWith("")
+        
         
         let contentInput = contentTextView.rx.text.orEmpty
             .map{$0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)}

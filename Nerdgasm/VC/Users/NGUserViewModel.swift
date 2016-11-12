@@ -41,27 +41,6 @@ class NGUserViewModel: NGViewModelType {
                         .trackActivity(searching)
                         .asDriver(onErrorJustReturn: .failure(NGNetworkError.NoConnection))
             }
-  
-//        
-//        cleanUsers = results
-//                    .filter{result in
-//                        guard case NGUserSearchResult.success(_) = result else {
-//                            return false
-//                        }
-//                        return true
-//                    }
-//                    .map{try! $0.dematerialize()}
-//                    .asDriver(onErrorJustReturn: [])
-//        
-//        errors = results
-//                .filter{result in
-//                    guard case NGUserSearchResult.failure(_) = result else {
-//                        return false
-//                    }
-//                    return true
-//                }
-//                .map{$0.error!}
-//                .asDriver(onErrorJustReturn: NGNetworkError.Unknown)
 
     }
 }

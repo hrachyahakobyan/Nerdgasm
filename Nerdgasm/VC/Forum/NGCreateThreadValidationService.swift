@@ -44,6 +44,7 @@ enum NGThreadValidationResult: NGValidationResult{
 
 class NGCreateThreadValidationService {
     
+    var optionalContent: Bool = true
     static let sharedCreateThreadValidationService = NGCreateThreadValidationService()
     
     func validateTitle(_ title: String) -> NGValidationResult {
@@ -51,7 +52,7 @@ class NGCreateThreadValidationService {
     }
     
     func validateContent(_ content: String) -> NGValidationResult {
-        return content.characters.count != 0 ? NGThreadValidationResult.OK : NGThreadValidationResult.empty(message: "Please enter a message")
+        return (self.optionalContent || content.characters.count != 0) ? NGThreadValidationResult.OK : NGThreadValidationResult.empty(message: "Please enter a message")
     }
 }
 

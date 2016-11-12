@@ -44,7 +44,6 @@
                         <outlet property="activityIndicator" destination="Khu-UD-SNU" id="EWr-RQ-tnR"/>
                         <outlet property="searchBar" destination="j4n-dT-FTi" id="NPC-Fx-FoL"/>
                         <outlet property="tableView" destination="dvL-Hk-gzz" id="8hj-DZ-auf"/>
-                        <segue destination="kJg-6o-aYo" kind="presentation" identifier="UserProfile" id="VqP-xi-CDx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTj-xg-UnV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -58,14 +57,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gie-Mx-Cq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1887.2" y="2512.4437781109445"/>
-        </scene>
-        <!--UserProfile-->
-        <scene sceneID="afo-Ed-Isw">
-            <objects>
-                <viewControllerPlaceholder storyboardName="UserProfile" id="kJg-6o-aYo" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7br-BF-j0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4740" y="1683.9580209895055"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Qbv-le-AnC">

@@ -26,6 +26,9 @@ struct NGPostsViewModel: NGViewModelType{
         
         results = reloadAction.withLatestFrom(threads)
                     .flatMapLatest({ thread in
+                        networking.provider.request(NGAuthenticatedService.ViewThread(thread_id: thread.id)){ result in
+                            print(result)
+                        }
                         return networking.request(NGAuthenticatedService.GetPosts(thread_id: thread.id))
                             .filterSuccessfulStatusCodes()
                             .mapJSONDataArray()
@@ -35,12 +38,11 @@ struct NGPostsViewModel: NGViewModelType{
                                     guard let userJson: JSON = "user" <~~ json else {throw NGNetworkError.Unknown}
                                     guard let user: NGUser = NGUser(json: userJson) else {throw NGNetworkError.Unknown}
                                     return (post, user)
-                                }
+                                }.sorted{$0.0.date < $1.0.date}
                              }
                             .mapToFailable()
                             .trackActivity(gettingPosts)
                             .asDriver(onErrorJustReturn: .failure(NGNetworkError.NoConnection))
                     })
         }
-    
 }

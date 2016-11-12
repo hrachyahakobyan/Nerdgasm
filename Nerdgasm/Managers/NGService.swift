@@ -87,6 +87,7 @@ enum NGAuthenticatedService: NGServiceType {
     case CreateThread(title: String, content: String)
     case CreatePost(thread_id: Int, content: String)
     case GetPosts(thread_id: Int)
+    case ViewThread(thread_id: Int)
 }
 
 extension NGService: TargetType{
@@ -150,6 +151,8 @@ extension NGAuthenticatedService: TargetType{
             return "/me/post"
         case .GetPosts(let thread_id):
             return "/threads/\(thread_id)/posts"
+        case .ViewThread(let thread_id):
+            return "/threads/\(thread_id)/view"
         }
     }
     
@@ -168,7 +171,7 @@ extension NGAuthenticatedService: TargetType{
     
     var parameters: [String: Any]? {
         switch self {
-        case .Signout, .GetThreads:
+        case .Signout, .GetThreads, .ViewThread(_):
             return nil
         case .SearchUsers(let query):
             return ["query" : query]

@@ -29,8 +29,7 @@ class NGForumViewController: NGAuthenticatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 70.0
+        tableView.rowHeight = 120
         let addThreadItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
         navigationItem.rightBarButtonItem = addThreadItem
         navigationItem.title = "Forum"
