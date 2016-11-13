@@ -16,7 +16,7 @@ typealias CreatePostResult = Result<NGPost, NGNetworkError>
 
 struct NGCreatePostViewModel: NGViewModelType{
     
-    let creating: Driver<Bool>
+    let loading: Driver<Bool>
     let results: Driver<CreatePostResult>
     let validatedContent: Driver<NGValidationResult>
     let createEnabled: Driver<Bool>
@@ -27,7 +27,7 @@ struct NGCreatePostViewModel: NGViewModelType{
         validationService.optionalContent = false
         
         let creating = ActivityIndicator()
-        self.creating = creating.asDriver()
+        self.loading = creating.asDriver()
         
         validatedContent = content.map{ content in
             return validationService.validateContent(content)

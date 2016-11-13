@@ -51,7 +51,7 @@ class NGForumViewController: NGAuthenticatedViewController {
         
         let model = NGThreadsViewModel(query: latestQuery, reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))
         
-        model.searching
+        model.loading
             .drive(refreshControl.rx.refreshing)
             .addDisposableTo(disposeBag)
         

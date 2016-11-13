@@ -50,7 +50,7 @@ class NGMeViewController: NGAuthenticatedViewController {
         
        let model = NGMeSignoutViewModel(loggingOutTaps: signoutTaps)
         
-        model.loggingOut
+        model.loading
             .map{!$0}
             .drive(tableView.rx.allowsSelection)
             .addDisposableTo(disposeBag)

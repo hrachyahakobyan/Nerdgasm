@@ -16,13 +16,13 @@ typealias NGPostsResult = Result<[(NGPost, NGUser)], NGNetworkError>
 
 struct NGPostsViewModel: NGViewModelType{
     
-    let gettingPosts: Driver<Bool>
+    let loading: Driver<Bool>
     let results: Driver<NGPostsResult>
     
     init(threads: Driver<NGThread>, reloadAction: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
         let gettingPosts = ActivityIndicator()
-        self.gettingPosts = gettingPosts.asDriver()
+        self.loading = gettingPosts.asDriver()
         
         results = reloadAction.withLatestFrom(threads)
                     .flatMapLatest({ thread in

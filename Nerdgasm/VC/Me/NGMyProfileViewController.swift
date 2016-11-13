@@ -54,12 +54,12 @@ class NGMyProfileViewController: NGAuthenticatedViewController {
         
         let model = NGMyProfileViewModel(user: modelInput, updateUserTaps: navigationItem.rightBarButtonItem!.rx.tap.asDriver())
         
-        model.updatingUser
+        model.loading
             .map{!$0}
             .drive(navigationItem.leftBarButtonItem!.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
-        model.updatingUser
+        model.loading
             .map{!$0}
             .drive(navigationItem.rightBarButtonItem!.rx.isEnabled)
             .addDisposableTo(disposeBag)

@@ -54,7 +54,7 @@ class NGSignupViewController: NGViewController {
                 })
             .addDisposableTo(disposeBag)
         
-        viewModel.signingUp
+        viewModel.loading
             .map{!$0}
             .drive(cancelButton.rx.isEnabled)
             .addDisposableTo(disposeBag)
@@ -71,7 +71,7 @@ class NGSignupViewController: NGViewController {
             .drive(repeatPasswordLabel.rx.validationResult)
             .addDisposableTo(disposeBag)
         
-        viewModel.signingUp
+        viewModel.loading
             .drive(activityIndicator.rx.isAnimating)
             .addDisposableTo(disposeBag)
         

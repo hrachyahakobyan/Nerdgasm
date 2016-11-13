@@ -19,14 +19,14 @@ class NGThreadsViewModel: NGViewModelType {
 
     typealias T = [(NGThread, NGUser)]
     let results: Driver<NGThreadsResult>
-    let searching: Driver<Bool>
+    let loading: Driver<Bool>
     private let query: Driver<String>
     
     init(query: Driver<String>, reloadAction: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
         self.query = query
         let searching = ActivityIndicator()
-        self.searching = searching.asDriver()
+        self.loading = searching.asDriver()
         
         results = reloadAction
                     .flatMapLatest{ _ in

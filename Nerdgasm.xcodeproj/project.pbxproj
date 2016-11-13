@@ -38,6 +38,15 @@
 		5414F7461DB5EC31004E96F8 /* NGUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5414F7451DB5EC31004E96F8 /* NGUsersViewController.swift */; };
 		5445959D1DB4AC6A002BD140 /* NGLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5445959C1DB4AC6A002BD140 /* NGLoginViewModel.swift */; };
 		5445959F1DB4AD6B002BD140 /* NGLoginValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5445959E1DB4AD6B002BD140 /* NGLoginValidationService.swift */; };
+		545DDB7A1DD8D2DC001421FF /* BasicPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545DDB791DD8D2DC001421FF /* BasicPlaceholderView.swift */; };
+		545DDB7C1DD8D2FE001421FF /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545DDB7B1DD8D2FE001421FF /* EmptyView.swift */; };
+		545DDB7E1DD8D31B001421FF /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545DDB7D1DD8D31B001421FF /* ErrorView.swift */; };
+		545DDB801DD8D335001421FF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545DDB7F1DD8D335001421FF /* LoadingView.swift */; };
+		545DDB831DD8D5C3001421FF /* NGDefaultStatefulVCType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545DDB821DD8D5C3001421FF /* NGDefaultStatefulVCType.swift */; };
+		546138AF1DD7A25A00396978 /* NGViewStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546138AE1DD7A25A00396978 /* NGViewStateMachine.swift */; };
+		546138B11DD7A2AA00396978 /* NGStatefulPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546138B01DD7A2AA00396978 /* NGStatefulPlaceholderView.swift */; };
+		546138B31DD7B25900396978 /* NGStatefulViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546138B21DD7B25900396978 /* NGStatefulViewControllerType.swift */; };
+		546138B51DD7BD9200396978 /* NGStatefulViewControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546138B41DD7BD9200396978 /* NGStatefulViewControllerImpl.swift */; };
 		5461880E1DCF3C0900F03B8D /* NGCreateThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5461880D1DCF3C0900F03B8D /* NGCreateThreadViewController.swift */; };
 		546188111DCF42A400F03B8D /* Forum.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5461880F1DCF42A400F03B8D /* Forum.storyboard */; };
 		546188141DCF434A00F03B8D /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 546188121DCF434A00F03B8D /* Me.storyboard */; };
@@ -110,6 +119,15 @@
 		5414F7451DB5EC31004E96F8 /* NGUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUsersViewController.swift; path = VC/Users/NGUsersViewController.swift; sourceTree = "<group>"; };
 		5445959C1DB4AC6A002BD140 /* NGLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginViewModel.swift; path = VC/Login/NGLoginViewModel.swift; sourceTree = "<group>"; };
 		5445959E1DB4AD6B002BD140 /* NGLoginValidationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginValidationService.swift; path = VC/Login/NGLoginValidationService.swift; sourceTree = "<group>"; };
+		545DDB791DD8D2DC001421FF /* BasicPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicPlaceholderView.swift; path = "Managers/Dummy placeholders/BasicPlaceholderView.swift"; sourceTree = "<group>"; };
+		545DDB7B1DD8D2FE001421FF /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmptyView.swift; path = "Managers/Dummy placeholders/EmptyView.swift"; sourceTree = "<group>"; };
+		545DDB7D1DD8D31B001421FF /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ErrorView.swift; path = "Managers/Dummy placeholders/ErrorView.swift"; sourceTree = "<group>"; };
+		545DDB7F1DD8D335001421FF /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = "Managers/Dummy placeholders/LoadingView.swift"; sourceTree = "<group>"; };
+		545DDB821DD8D5C3001421FF /* NGDefaultStatefulVCType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGDefaultStatefulVCType.swift; path = Managers/NGDefaultStatefulVCType.swift; sourceTree = "<group>"; };
+		546138AE1DD7A25A00396978 /* NGViewStateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGViewStateMachine.swift; path = Managers/NGViewStateMachine.swift; sourceTree = "<group>"; };
+		546138B01DD7A2AA00396978 /* NGStatefulPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGStatefulPlaceholderView.swift; sourceTree = "<group>"; };
+		546138B21DD7B25900396978 /* NGStatefulViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGStatefulViewControllerType.swift; path = Managers/NGStatefulViewControllerType.swift; sourceTree = "<group>"; };
+		546138B41DD7BD9200396978 /* NGStatefulViewControllerImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGStatefulViewControllerImpl.swift; path = Managers/NGStatefulViewControllerImpl.swift; sourceTree = "<group>"; };
 		5461880D1DCF3C0900F03B8D /* NGCreateThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGCreateThreadViewController.swift; path = VC/Forum/NGCreateThreadViewController.swift; sourceTree = "<group>"; };
 		546188101DCF42A400F03B8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Forum.storyboard; sourceTree = "<group>"; };
 		546188131DCF434A00F03B8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Me.storyboard; sourceTree = "<group>"; };
@@ -290,9 +308,34 @@
 			name = Users;
 			sourceTree = "<group>";
 		};
+		545DDB781DD8D2A2001421FF /* Dummy placeholders */ = {
+			isa = PBXGroup;
+			children = (
+				545DDB791DD8D2DC001421FF /* BasicPlaceholderView.swift */,
+				545DDB7B1DD8D2FE001421FF /* EmptyView.swift */,
+				545DDB7D1DD8D31B001421FF /* ErrorView.swift */,
+				545DDB7F1DD8D335001421FF /* LoadingView.swift */,
+			);
+			name = "Dummy placeholders";
+			sourceTree = "<group>";
+		};
+		545DDB811DD8D3AC001421FF /* StatefulVC */ = {
+			isa = PBXGroup;
+			children = (
+				546138AE1DD7A25A00396978 /* NGViewStateMachine.swift */,
+				546138B01DD7A2AA00396978 /* NGStatefulPlaceholderView.swift */,
+				546138B21DD7B25900396978 /* NGStatefulViewControllerType.swift */,
+				546138B41DD7BD9200396978 /* NGStatefulViewControllerImpl.swift */,
+				545DDB781DD8D2A2001421FF /* Dummy placeholders */,
+				545DDB821DD8D5C3001421FF /* NGDefaultStatefulVCType.swift */,
+			);
+			name = StatefulVC;
+			sourceTree = "<group>";
+		};
 		545EC45F1D983DDE005B4BFF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				545DDB811DD8D3AC001421FF /* StatefulVC */,
 				54DF06FC1D984B89007541EB /* Networking */,
 				540A69BE1DCE7067009B9673 /* GlobalFunctions.swift */,
 				5461881B1DCF5D6600F03B8D /* NGValidation.swift */,
@@ -539,10 +582,13 @@
 				54CC1B3E1DB4081D008568F5 /* NGUser.swift in Sources */,
 				54124FE01DD3B6B200A62722 /* NGAuthenticatedViewController.swift in Sources */,
 				5461881A1DCF52F400F03B8D /* NGCreateThreadValidationService.swift in Sources */,
+				546138B51DD7BD9200396978 /* NGStatefulViewControllerImpl.swift in Sources */,
 				54B7FB8D1DC3ECBD002B854A /* NGNetworking .swift in Sources */,
+				545DDB7C1DD8D2FE001421FF /* EmptyView.swift in Sources */,
 				540A69BD1DCE6F80009B9673 /* NGThread.swift in Sources */,
 				5461880E1DCF3C0900F03B8D /* NGCreateThreadViewController.swift in Sources */,
 				54C7FB081DBD244E00BD7430 /* R.generated.swift in Sources */,
+				545DDB831DD8D5C3001421FF /* NGDefaultStatefulVCType.swift in Sources */,
 				547533961DD0A32300235361 /* NGPostTableViewCell.swift in Sources */,
 				5445959F1DB4AD6B002BD140 /* NGLoginValidationService.swift in Sources */,
 				541139F81DC12AAD00082498 /* RxSwiftCustom.swift in Sources */,
@@ -557,10 +603,13 @@
 				540A69BA1DCE6F39009B9673 /* NGThreadTableViewCell.swift in Sources */,
 				54684AD31D9FBCBD00EBE138 /* NGSignupViewController.swift in Sources */,
 				5414F08E1D9712D100D30EDF /* AppDelegate.swift in Sources */,
+				546138B31DD7B25900396978 /* NGStatefulViewControllerType.swift in Sources */,
 				540A69BF1DCE7067009B9673 /* GlobalFunctions.swift in Sources */,
+				545DDB7E1DD8D31B001421FF /* ErrorView.swift in Sources */,
 				5413741A1DCD175D0016E5EA /* NGForumViewController.swift in Sources */,
 				547B51241DB962D500F1BB1D /* NGUserCredentials.swift in Sources */,
 				54B7FB8B1DC3EC31002B854A /* NGService.swift in Sources */,
+				546138AF1DD7A25A00396978 /* NGViewStateMachine.swift in Sources */,
 				540B400B1DCFC4ED002F9FBD /* NGPostsViewController.swift in Sources */,
 				54124FDE1DD3B35100A62722 /* NGViewController.swift in Sources */,
 				5414F0B31D97178200D30EDF /* NGLoginViewController.swift in Sources */,
@@ -569,12 +618,15 @@
 				54684AD91D9FE58200EBE138 /* NGSignupViewModel.swift in Sources */,
 				540B40091DCFC3EB002F9FBD /* ViewFromNib.swift in Sources */,
 				5461881C1DCF5D6600F03B8D /* NGValidation.swift in Sources */,
+				545DDB801DD8D335001421FF /* LoadingView.swift in Sources */,
 				546188181DCF501300F03B8D /* NGPost.swift in Sources */,
+				545DDB7A1DD8D2DC001421FF /* BasicPlaceholderView.swift in Sources */,
 				5414F7461DB5EC31004E96F8 /* NGUsersViewController.swift in Sources */,
 				546188161DCF4FB600F03B8D /* NGCreateThreadViewModel.swift in Sources */,
 				540B400D1DCFC9A3002F9FBD /* NGPostsViewModel.swift in Sources */,
 				54F0E0451DBDE78B00F0B2F7 /* NGMeTableViewCell.swift in Sources */,
 				5405B3851DD0BA2E00C770FB /* NGCreatePostViewModel.swift in Sources */,
+				546138B11DD7A2AA00396978 /* NGStatefulPlaceholderView.swift in Sources */,
 				5413741C1DCD1B1D0016E5EA /* NGTabBarController.swift in Sources */,
 				5445959D1DB4AC6A002BD140 /* NGLoginViewModel.swift in Sources */,
 				540A69C11DCE7344009B9673 /* NGThreadsViewModel.swift in Sources */,

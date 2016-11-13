@@ -16,7 +16,7 @@ typealias NGCreateThreadResult = Result<(NGThread, NGPost), NGNetworkError>
 
 struct NGCreateThreadViewModel: NGViewModelType {
     
-    let creatingThread: Driver<Bool>
+    let loading: Driver<Bool>
     let results: Driver<NGCreateThreadResult>
     let createEnabled: Driver<Bool>
     let validatedTitle: Driver<NGValidationResult>
@@ -28,7 +28,7 @@ struct NGCreateThreadViewModel: NGViewModelType {
         validationService.optionalContent = true
         
         let creating = ActivityIndicator()
-        creatingThread = creating.asDriver()
+        loading = creating.asDriver()
         
         validatedTitle = title.map{ title in
             return validationService.validateTitle(title)

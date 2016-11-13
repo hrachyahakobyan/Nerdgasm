@@ -15,14 +15,14 @@ typealias NGUserUpdateResult = Result<NGUser, NGNetworkError>
 
 class NGMyProfileViewModel: NGViewModelType {
     let results: Driver<NGUserUpdateResult>
-    let updatingUser: Driver<Bool>
+    let loading: Driver<Bool>
     let disposeBag = DisposeBag()
     
     init(user: Driver<NGUser>, updateUserTaps: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
         
         let updating = ActivityIndicator()
-        self.updatingUser = updating.asDriver()
+        self.loading = updating.asDriver()
         
         results = updateUserTaps.withLatestFrom(user)
             .flatMapLatest{ user in

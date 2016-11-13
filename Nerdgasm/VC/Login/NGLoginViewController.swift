@@ -55,11 +55,11 @@ class NGLoginViewController: NGViewController {
             })
         .addDisposableTo(disposeBag)
 
-        viewModel.loggingIn
+        viewModel.loading
             .drive(activityIndicator.rx.isAnimating)
             .addDisposableTo(disposeBag)
         
-        viewModel.loggingIn
+        viewModel.loading
             .map{!$0}
             .drive(signUpButton.rx.isEnabled)
             .addDisposableTo(disposeBag)

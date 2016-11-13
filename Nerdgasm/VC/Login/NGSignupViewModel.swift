@@ -28,7 +28,7 @@ class NGSignupViewModel: NGViewModelType {
     let results: Driver<NGSignupResult>
     
     // Is signing up process in progress
-    let signingUp: Driver<Bool>
+    let loading: Driver<Bool>
     
     // Is checking username validity
     let checkingUsername: Driver<Bool>
@@ -70,7 +70,7 @@ class NGSignupViewModel: NGViewModelType {
         let usernameAndPassword = Driver.combineLatest(input.username, input.password) { ($0, $1) }
         
         let signingUp = ActivityIndicator()
-        self.signingUp = signingUp.asDriver()
+        self.loading = signingUp.asDriver()
 
         results = input.loginTaps.withLatestFrom(usernameAndPassword)
             .flatMapLatest { (username, password) in

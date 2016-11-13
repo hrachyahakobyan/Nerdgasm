@@ -18,13 +18,13 @@ class NGUserViewModel: NGViewModelType {
     
     typealias T = [NGUser]
     let results: Driver<NGUserSearchResult>
-    let searching: Driver<Bool>
+    let loading: Driver<Bool>
     
     init(userQuery: Driver<String>){
         let networking = NGAuthorizedNetworking.sharedNetworking
         
         let searching = ActivityIndicator()
-        self.searching = searching.asDriver()
+        self.loading = searching.asDriver()
         
         results = userQuery
             .flatMapLatest{query in

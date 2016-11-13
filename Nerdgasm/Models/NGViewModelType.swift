@@ -14,6 +14,7 @@ import RxCocoa
 protocol NGViewModelType{
     associatedtype T: Any
     var results: Driver<Result<T, NGNetworkError>> {get}
+    var loading: Driver<Bool> {get}
 }
 
 extension NGViewModelType{

@@ -21,7 +21,7 @@ class NGLoginViewModel: NGViewModelType {
     let validatedPassword: Driver<Bool>
     let loginEnabled: Driver<Bool>
     let results: Driver<NGLoginResult>
-    let loggingIn: Driver<Bool>
+    let loading: Driver<Bool>
     
     init(input: (
         username: Driver<String>,
@@ -48,7 +48,7 @@ class NGLoginViewModel: NGViewModelType {
         let usernameAndPassword = Driver.combineLatest(input.username, input.password) { ($0, $1) }
         
         let loggingIn = ActivityIndicator()
-        self.loggingIn = loggingIn.asDriver()
+        self.loading = loggingIn.asDriver()
         
         results = input.loginTaps.withLatestFrom(usernameAndPassword)
             .flatMapLatest{ (username, password) in

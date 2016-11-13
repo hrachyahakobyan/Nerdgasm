@@ -69,7 +69,7 @@ class NGPostsViewController: NGAuthenticatedViewController {
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
-        model.gettingPosts
+        model.loading
             .drive(refreshControl.rx.refreshing)
             .addDisposableTo(disposeBag)
 

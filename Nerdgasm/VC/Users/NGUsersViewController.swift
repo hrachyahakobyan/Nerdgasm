@@ -55,7 +55,7 @@ class NGUsersViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
         
-        model.searching
+        model.loading
             .drive(activityIndicator.rx.isAnimating)
             .addDisposableTo(disposeBag)
         
