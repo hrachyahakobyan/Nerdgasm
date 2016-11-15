@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (4.0.1)
+  - FLEX (2.4.0)
   - Gloss (1.0.0)
-  - IQKeyboardManagerSwift (4.0.7)
   - Moya (8.0.0-beta.3):
     - Moya/Core (= 8.0.0-beta.3)
   - Moya/Core (8.0.0-beta.3):
@@ -23,8 +23,8 @@ PODS:
   - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
+  - FLEX (~> 2.0)
   - Gloss (~> 1.0)
-  - IQKeyboardManagerSwift
   - Moya (= 8.0.0-beta.3)
   - Moya/RxSwift
   - R.swift
@@ -35,8 +35,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   Gloss: 014789e9e69ca18f127eacca999f4c9b0bff6d58
-  IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
   Moya: f83c7f81eaa28cb0151549dfcf1f3fda4440bb50
   R.swift: 14400e5784224d1e4e59a8fc5549198c7e8fe360
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
@@ -46,6 +46,6 @@ SPEC CHECKSUMS:
   RxSwift: a930cd662f5b4a7ca9dc3518585dba91dadf497c
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 8d100a472e4f679e678c91fa0e31eb2e770ebfc7
+PODFILE CHECKSUM: 4be8f06fd03a50617a152844a8dd8032ad9bf0fe
 
 COCOAPODS: 1.2.0.beta.1

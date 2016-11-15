@@ -14,8 +14,6 @@ class LoadingView: BasicPlaceholderView, NGStatefulPlaceholderView {
     override func setupView() {
         super.setupView()
         
-        backgroundColor = UIColor.red
-        
         label.text = "Loading..."
         label.translatesAutoresizingMaskIntoConstraints = false
         centerView.addSubview(label)
@@ -33,10 +31,7 @@ class LoadingView: BasicPlaceholderView, NGStatefulPlaceholderView {
         centerView.addConstraints(hConstraints)
         centerView.addConstraints(vConstraintsLabel)
         centerView.addConstraints(vConstraintsActivity)
-    }
-    
-    func placeholderViewInsets() -> UIEdgeInsets {
-        return UIEdgeInsets(top: 100, left: 10, bottom: 200, right: 50)
+        
     }
     
 }

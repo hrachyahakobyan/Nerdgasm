@@ -21,19 +21,23 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="dvL-Hk-gzz">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Khu-UD-SNU"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jqi-57-Zxx">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <searchBar contentMode="redraw" placeholder="Search Users" translatesAutoresizingMaskIntoConstraints="NO" id="j4n-dT-FTi">
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Khu-UD-SNU" firstAttribute="centerY" secondItem="dvL-Hk-gzz" secondAttribute="centerY" id="2SG-Ed-xZ4"/>
                             <constraint firstItem="j4n-dT-FTi" firstAttribute="leading" secondItem="Ghz-EC-ufY" secondAttribute="leading" id="ADY-n8-RNT"/>
+                            <constraint firstItem="Jqi-57-Zxx" firstAttribute="centerX" secondItem="dvL-Hk-gzz" secondAttribute="centerX" id="CBI-CJ-ODW"/>
                             <constraint firstItem="j4n-dT-FTi" firstAttribute="centerX" secondItem="Ghz-EC-ufY" secondAttribute="centerX" id="CDV-pA-U8V"/>
-                            <constraint firstItem="Khu-UD-SNU" firstAttribute="centerX" secondItem="dvL-Hk-gzz" secondAttribute="centerX" id="G07-bK-SSS"/>
                             <constraint firstItem="dvL-Hk-gzz" firstAttribute="centerX" secondItem="Ghz-EC-ufY" secondAttribute="centerX" id="Uov-b0-C9n"/>
                             <constraint firstItem="VBP-HQ-inv" firstAttribute="top" secondItem="dvL-Hk-gzz" secondAttribute="bottom" id="XXE-nu-TIM"/>
+                            <constraint firstItem="Jqi-57-Zxx" firstAttribute="height" secondItem="dvL-Hk-gzz" secondAttribute="height" id="YHu-rA-bW6"/>
+                            <constraint firstItem="Jqi-57-Zxx" firstAttribute="centerY" secondItem="dvL-Hk-gzz" secondAttribute="centerY" id="ZLe-6M-Dyd"/>
+                            <constraint firstItem="Jqi-57-Zxx" firstAttribute="width" secondItem="dvL-Hk-gzz" secondAttribute="width" id="awH-1d-Ey6"/>
                             <constraint firstItem="dvL-Hk-gzz" firstAttribute="top" secondItem="j4n-dT-FTi" secondAttribute="bottom" id="bA2-6v-ADl"/>
                             <constraint firstItem="j4n-dT-FTi" firstAttribute="top" secondItem="yTd-rH-FOy" secondAttribute="bottom" id="drd-Rd-8xo"/>
                             <constraint firstItem="dvL-Hk-gzz" firstAttribute="leading" secondItem="Ghz-EC-ufY" secondAttribute="leading" id="yXZ-vS-Ksv"/>
@@ -41,8 +45,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="PQv-UY-bxA"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="Khu-UD-SNU" id="EWr-RQ-tnR"/>
                         <outlet property="searchBar" destination="j4n-dT-FTi" id="NPC-Fx-FoL"/>
+                        <outlet property="stateView" destination="Jqi-57-Zxx" id="KUh-A3-KPC"/>
                         <outlet property="tableView" destination="dvL-Hk-gzz" id="8hj-DZ-auf"/>
                     </connections>
                 </viewController>

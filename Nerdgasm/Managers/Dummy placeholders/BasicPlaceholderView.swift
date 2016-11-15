@@ -29,17 +29,10 @@ class BasicPlaceholderView: UIView {
         centerView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(centerView)
         
-        let views = ["centerView": centerView, "superview": self]
-        let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[superview]-(<=1)-[centerView]",
-                                                          options: .alignAllCenterX,
-                                                          metrics: nil,
-                                                          views: views)
-        let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[superview]-(<=1)-[centerView]",
-                                                          options: .alignAllCenterY,
-                                                          metrics: nil,
-                                                          views: views)
-        self.addConstraints(vConstraints)
-        self.addConstraints(hConstraints)
+        let vConstraint = NSLayoutConstraint(item: centerView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+        let hConstraint = NSLayoutConstraint(item: centerView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0.0)
+        self.addConstraint(vConstraint)
+        self.addConstraint(hConstraint)
     }
     
 }

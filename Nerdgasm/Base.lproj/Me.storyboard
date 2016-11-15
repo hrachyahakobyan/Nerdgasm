@@ -82,6 +82,16 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sbk-aa-044">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mln-Mt-Ol5">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -97,6 +107,8 @@
                     <connections>
                         <outlet property="firstnameTextField" destination="LzG-N7-eD4" id="peX-Jh-r0d"/>
                         <outlet property="lastNameTextField" destination="LCz-f8-7wI" id="PXB-n6-jUL"/>
+                        <outlet property="textfield1" destination="Sbk-aa-044" id="YLW-Yf-ZzA"/>
+                        <outlet property="textfield2" destination="Mln-Mt-Ol5" id="x8l-Y4-z2D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhr-Pe-RMw" userLabel="First Responder" sceneMemberID="firstResponder"/>

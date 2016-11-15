@@ -11,12 +11,18 @@ import Moya
 import RxSwift
 import RxCocoa
 import RxDataSources
+import FLEX
 
-class NGUsersViewController: UIViewController {
+class NGUsersViewController: NGViewController, NGDefaultStatefulVCType {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var backingView: UIView{
+        return self.stateView
+    }
+ 
+    @IBOutlet weak var stateView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    var viewModel: NGUserViewModel!
     let disposeBag = DisposeBag()
     private var latestQuery: Driver<String> {
         return searchBar.rx.text.orEmpty
@@ -29,7 +35,6 @@ class NGUsersViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Users"
         automaticallyAdjustsScrollViewInsets = false
-        activityIndicator.hidesWhenStopped = true
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
         tableView.register(R.nib.userTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.userCell.identifier)
@@ -44,7 +49,7 @@ class NGUsersViewController: UIViewController {
         }
     
     func setupRx() {
-        let model = NGUserViewModel(userQuery: latestQuery)
+        viewModel = NGUserViewModel(userQuery: latestQuery)
         
         tableView
             .rx.itemSelected
@@ -55,46 +60,46 @@ class NGUsersViewController: UIViewController {
             }
             .addDisposableTo(disposeBag)
         
-        model.loading
-            .drive(activityIndicator.rx.isAnimating)
-            .addDisposableTo(disposeBag)
         
-        model.clean()
+        viewModel.clean()
             .drive(tableView.rx.items(cellIdentifier: R.reuseIdentifier.userCell.identifier)) { index, model, cell in
                 let usercell = cell as! UserTableViewCell
                 usercell.user = model
             }
             .addDisposableTo(disposeBag)
         
-        model.errors()
+        viewModel.errors()
             .drive(onNext: { err in
                 guard case NGNetworkError.Unauthorized = err else {
-                    let alert = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
-                    self.present(alert, animated: true)
                     return
                 }
                 NGUserCredentials.reset()
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
-       
+        viewModel
+            .loading
+            .drive(onNext: { (loading) in
+                print("hm")
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
+         _ = self.stateMachine;
+        
+        FLEXManager.shared().showExplorer()
+
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        errorView = ErrorView(frame: tableView.frame)
+        loadingView = LoadingView(frame: tableView.frame)
+        emptyView = EmptyView(frame: tableView.frame)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

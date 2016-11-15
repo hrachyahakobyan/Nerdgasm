@@ -5,14 +5,14 @@ import RxSwift
 
 // MARK: Default Implementation BackingViewProvider
 extension NGBackingViewProviderType where Self: UIViewController {
-    public var backingView: Driver<UIView> {
-        return Driver<UIView>.just(view)
+    public var backingView: UIView{
+        return view
     }
 }
 
 extension NGBackingViewProviderType where Self: UIView {
-    public var backingView: Driver<UIView> {
-        return Driver<UIView>.just(self)
+    public var backingView: UIView {
+        return self
     }
 }
 
@@ -22,18 +22,23 @@ extension NGBackingViewProviderType where Self: UIView {
 extension NGStatefulViewControllerType {
     
     public var stateMachine: NGViewStateMachine {
-        let input = Driver.of(self.errorInput, self.contentInput, self.emptyInput, self.loadingInput).merge()
+        return associatedObject(self, key: &stateMachineKey) { [unowned self] in
+            let input = Driver.of(self.errorInput, self.contentInput, self.emptyInput, self.loadingInput).merge()
+                .distinctUntilChanged({ (first, second) -> Bool in
+                    return first.0 == second.0
+                })
                 .map{ (s, b, c) -> (NGViewStateMachineState, Bool, (() -> ())?) in
                     var sm: NGViewStateMachineState!
                     switch s {
-                    case .Empty:
-                        sm = .none
+                    case .Content:
+                        sm = NGViewStateMachineState.none
                     default:
                         sm = .view(s.rawValue)
                     }
                     return (sm, b, c)
-                }
-        return NGViewStateMachine(view: backingView, statesInput: input)
+            }
+            return NGViewStateMachine(view: self.backingView, statesInput: input)
+        }
     }
     
     public var currentState: Driver<NGStatefulViewControllerState> {
@@ -81,4 +86,38 @@ extension NGStatefulViewControllerType {
     fileprivate func setPlaceholderView(_ view: UIView?, forState state: NGStatefulViewControllerState) {
         stateMachine[state.rawValue] = view
     }
+}
+
+extension NGStatefulViewControllerType where Self: UITableViewController {
+    public var stateMachine: NGViewStateMachine {
+        return associatedObject(self, key: &tableViewControllerStateContainerViewKey) { [unowned self] in
+            let input = Driver.of(self.errorInput, self.contentInput, self.emptyInput, self.loadingInput).merge()
+                .distinctUntilChanged({ (first, second) -> Bool in
+                    return first.0 == second.0
+                })
+                .map{ (s, b, c) -> (NGViewStateMachineState, Bool, (() -> ())?) in
+                    var sm: NGViewStateMachineState!
+                    switch s {
+                    case .Empty:
+                        sm = NGViewStateMachineState.none
+                    default:
+                        sm = .view(s.rawValue)
+                    }
+                    return (sm, b, c)
+            }
+            return NGContainerViewStateMachine(view: self.backingView, statesInput: input)
+        }
+    }
+}
+
+private var stateMachineKey: UInt8 = 0
+private var tableViewControllerStateContainerViewKey: UInt8 = 1
+
+private func associatedObject<T: AnyObject>(_ host: AnyObject, key: UnsafeRawPointer, initial: () -> T) -> T {
+    var value = objc_getAssociatedObject(host, key) as? T
+    if value == nil {
+        value = initial()
+        objc_setAssociatedObject(host, key, value, .OBJC_ASSOCIATION_RETAIN)
+    }
+    return value!
 }

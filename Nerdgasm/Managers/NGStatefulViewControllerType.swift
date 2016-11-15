@@ -13,7 +13,7 @@ public enum NGStatefulViewControllerState: String {
 public protocol NGBackingViewProviderType {
     /// The backing view, usually a UIViewController's view.
     /// All placeholder views will be added to this view instance.
-    var backingView: Driver<UIView> { get }
+    var backingView: UIView { get }
 }
 
 public typealias NGStatefulViewControllerStateInput = (NGStatefulViewControllerState, Bool, (() -> ())?)

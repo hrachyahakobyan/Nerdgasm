@@ -45,19 +45,19 @@ extension NGDefaultStatefulVCType where M.T: Collection{
 
 extension NGDefaultStatefulVCType where Self: NGViewController {
     
-    var loadingView: UIView? {
-        return LoadingView(frame: view.frame)
-    }
-    
-    /// The error view is shown when the `endLoading` method returns an error
-    var errorView: UIView? {
-        return ErrorView(frame: view.frame)
-    }
-    
-    /// The empty view is shown when the `hasContent` method returns false
-    var emptyView: UIView? {
-        return EmptyView(frame: view.frame)
-    }
+//    var loadingView: UIView? {
+//        return LoadingView(frame: view.frame)
+//    }
+//    
+//    /// The error view is shown when the `endLoading` method returns an error
+//    var errorView: UIView? {
+//        return ErrorView(frame: view.frame)
+//    }
+//    
+//    /// The empty view is shown when the `hasContent` method returns false
+//    var emptyView: UIView? {
+//        return EmptyView(frame: view.frame)
+//    }
     
     var handleError: ((Error) -> ())? {
         return self.handleError

@@ -37,8 +37,7 @@ public class NGViewStateMachine {
     fileprivate let queue = DispatchQueue(label: "com.aschuch.viewStateMachine.queue", attributes: [])
     
     /// The view that should act as the superview for any added views
-    public let view: Driver<UIView>
-    public let stateInputs: Driver<NGViewStateInput>
+    public let view: UIView
     
     /// The current display state of views
     fileprivate let _currentState = Variable<NGViewStateMachineState>(.none)
@@ -49,6 +48,7 @@ public class NGViewStateMachine {
     public let currentState: Driver<NGViewStateMachineState>
     public let lastState: Driver<NGViewStateMachineState>
     
+    fileprivate let disposeBag = DisposeBag()
     // MARK: Init
     
     ///  Designated initializer.
@@ -58,23 +58,27 @@ public class NGViewStateMachine {
     ///
     /// - returns:			A view state machine with the given views for states
     ///
-    public init(view: Driver<UIView>, statesInput: Driver<NGViewStateInput>, states: [String: UIView]?) {
+    public init(view: UIView, statesInput: Driver<NGViewStateInput>, states: [String: UIView]?) {
         self.view = view
-        self.stateInputs = statesInput
         viewStore = states ?? [String: UIView]()
         self.currentState = _currentState.asDriver()
         self.lastState = _lastState.asDriver()
+
+        statesInput
+            .drive(onNext: { (input) -> Void in
+                print("Transition ot state \(input.0)")
+                self.transitionToState(stateInput: input)
+                return Void()
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
         
-        let _ = Driver.combineLatest(view, statesInput) {[weak self] (view, input) in
-            self?.transitionToState(onView: view, stateInput: input)
-        }
     }
     
     /// - parameter view:		The view that should act as the superview for any added views
     ///
     /// - returns:			A view state machine
     ///
-    public convenience init(view: Driver<UIView>, statesInput: Driver<NGViewStateInput>) {
+    public convenience init(view: UIView, statesInput: Driver<NGViewStateInput>) {
         self.init(view: view, statesInput: statesInput, states: nil)
     }
     
@@ -122,9 +126,8 @@ public class NGViewStateMachine {
     /// - parameter animated:	true if the transition should fade views in and out
     /// - parameter campletion:	called when all animations are finished and the view has been updated
     ///
-    fileprivate func transitionToState(onView: UIView, stateInput: NGViewStateInput) {
+    fileprivate func transitionToState(stateInput: NGViewStateInput) {
         _lastState.value = stateInput.0
-        
         queue.async {
             if stateInput.0 == self._currentState.value {
                 return
@@ -140,12 +143,13 @@ public class NGViewStateMachine {
             }
             
             // Switch state and update the view
-            DispatchQueue.main.sync {
+
+            DispatchQueue.main.async {
                 switch stateInput.0 {
                 case .none:
                     self.hideAllViews(animated: stateInput.1, completion: c)
                 case .view(let viewKey):
-                    self.showView(onView: onView, state: viewKey, animated: stateInput.1, completion: c)
+                    self.showView(state: viewKey, animated: stateInput.1, completion: c)
                 }
             }
         }
@@ -154,12 +158,12 @@ public class NGViewStateMachine {
     
     // MARK: Private view updates
     
-    fileprivate func showView(onView: UIView, state: String, animated: Bool, completion: (() -> ())? = nil) {
+    fileprivate func showView(state: String, animated: Bool, completion: (() -> ())? = nil) {
         if let newView = self.viewStore[state] {
             // Add new view using AutoLayout
             newView.alpha = animated ? 0.0 : 1.0
             newView.translatesAutoresizingMaskIntoConstraints = false
-            onView.addSubview(newView)
+            self.view.addSubview(newView)
             
             let insets = (newView as? NGStatefulPlaceholderView)?.placeholderViewInsets() ?? UIEdgeInsets()
             let metrics = ["top": insets.top, "bottom": insets.bottom, "left": insets.left, "right": insets.right]
@@ -167,8 +171,8 @@ public class NGViewStateMachine {
             
             let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: "|-left-[view]-right-|", options: [], metrics: metrics, views: views)
             let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-top-[view]-bottom-|", options: [], metrics: metrics, views: views)
-            onView.addConstraints(hConstraints)
-            onView.addConstraints(vConstraints)
+            self.view.addConstraints(hConstraints)
+            self.view.addConstraints(vConstraints)
         }
         
         let animations: () -> () = {
@@ -215,4 +219,55 @@ public class NGViewStateMachine {
             completion?(true)
         }
     }
+}
+
+///
+/// A state machine that manages a set of views by adding the state's view to a managed container view.
+///
+/// There are two possible states:
+///		* Show a specific placeholder view, represented by a key
+///		* Hide all managed views
+///
+public class NGContainerViewStateMachine: NGViewStateMachine {
+    
+    private let containerSuperview: UIView
+    
+    public override init(view: UIView, statesInput: Driver<NGViewStateInput>, states: [String: UIView]?) {
+        self.containerSuperview = view
+        
+        let containerView = StateViewContainerView(frame: self.containerSuperview.frame)
+        containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        containerView.backgroundColor = UIColor.clear
+        containerView.layer.zPosition = self.containerSuperview.layer.zPosition + 1.0
+        
+        super.init(view: containerView, statesInput: statesInput, states: states)
+    }
+    
+    fileprivate override func showView(state: String, animated: Bool, completion: (() -> ())?) {
+        self.view.frame = self.containerSuperview.frame
+        self.containerSuperview.addSubview(self.view)
+        
+        super.showView(state: state, animated: animated, completion: completion)
+    }
+    
+    fileprivate override func hideAllViews(animated: Bool, completion: (() -> ())?) {
+        super.hideAllViews(animated: animated) {
+            completion?()
+            self.view.removeFromSuperview()
+        }
+    }
+}
+
+private class StateViewContainerView: UIView {
+    
+    private override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        for view in self.subviews {
+            if !view.isHidden && view.alpha > 0 && view.isUserInteractionEnabled &&
+                view.point(inside: self.convert(point, to:view), with:event) {
+                return true
+            }
+        }
+        return false
+    }
+    
 }
