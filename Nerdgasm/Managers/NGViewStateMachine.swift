@@ -144,7 +144,7 @@ public class NGViewStateMachine {
             
             // Switch state and update the view
 
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 switch stateInput.0 {
                 case .none:
                     self.hideAllViews(animated: stateInput.1, completion: c)

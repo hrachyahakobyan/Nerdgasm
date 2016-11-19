@@ -10,12 +10,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class NGForumViewController: NGAuthenticatedViewController {
+class NGForumViewController: NGViewController, NGDefaultStatefulVCType {
 
+    typealias M = NGThreadsViewModel
+    
+    var backingView: UIView{
+        return stateView
+    }
+    
+    @IBOutlet weak var stateView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var refreshControl: UIRefreshControl!
     let disposeBag = DisposeBag()
+    var viewModel: M!
     
     private var latestQuery: Driver<String> {
         return searchBar.rx.text.orEmpty
@@ -49,9 +57,9 @@ class NGForumViewController: NGAuthenticatedViewController {
         tableView.addSubview(refreshControl)
     
         
-        let model = NGThreadsViewModel(query: latestQuery, reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))
+        viewModel = NGThreadsViewModel(query: latestQuery, reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))
         
-        model.loading
+        viewModel.loading
             .drive(refreshControl.rx.refreshing)
             .addDisposableTo(disposeBag)
         
@@ -67,14 +75,14 @@ class NGForumViewController: NGAuthenticatedViewController {
             }
             .addDisposableTo(disposeBag)
         
-        model.filteredThreads()
+        viewModel.clean()
             .drive(tableView.rx.items(cellIdentifier: R.reuseIdentifier.threadCell.identifier)) { index, model, cell in
                 let usercell = cell as! NGThreadTableViewCell
                 usercell.thread = model
             }
             .addDisposableTo(disposeBag)
 
-        model.errors()
+        viewModel.errors()
             .drive(onNext: { err in
                self.handleError(error: err)
                 }, onCompleted: nil, onDisposed: nil)
@@ -89,8 +97,16 @@ class NGForumViewController: NGAuthenticatedViewController {
                 })
             .addDisposableTo(disposeBag)
         view.addGestureRecognizer(tapBackground)
+        
+        _ = self.stateMachine
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        errorView = ErrorView(frame: tableView.frame)
+        emptyView = EmptyView(frame: tableView.frame)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

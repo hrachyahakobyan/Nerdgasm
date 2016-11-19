@@ -20,16 +20,16 @@ struct NGPostsViewModel: NGViewModelType{
     let results: Driver<NGPostsResult>
     
     init(threads: Driver<NGThread>, reloadAction: Driver<Void>){
-        let networking = NGAuthorizedNetworking.sharedNetworking
+        let networking = NGNetworking.sharedNetworking
         let gettingPosts = ActivityIndicator()
         self.loading = gettingPosts.asDriver()
         
         results = reloadAction.withLatestFrom(threads)
                     .flatMapLatest({ thread in
-                        networking.provider.request(NGAuthenticatedService.ViewThread(thread_id: thread.id)){ result in
+                        networking.provider.request(NGService.ViewThread(thread_id: thread.id)){ result in
                             print(result)
                         }
-                        return networking.request(NGAuthenticatedService.GetPosts(thread_id: thread.id))
+                        return networking.request(NGService.GetPosts(thread_id: thread.id))
                             .filterSuccessfulStatusCodes()
                             .mapJSONDataArray()
                             .map{ jsonArray -> [(NGPost, NGUser)] in

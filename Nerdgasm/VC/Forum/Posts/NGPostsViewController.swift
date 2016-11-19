@@ -10,13 +10,19 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class NGPostsViewController: NGAuthenticatedViewController {
+class NGPostsViewController: NGViewController, NGDefaultStatefulVCType {
 
+    var backingView: UIView{
+        return stateView
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     
     let disposeBag = DisposeBag()
     let refreshControl = UIRefreshControl()
+    var viewModel: NGPostsViewModel!
     
+    @IBOutlet weak var stateView: UIView!
     var thread: NGThread! {
         didSet{
             guard let thread = thread else {return}
@@ -54,25 +60,26 @@ class NGPostsViewController: NGAuthenticatedViewController {
         tableView.register(R.nib.nGPostTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.postCell.identifier)
         
         
-        let model = NGPostsViewModel(threads: threadVar.asDriver(), reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))
+        viewModel = NGPostsViewModel(threads: threadVar.asDriver(), reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))
         
-        model.clean()
+        viewModel.clean()
             .drive(tableView.rx.items(cellIdentifier: R.reuseIdentifier.postCell.identifier)) { index, model, cell in
                 let postCell = cell as! NGPostTableViewCell
                 postCell.post = model
             }
             .addDisposableTo(disposeBag)
         
-        model.errors()
+        viewModel.errors()
             .drive(onNext: { err in
                 self.handleError(error: err)
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
-        model.loading
+        viewModel.loading
             .drive(refreshControl.rx.refreshing)
             .addDisposableTo(disposeBag)
 
+        _ = self.stateMachine
         // Do any additional setup after loading the view.
     }
 
@@ -81,6 +88,11 @@ class NGPostsViewController: NGAuthenticatedViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        errorView = ErrorView(frame: tableView.frame)
+        emptyView = EmptyView(frame: tableView.frame)
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          super.prepare(for: segue, sender: sender)

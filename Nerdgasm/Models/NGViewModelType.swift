@@ -15,6 +15,8 @@ protocol NGViewModelType{
     associatedtype T: Any
     var results: Driver<Result<T, NGNetworkError>> {get}
     var loading: Driver<Bool> {get}
+    func clean() -> Driver<T>
+    func errors() -> Driver<NGNetworkError>
 }
 
 extension NGViewModelType{

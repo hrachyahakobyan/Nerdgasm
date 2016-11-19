@@ -23,15 +23,14 @@ class NGThreadsViewModel: NGViewModelType {
     private let query: Driver<String>
     
     init(query: Driver<String>, reloadAction: Driver<Void>){
-        let networking = NGAuthorizedNetworking.sharedNetworking
+        let networking = NGNetworking.sharedNetworking
         self.query = query
         let searching = ActivityIndicator()
         self.loading = searching.asDriver()
         
         results = reloadAction
                     .flatMapLatest{ _ in
-                        print("Fetching")
-                        return networking.request(NGAuthenticatedService.GetThreads)
+                        return networking.request(NGService.GetThreads)
                                 .filterSuccessfulStatusCodes()
                                 .mapJSONDataArray()
                                 .map { jsons -> [(NGThread, NGUser)] in
@@ -48,10 +47,17 @@ class NGThreadsViewModel: NGViewModelType {
                     }
     }
     
-    func filteredThreads() -> Driver<T>{
-        return Driver.combineLatest(clean(), self.query) { (ts, query) -> T in
-            return ts.filter{ query.isEmpty || $0.0.title.lowercased().range(of: query.lowercased()) != nil }
-        }
+    func clean() -> Driver<T> {
+        return Driver.combineLatest(results, query, resultSelector: { ($0, $1) })
+            .filter{ (res, q) in
+                guard case Result<T, NGNetworkError>.success(_) = res else {
+                    return false
+                }
+                return true
+            }
+            .map{try! ($0.dematerialize(), $1)}
+            .map{ (ts, query) in
+                return ts.filter{ query.isEmpty || $0.0.title.lowercased().range(of: query.lowercased()) != nil }
+            }
     }
-
 }

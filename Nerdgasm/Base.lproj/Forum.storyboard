@@ -24,21 +24,29 @@
                             <searchBar contentMode="redraw" placeholder="Search threads" translatesAutoresizingMaskIntoConstraints="NO" id="Xvd-gv-Z21">
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h3Y-er-VgW">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="h3Y-er-VgW" firstAttribute="centerX" secondItem="ynk-LO-DEc" secondAttribute="centerX" id="23N-Uw-my8"/>
                             <constraint firstItem="Xvd-gv-Z21" firstAttribute="top" secondItem="JvR-49-I2H" secondAttribute="bottom" id="4DJ-pO-FbH"/>
                             <constraint firstItem="ynk-LO-DEc" firstAttribute="leading" secondItem="d0q-eA-K9W" secondAttribute="leading" id="8Xn-0r-txy"/>
                             <constraint firstItem="Xvd-gv-Z21" firstAttribute="centerX" secondItem="d0q-eA-K9W" secondAttribute="centerX" id="Aof-bB-xTC"/>
                             <constraint firstItem="8j9-MI-xME" firstAttribute="top" secondItem="ynk-LO-DEc" secondAttribute="bottom" id="Dxf-kJ-g18"/>
                             <constraint firstItem="ynk-LO-DEc" firstAttribute="top" secondItem="Xvd-gv-Z21" secondAttribute="bottom" id="NYI-RI-jVA"/>
+                            <constraint firstItem="h3Y-er-VgW" firstAttribute="centerY" secondItem="ynk-LO-DEc" secondAttribute="centerY" id="aoQ-ap-syP"/>
+                            <constraint firstItem="h3Y-er-VgW" firstAttribute="height" secondItem="ynk-LO-DEc" secondAttribute="height" constant="-100" id="fqV-9p-NfK"/>
                             <constraint firstItem="Xvd-gv-Z21" firstAttribute="leading" secondItem="d0q-eA-K9W" secondAttribute="leading" id="kfT-Lf-0Hm"/>
                             <constraint firstItem="ynk-LO-DEc" firstAttribute="centerX" secondItem="d0q-eA-K9W" secondAttribute="centerX" id="lei-x0-JrJ"/>
+                            <constraint firstItem="h3Y-er-VgW" firstAttribute="width" secondItem="ynk-LO-DEc" secondAttribute="width" id="wAZ-PQ-uqn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AED-vS-Jm2"/>
                     <connections>
                         <outlet property="searchBar" destination="Xvd-gv-Z21" id="dCF-Y8-LdF"/>
+                        <outlet property="stateView" destination="h3Y-er-VgW" id="t55-vR-W0m"/>
                         <outlet property="tableView" destination="ynk-LO-DEc" id="m4A-Ah-Y60"/>
                         <segue destination="lNS-tQ-h8B" kind="presentation" identifier="CreateThread" id="NCc-AP-EnS"/>
                         <segue destination="jkF-QK-O51" kind="show" identifier="Posts" id="I3G-d1-sk1"/>
@@ -124,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2be-yI-drI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4173.6000000000004" y="1014.2428785607198"/>
+            <point key="canvasLocation" x="4258" y="1023"/>
         </scene>
         <!--Posts View Controller-->
         <scene sceneID="3XY-VM-JFu">
@@ -141,17 +149,25 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lXY-2k-hcJ">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5l-W3-C1b">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lXY-2k-hcJ" firstAttribute="centerX" secondItem="mpw-3C-hhu" secondAttribute="centerX" id="2tr-TO-0eX"/>
+                            <constraint firstItem="v5l-W3-C1b" firstAttribute="centerY" secondItem="lXY-2k-hcJ" secondAttribute="centerY" id="IjV-F3-cva"/>
                             <constraint firstItem="lXY-2k-hcJ" firstAttribute="leading" secondItem="mpw-3C-hhu" secondAttribute="leading" id="OjB-25-Ez1"/>
+                            <constraint firstItem="v5l-W3-C1b" firstAttribute="centerX" secondItem="lXY-2k-hcJ" secondAttribute="centerX" id="XbP-YR-VWV"/>
+                            <constraint firstItem="v5l-W3-C1b" firstAttribute="height" secondItem="lXY-2k-hcJ" secondAttribute="height" constant="-100" id="boX-UN-qzO"/>
+                            <constraint firstItem="v5l-W3-C1b" firstAttribute="width" secondItem="lXY-2k-hcJ" secondAttribute="width" id="nOB-67-8NC"/>
                             <constraint firstItem="lXY-2k-hcJ" firstAttribute="top" secondItem="viE-4f-7gH" secondAttribute="bottom" id="vlv-W2-yt5"/>
                             <constraint firstItem="0G8-bK-Ajh" firstAttribute="top" secondItem="lXY-2k-hcJ" secondAttribute="bottom" id="z3w-kE-jgU"/>
                         </constraints>
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
+                        <outlet property="stateView" destination="v5l-W3-C1b" id="V7Z-Y1-lh4"/>
                         <outlet property="tableView" destination="lXY-2k-hcJ" id="BJa-a3-Q5P"/>
                         <segue destination="gIb-WV-CHt" kind="presentation" identifier="CreatePost" id="XLn-Q0-Mpl"/>
                     </connections>

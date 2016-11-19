@@ -21,14 +21,14 @@ class NGUserViewModel: NGViewModelType {
     let loading: Driver<Bool>
     
     init(userQuery: Driver<String>){
-        let networking = NGAuthorizedNetworking.sharedNetworking
+        let networking = NGNetworking.sharedNetworking
         
         let searching = ActivityIndicator()
         self.loading = searching.asDriver()
         
         results = userQuery
             .flatMapLatest{query in
-                return networking.request(NGAuthenticatedService.SearchUsers(query: query))
+                return networking.request(NGService.SearchUsers(query: query))
                         .filterSuccessfulStatusCodes()
                         .mapJSON()
                         .map{ json -> [NGUser] in
