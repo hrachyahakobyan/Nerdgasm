@@ -100,13 +100,9 @@ class NGForumViewController: NGViewController, NGDefaultStatefulVCType {
         
         _ = self.stateMachine
 
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         errorView = ErrorView(frame: tableView.frame)
         emptyView = EmptyView(frame: tableView.frame)
+        // Do any additional setup after loading the view.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

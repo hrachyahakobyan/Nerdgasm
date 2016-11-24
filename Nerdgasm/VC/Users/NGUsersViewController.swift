@@ -68,24 +68,10 @@ class NGUsersViewController: NGViewController, NGDefaultStatefulVCType {
             }
             .addDisposableTo(disposeBag)
         
-        viewModel.errors()
-            .drive(onNext: { err in
-                guard case NGNetworkError.Unauthorized = err else {
-                    return
-                }
-                NGUserCredentials.reset()
-                }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
-        
-        viewModel
-            .loading
-            .drive(onNext: { (loading) in
-                print("hm")
-                }, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
-        
          _ = self.stateMachine;
-        
+        errorView = ErrorView(frame: tableView.frame)
+        loadingView = LoadingView(frame: tableView.frame)
+        emptyView = EmptyView(frame: tableView.frame)
         FLEXManager.shared().showExplorer()
 
     }
@@ -93,9 +79,7 @@ class NGUsersViewController: NGViewController, NGDefaultStatefulVCType {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        errorView = ErrorView(frame: tableView.frame)
-        loadingView = LoadingView(frame: tableView.frame)
-        emptyView = EmptyView(frame: tableView.frame)
+
     }
     
     override func didReceiveMemoryWarning() {

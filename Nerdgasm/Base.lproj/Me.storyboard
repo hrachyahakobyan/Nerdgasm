@@ -21,24 +21,33 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m6q-3H-5jP">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="RAb-ds-33P">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Cz3-Tv-msj"/>
+                                    <constraint firstAttribute="height" constant="100" id="LCC-Lp-QlD"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="m6q-3H-5jP" firstAttribute="centerX" secondItem="ela-AQ-rpl" secondAttribute="centerX" id="2Ho-b9-tnB"/>
-                            <constraint firstItem="m6q-3H-5jP" firstAttribute="top" secondItem="avg-zb-WPU" secondAttribute="bottom" id="9gH-iI-wQw"/>
-                            <constraint firstItem="m6q-3H-5jP" firstAttribute="centerY" secondItem="ela-AQ-rpl" secondAttribute="centerY" id="Ks9-ax-scu"/>
+                            <constraint firstItem="RAb-ds-33P" firstAttribute="top" secondItem="avg-zb-WPU" secondAttribute="bottom" constant="15" id="8ly-wy-EWY"/>
+                            <constraint firstItem="m6q-3H-5jP" firstAttribute="top" secondItem="RAb-ds-33P" secondAttribute="bottom" constant="10" id="NQp-tk-sWW"/>
                             <constraint firstItem="m6q-3H-5jP" firstAttribute="leading" secondItem="ela-AQ-rpl" secondAttribute="leading" id="iZ8-2Q-chI"/>
+                            <constraint firstItem="RAb-ds-33P" firstAttribute="centerX" secondItem="ela-AQ-rpl" secondAttribute="centerX" id="pTS-NG-x4O"/>
+                            <constraint firstItem="PtQ-AO-im3" firstAttribute="top" secondItem="m6q-3H-5jP" secondAttribute="bottom" id="wmZ-ew-dDf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aIK-fg-ZbP"/>
                     <connections>
+                        <outlet property="avatarImageView" destination="RAb-ds-33P" id="YEW-12-RhR"/>
                         <outlet property="tableView" destination="m6q-3H-5jP" id="mkn-Iu-n0R"/>
                         <segue destination="Yx1-yA-u1E" kind="presentation" identifier="MyProfile" id="UHn-DN-gt5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMe-Ie-sKL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="335" y="2318"/>
+            <point key="canvasLocation" x="333.60000000000002" y="2317.6911544227887"/>
         </scene>
         <!--My Profile View Controller-->
         <scene sceneID="9YW-rS-4uc">
@@ -82,16 +91,6 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sbk-aa-044">
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mln-Mt-Ol5">
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -99,7 +98,7 @@
                         <constraints>
                             <constraint firstItem="wcP-oa-R6s" firstAttribute="leading" secondItem="d5X-h6-hQh" secondAttribute="leading" constant="10" id="6dF-WY-gUX"/>
                             <constraint firstItem="wcP-oa-R6s" firstAttribute="centerX" secondItem="d5X-h6-hQh" secondAttribute="centerX" id="Djb-Uv-DiO"/>
-                            <constraint firstItem="wcP-oa-R6s" firstAttribute="top" secondItem="vim-A2-r8W" secondAttribute="bottom" constant="20" id="IZ6-Jv-Uiv"/>
+                            <constraint firstItem="wcP-oa-R6s" firstAttribute="top" secondItem="vim-A2-r8W" secondAttribute="bottom" constant="10" id="FX9-ra-HKl"/>
                             <constraint firstItem="wcP-oa-R6s" firstAttribute="leading" secondItem="d5X-h6-hQh" secondAttribute="leading" constant="10" id="KfD-gB-wdR"/>
                         </constraints>
                     </view>
@@ -107,8 +106,6 @@
                     <connections>
                         <outlet property="firstnameTextField" destination="LzG-N7-eD4" id="peX-Jh-r0d"/>
                         <outlet property="lastNameTextField" destination="LCz-f8-7wI" id="PXB-n6-jUL"/>
-                        <outlet property="textfield1" destination="Sbk-aa-044" id="YLW-Yf-ZzA"/>
-                        <outlet property="textfield2" destination="Mln-Mt-Ol5" id="x8l-Y4-z2D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhr-Pe-RMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -152,4 +149,7 @@
             <point key="canvasLocation" x="-372" y="2317.6911544227887"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="avatar" width="180" height="180"/>
+    </resources>
 </document>

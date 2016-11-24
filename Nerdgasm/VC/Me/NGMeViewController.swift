@@ -10,12 +10,34 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum NGAvatarAction {
+    case Camera
+    case Photo
+    case Remove
+    case Cancel
+}
+
+extension NGAvatarAction: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .Camera:
+            return "Camera"
+        case .Photo:
+            return "Photo Library"
+        case .Cancel:
+            return "Cancel"
+        case .Remove:
+            return "Remove"
+        }
+    }
+}
 
 class NGMeViewController: NGAuthenticatedViewController {
 
+    @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     let rowCount = 2
-    let data = Observable<[String]>.just(["My profile", "Sign out"])
+    let data = Observable<[String]>.just(["Edit", "Sign out"])
     let disposeBag = DisposeBag()
     
     enum Rows: Int {
@@ -25,6 +47,7 @@ class NGMeViewController: NGAuthenticatedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         automaticallyAdjustsScrollViewInsets = false
         navigationItem.title = "Me"
         tableView.allowsMultipleSelection = false
@@ -66,6 +89,46 @@ class NGMeViewController: NGAuthenticatedViewController {
             })
             .addDisposableTo(disposeBag)
         
+        let imageTap = UITapGestureRecognizer()
+        imageTap.rx.event
+            .flatMapLatest {[weak self] (tap) -> Observable<NGAvatarAction> in
+                print("tap")
+                return DefaultWireframe.sharedInstance.promptFor("", title: "Change avatar", cancelAction: NGAvatarAction.Cancel, actions: [NGAvatarAction.Camera, NGAvatarAction.Photo, NGAvatarAction.Remove])
+                    .filter{ action -> Bool in
+                        if case NGAvatarAction.Cancel = action {
+                            return false
+                        } else if case NGAvatarAction.Remove = action {
+                            self?.avatarImageView.image = #imageLiteral(resourceName: "avatar")
+                            return false
+                        } else {
+                            return true
+                        }
+                    }
+            }
+            .flatMapLatest {[weak self] action -> Observable<[String: AnyObject]>  in
+                print(action)
+                return UIImagePickerController.rx.createWithParent(self) { picker in
+                    if case NGAvatarAction.Camera = action {
+                        picker.sourceType = .camera
+                    } else {
+                        picker.sourceType = .photoLibrary
+                    }
+                    picker.allowsEditing = false
+                    }
+                    .flatMap { $0.rx.didFinishPickingMediaWithInfo }
+                    .take(1)
+            }
+            .map { info -> UIImage? in
+                print(info)
+                return info[UIImagePickerControllerOriginalImage] as? UIImage
+            }
+            .bindTo(avatarImageView.rx.image)
+            .addDisposableTo(disposeBag)
+        
+    
+        avatarImageView.addGestureRecognizer(imageTap)
+
+        
 
         // Do any additional setup after loading the view.
     }
@@ -75,24 +138,7 @@ class NGMeViewController: NGAuthenticatedViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 
-extension Reactive where Base: UITableView {
-    public var allowsSelection: UIBindingObserver<Base, Bool> {
-        return UIBindingObserver(UIElement: self.base) { tableView, selectionAllowd in
-            tableView.allowsSelection = selectionAllowd
-        }
-    }
-}
+

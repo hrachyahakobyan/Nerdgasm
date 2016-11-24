@@ -12,8 +12,6 @@ import RxCocoa
 
 class NGMyProfileViewController: NGAuthenticatedViewController {
 
-    @IBOutlet weak var textfield2: UITextField!
-    @IBOutlet weak var textfield1: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var firstnameTextField: UITextField!
     let disposeBag = DisposeBag()
@@ -35,18 +33,6 @@ class NGMyProfileViewController: NGAuthenticatedViewController {
             .asDriver()
             .drive(onNext: {self.closeAction()}, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
-        
-        
-        let driver1 = textfield1.rx.text.orEmpty.asDriver()
-        let driver2 = textfield2.rx.text.orEmpty.asDriver()
-        
-        let driverc = Driver.of(driver1, driver2).merge()
-        
-        driverc
-            .drive(onNext: { (string) in
-                print(string)
-                }, onCompleted: nil, onDisposed: nil)
-             .addDisposableTo(disposeBag)
         
         // Do any additional setup after loading the view.
     }
