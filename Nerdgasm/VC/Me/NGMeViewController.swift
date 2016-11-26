@@ -38,7 +38,6 @@ class NGMeViewController: NGAuthenticatedViewController {
     @IBOutlet weak var tableView: UITableView!
     let rowCount = 2
     let data = Observable<[String]>.just(["Edit", "Sign out"])
-    let disposeBag = DisposeBag()
     
     enum Rows: Int {
         case Profile = 0
@@ -49,7 +48,7 @@ class NGMeViewController: NGAuthenticatedViewController {
         super.viewDidLoad()
     
         automaticallyAdjustsScrollViewInsets = false
-        navigationItem.title = "Me"
+        navigationItem.title = NGUserCredentials.credentials()?.user.username
         tableView.allowsMultipleSelection = false
         tableView.register(R.nib.nGMeTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.meCell.identifier)
         data.bindTo(tableView.rx.items(cellIdentifier: R.reuseIdentifier.meCell.identifier)) { index, model, cell in
@@ -72,7 +71,7 @@ class NGMeViewController: NGAuthenticatedViewController {
             .addDisposableTo(disposeBag)
         
        let model = NGMeSignoutViewModel(loggingOutTaps: signoutTaps)
-        
+    
         model.loading
             .map{!$0}
             .drive(tableView.rx.allowsSelection)
@@ -127,8 +126,6 @@ class NGMeViewController: NGAuthenticatedViewController {
         
     
         avatarImageView.addGestureRecognizer(imageTap)
-
-        
 
         // Do any additional setup after loading the view.
     }

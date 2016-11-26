@@ -17,7 +17,7 @@ class ViewFromNib: UIView {
         nibSetup()
     }
     
-    private func nibSetup() {
+    internal func nibSetup() {
         backgroundColor = .clear
         
         view = loadViewFromNib()

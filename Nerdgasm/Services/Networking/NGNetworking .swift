@@ -59,9 +59,7 @@ extension NGAuthorizedNetworking {
     func request(_ token: NGAuthenticatedService, defaults: UserDefaults = UserDefaults.standard) -> Observable<Moya.Response> {
         return self.provider.request(token)
     }
-}
-
-extension NGAuthorizedNetworking{
+    
     static func endpointsClosure<T>() -> (T) -> Endpoint<T> where T: TargetType, T: NGServiceType {
         return { target in
             var endpoint: Endpoint<T> = Endpoint<T>(URL: url(target), sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
@@ -86,7 +84,8 @@ extension NGNetworkingType {
     
     static func endpointsClosure<T>() -> (T) -> Endpoint<T> where T: TargetType, T: NGServiceType {
         return { target in
-            return Endpoint<T>(URL: url(target), sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters)
+            let encoding: Moya.ParameterEncoding = (target.method == .post ? Moya.JSONEncoding.default : Moya.URLEncoding.default)
+            return Endpoint<T>(URL: url(target), sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, parameters: target.parameters,parameterEncoding: encoding, httpHeaderFields: ["Content-Type" : "application/json"])
         }
     }
     

@@ -73,5 +73,17 @@ class DefaultWireframe: Wireframe {
             return Observable.error(NSError(domain: "Unimplemented", code: -1, userInfo: nil))
         #endif
     }
+    
+    func presentLogin(configure: @escaping (NGLoginViewController) -> () = { x in }) {
+        let sb = R.storyboard.login()
+        guard let vc: UINavigationController = sb.instantiateInitialViewController() as? UINavigationController else {
+            return
+        }
+        guard let login: NGLoginViewController = vc.topViewController as? NGLoginViewController else {
+            return
+        }
+        configure(login)
+        DefaultWireframe.rootViewController().present(vc, animated: true, completion: nil)
+    }
 }
 

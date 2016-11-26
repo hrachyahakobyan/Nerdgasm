@@ -14,7 +14,6 @@ class NGMyProfileViewController: NGAuthenticatedViewController {
 
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var firstnameTextField: UITextField!
-    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

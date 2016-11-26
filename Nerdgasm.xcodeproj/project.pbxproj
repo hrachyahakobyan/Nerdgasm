@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5405B3851DD0BA2E00C770FB /* NGCreatePostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5405B3841DD0BA2E00C770FB /* NGCreatePostViewModel.swift */; };
+		540788B01DE747AC00F5F080 /* NGLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540788AF1DE747AC00F5F080 /* NGLoginView.swift */; };
+		540788B21DE747BF00F5F080 /* NGLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540788B11DE747BF00F5F080 /* NGLoginView.xib */; };
 		540A69BA1DCE6F39009B9673 /* NGThreadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A69B81DCE6F39009B9673 /* NGThreadTableViewCell.swift */; };
 		540A69BB1DCE6F39009B9673 /* NGThreadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540A69B91DCE6F39009B9673 /* NGThreadTableViewCell.xib */; };
 		540A69BD1DCE6F80009B9673 /* NGThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540A69BC1DCE6F80009B9673 /* NGThread.swift */; };
@@ -94,6 +96,8 @@
 
 /* Begin PBXFileReference section */
 		5405B3841DD0BA2E00C770FB /* NGCreatePostViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGCreatePostViewModel.swift; path = VC/Forum/Posts/NGCreatePostViewModel.swift; sourceTree = "<group>"; };
+		540788AF1DE747AC00F5F080 /* NGLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginView.swift; path = Views/NGLoginView.swift; sourceTree = "<group>"; };
+		540788B11DE747BF00F5F080 /* NGLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NGLoginView.xib; path = Views/NGLoginView.xib; sourceTree = "<group>"; };
 		540A69B81DCE6F39009B9673 /* NGThreadTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGThreadTableViewCell.swift; path = VC/Forum/NGThreadTableViewCell.swift; sourceTree = "<group>"; };
 		540A69B91DCE6F39009B9673 /* NGThreadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NGThreadTableViewCell.xib; path = VC/Forum/NGThreadTableViewCell.xib; sourceTree = "<group>"; };
 		540A69BC1DCE6F80009B9673 /* NGThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGThread.swift; path = Models/NGThread.swift; sourceTree = "<group>"; };
@@ -193,6 +197,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		540788AC1DE7470100F5F080 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				540B40081DCFC3EB002F9FBD /* ViewFromNib.swift */,
+				540788AF1DE747AC00F5F080 /* NGLoginView.swift */,
+				540788B11DE747BF00F5F080 /* NGLoginView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		540B3FFE1DCFA8D0002F9FBD /* Create Thread */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +268,7 @@
 		5414F08C1D9712D100D30EDF /* Nerdgasm */ = {
 			isa = PBXGroup;
 			children = (
+				540788AC1DE7470100F5F080 /* Views */,
 				54C7FB071DBD244E00BD7430 /* R.generated.swift */,
 				54D5270E1DE6DDDE00F99E82 /* Services */,
 				54CC1B3C1DB407FE008568F5 /* Models */,
@@ -284,7 +299,6 @@
 				5414F7441DB5EAFC004E96F8 /* Users */,
 				5414F0B11D97176C00D30EDF /* Login */,
 				5413741B1DCD1B1D0016E5EA /* NGTabBarController.swift */,
-				540B40081DCFC3EB002F9FBD /* ViewFromNib.swift */,
 				54124FDD1DD3B35100A62722 /* NGViewController.swift */,
 				54124FDF1DD3B6B200A62722 /* NGAuthenticatedViewController.swift */,
 			);
@@ -543,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54F0E0461DBDE78B00F0B2F7 /* NGMeTableViewCell.xib in Resources */,
+				540788B21DE747BF00F5F080 /* NGLoginView.xib in Resources */,
 				5414F0BA1D97190A00D30EDF /* Login.storyboard in Resources */,
 				546188111DCF42A400F03B8D /* Forum.storyboard in Resources */,
 				540B40051DCFC188002F9FBD /* NGPostsHeaderView.xib in Resources */,
@@ -687,6 +702,7 @@
 				5413741C1DCD1B1D0016E5EA /* NGTabBarController.swift in Sources */,
 				54D527281DE6DDDE00F99E82 /* NGNetworking .swift in Sources */,
 				545E79581DE630DA00D27A75 /* RxImagePicker.swift in Sources */,
+				540788B01DE747AC00F5F080 /* NGLoginView.swift in Sources */,
 				5445959D1DB4AC6A002BD140 /* NGLoginViewModel.swift in Sources */,
 				540A69C11DCE7344009B9673 /* NGThreadsViewModel.swift in Sources */,
 				54D5272B1DE6DDDE00F99E82 /* Reachability.swift in Sources */,
