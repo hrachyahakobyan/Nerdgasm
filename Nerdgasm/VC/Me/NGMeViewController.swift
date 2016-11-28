@@ -34,22 +34,43 @@ extension NGAvatarAction: CustomStringConvertible {
 
 class NGMeViewController: NGAuthenticatedViewController {
 
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: NGImageView!
     @IBOutlet weak var tableView: UITableView!
-    let rowCount = 2
-    let data = Observable<[String]>.just(["Edit", "Sign out"])
-    let disposeBag = DisposeBag()
+    let rowCount = 1
+    let data = Observable<[String]>.just(["Sign out"])
     
     enum Rows: Int {
-        case Profile = 0
-        case Signout = 1
+        case Signout = 0
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let editItem = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = editItem
+        
+        editItem.rx.tap
+            .asDriver()
+            .drive(onNext: {self.editAction()}, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
+        avatarImageView.offlinePlaceholder = #imageLiteral(resourceName: "avatar")
     
+        let profileURLs = NGUserCredentials.rxCredentials
+            .filter{$0 != nil}
+            .map{NGService.imageURL.appendingPathComponent($0!.user.image)}
+        
+        profileURLs
+            .distinctUntilChanged()
+            .flatMapLatest { (url)  in
+                return DefaultImageService.sharedImageService.imageFromURL(url)
+            }
+            .observeOn(MainScheduler.instance)
+            .bindTo(avatarImageView.rx.downloadableImage)
+            .addDisposableTo(disposeBag)
+        
         automaticallyAdjustsScrollViewInsets = false
-        navigationItem.title = "Me"
+        navigationItem.title = NGUserCredentials.credentials()?.user.username
         tableView.allowsMultipleSelection = false
         tableView.register(R.nib.nGMeTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.meCell.identifier)
         data.bindTo(tableView.rx.items(cellIdentifier: R.reuseIdentifier.meCell.identifier)) { index, model, cell in
@@ -62,17 +83,8 @@ class NGMeViewController: NGAuthenticatedViewController {
             .filter{return $0.row == Rows.Signout.rawValue}
             .map{_ in Void()}
         
-        tableView
-            .rx.itemSelected
-            .subscribe { indexPath in
-                if indexPath.element?.row == Rows.Profile.rawValue {
-                    self.performSegue(withIdentifier: R.segue.nGMeViewController.myProfile, sender: nil)
-                }
-            }
-            .addDisposableTo(disposeBag)
-        
        let model = NGMeSignoutViewModel(loggingOutTaps: signoutTaps)
-        
+    
         model.loading
             .map{!$0}
             .drive(tableView.rx.allowsSelection)
@@ -89,49 +101,13 @@ class NGMeViewController: NGAuthenticatedViewController {
             })
             .addDisposableTo(disposeBag)
         
-        let imageTap = UITapGestureRecognizer()
-        imageTap.rx.event
-            .flatMapLatest {[weak self] (tap) -> Observable<NGAvatarAction> in
-                print("tap")
-                return DefaultWireframe.sharedInstance.promptFor("", title: "Change avatar", cancelAction: NGAvatarAction.Cancel, actions: [NGAvatarAction.Camera, NGAvatarAction.Photo, NGAvatarAction.Remove])
-                    .filter{ action -> Bool in
-                        if case NGAvatarAction.Cancel = action {
-                            return false
-                        } else if case NGAvatarAction.Remove = action {
-                            self?.avatarImageView.image = #imageLiteral(resourceName: "avatar")
-                            return false
-                        } else {
-                            return true
-                        }
-                    }
-            }
-            .flatMapLatest {[weak self] action -> Observable<[String: AnyObject]>  in
-                print(action)
-                return UIImagePickerController.rx.createWithParent(self) { picker in
-                    if case NGAvatarAction.Camera = action {
-                        picker.sourceType = .camera
-                    } else {
-                        picker.sourceType = .photoLibrary
-                    }
-                    picker.allowsEditing = false
-                    }
-                    .flatMap { $0.rx.didFinishPickingMediaWithInfo }
-                    .take(1)
-            }
-            .map { info -> UIImage? in
-                print(info)
-                return info[UIImagePickerControllerOriginalImage] as? UIImage
-            }
-            .bindTo(avatarImageView.rx.image)
-            .addDisposableTo(disposeBag)
-        
-    
-        avatarImageView.addGestureRecognizer(imageTap)
-
-        
-
-        // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
     }
+    
+    func editAction(){
+        self.performSegue(withIdentifier: R.segue.nGMeViewController.myProfile, sender: nil)
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -8,21 +8,45 @@
 
 import UIKit
 import RxSwift
-import Moya
+import RxCocoa
 
 class NGLoginViewController: NGViewController {
     
-    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    // MARK: Sign in outlets
+    @IBOutlet weak var signinView: UIView!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
-    
+    @IBOutlet weak var openSignupButton: UIButton!
     @IBOutlet weak var inputFieldsView: UIStackView!
     @IBOutlet weak var signInResultLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    // MARK: Sign up outlets
+
+    @IBOutlet weak var signupView: UIView!
+    @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var signupRepeatPasswordValidLabel: UILabel!
+    @IBOutlet weak var signupRepeatPasswordTextField: UITextField!
+    @IBOutlet weak var signupPasswordValidLabel: UILabel!
+    @IBOutlet weak var signupPasswordTextField: UITextField!
+    @IBOutlet weak var usernameAvailableLabel: UILabel!
+    @IBOutlet weak var signupUsernameTextField: UITextField!
+    @IBOutlet weak var openSigninButton: UIButton!
+    @IBOutlet weak var checkUsernameActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var signupActivityIndicator: UIActivityIndicatorView!
+    
+    let signinVisible = Variable<Bool>(true)
     private let disposeBag = DisposeBag()
-
-
+    
+    private var latestSignupUsername: Driver<String> {
+        return signupUsernameTextField.rx.text.orEmpty
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +54,7 @@ class NGLoginViewController: NGViewController {
         passwordTextField.isSecureTextEntry = true
         signInResultLabel.textColor = UIColor.red
         
-        let allTaps = Observable.of(signInButton.rx.tap, signUpButton.rx.tap)
+        let allTaps = Observable.of(signInButton.rx.tap, signupButton.rx.tap, openSignupButton.rx.tap, openSignupButton.rx.tap)
                             .merge()
                             .asDriver(onErrorJustReturn: Void())
         allTaps
@@ -61,25 +85,97 @@ class NGLoginViewController: NGViewController {
         
         viewModel.loading
             .map{!$0}
-            .drive(signUpButton.rx.isEnabled)
+            .drive(signInButton.rx.isEnabled)
+            .addDisposableTo(disposeBag)
+        
+        viewModel.loading
+            .map{!$0}
+            .drive(openSignupButton.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
         viewModel.results
-            .drive(onNext: { result in
+            .drive(onNext: {[weak self] result in
                 switch result {
                 case .success(let credentials):
                     credentials.synchronize()
-                    self.signInResultLabel.text = ""
-                    self.dismiss(animated: true, completion: nil)
+                    self?.signInResultLabel.text = ""
+                    self?.dismiss(animated: true, completion: nil)
                 case .failure(let error):
                     switch error {
                     case .NoConnection:
-                        self.signInResultLabel.text = "Could not connect to the Internet"
+                        self?.signInResultLabel.text = "Could not connect to the Internet"
                     case .NotFound:
-                        self.signInResultLabel.text = "Incorrect username/password"
+                        self?.signInResultLabel.text = "Incorrect username/password"
                     default:
-                        self.signInResultLabel.text = "Unknown error"
+                        self?.signInResultLabel.text = "Unknown error"
                     }
+                }
+            })
+            .addDisposableTo(disposeBag)
+        
+        signupActivityIndicator.hidesWhenStopped = true
+        checkUsernameActivityIndicator.hidesWhenStopped = true
+        signupPasswordTextField.isSecureTextEntry = true
+        signupRepeatPasswordTextField.isSecureTextEntry = true
+        let signupModel = NGSignupViewModel(
+            input: (
+                username: latestSignupUsername,
+                password: signupPasswordTextField.rx.text.orEmpty.asDriver(),
+                repeatedPassword: signupRepeatPasswordTextField.rx.text.orEmpty.asDriver(),
+                loginTaps: signupButton.rx.tap.asDriver()
+            ),
+            validationService: NGDefaultSignupValidationService.sharedSignupValidationService
+        )
+        
+        signupModel.signupEnabled
+            .drive(onNext: { [weak self] valid  in
+                self?.signupButton.isEnabled = valid
+                self?.signupButton.alpha = valid ? 1.0 : 0.5
+                })
+            .addDisposableTo(disposeBag)
+        
+        signupModel.loading
+            .map{!$0}
+            .drive(openSigninButton.rx.isEnabled)
+            .addDisposableTo(disposeBag)
+        
+        signupModel.loading
+            .map{!$0}
+            .drive(signupButton.rx.isEnabled)
+            .addDisposableTo(disposeBag)
+        
+        signupModel.loading
+            .drive(signupActivityIndicator.rx.isAnimating)
+            .addDisposableTo(disposeBag)
+        
+        signupModel.validatedUsername
+            .drive(usernameAvailableLabel.rx.validationResult)
+            .addDisposableTo(disposeBag)
+        
+        signupModel.validatedPassword
+            .drive(signupPasswordValidLabel.rx.validationResult)
+            .addDisposableTo(disposeBag)
+        
+        signupModel.validatedPasswordRepeated
+            .drive(signupRepeatPasswordValidLabel.rx.validationResult)
+            .addDisposableTo(disposeBag)
+
+        signupModel.checkingUsername
+            .drive(checkUsernameActivityIndicator.rx.isAnimating)
+            .addDisposableTo(disposeBag)
+        
+        signupModel.checkingUsername
+            .drive(usernameAvailableLabel.rx.isHidden)
+            .addDisposableTo(disposeBag)
+        
+        signupModel.results
+            .drive(onNext: {[weak self] result in
+                switch result {
+                case .success(let user):
+                    self?.usernameTextField.text = user.username
+                    self?.signinVisible.value = true
+                case .failure(let error):
+                    self?.handleError(error: error)
                 }
             })
             .addDisposableTo(disposeBag)
@@ -91,6 +187,43 @@ class NGLoginViewController: NGViewController {
                 })
             .addDisposableTo(disposeBag)
         view.addGestureRecognizer(tapBackground)
+        
+        openSigninButton.rx.tap
+            .map{true}
+            .bindTo(signinVisible)
+            .addDisposableTo(disposeBag)
+        
+        openSignupButton.rx.tap
+            .map{false}
+            .bindTo(signinVisible)
+            .addDisposableTo(disposeBag)
+        
+        signinVisible
+            .asDriver()
+            .drive(signupView.rx.isHidden)
+            .addDisposableTo(disposeBag)
+        
+        signinVisible
+            .asDriver()
+            .map{!$0}
+            .drive(signinView.rx.isHidden)
+            .addDisposableTo(disposeBag)
+        
+        let loading = Driver.of(viewModel.loading, signupModel.loading).merge()
+        
+        loading
+            .map{!$0}
+            .drive(cancelButton.rx.isEnabled)
+            .addDisposableTo(disposeBag)
+        
+        cancelButton.rx.tap.asDriver()
+            .drive(onNext: {[weak self] (tap) in
+                 self?.dismiss(animated: true, completion: nil)
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
+        
+        
         
         //let x = R.segue.login
                // Do any additional setup after loading the view.

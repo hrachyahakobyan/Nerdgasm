@@ -96,7 +96,6 @@ class NGDefaultSignupValidationService: NGSignupValidationService{
         let loadingValue = NGSignupValidationResult.validating
         
         return networking.request(NGService.UsernameAvailable(username: username))
-            .debug()
             .filterSuccessfulStatusCodes()
             .mapJSON()
             .map { json in

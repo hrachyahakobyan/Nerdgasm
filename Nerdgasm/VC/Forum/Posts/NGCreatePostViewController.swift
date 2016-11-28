@@ -15,7 +15,6 @@ class NGCreatePostViewController: NGAuthenticatedViewController {
     @IBOutlet weak var contentTextView: UITextView!
     
     var threadVar: Variable<NGThread>!
-    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

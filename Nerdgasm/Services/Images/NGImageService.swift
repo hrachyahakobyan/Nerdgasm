@@ -9,14 +9,13 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-
 enum DownloadableImage{
     case content(image:UIImage)
     case offlinePlaceholder
 }
 
 protocol ImageService {
-    func imageFromURL(_ url: URL, reachabilityService: ReachabilityService) -> Driver<DownloadableImage>
+    func imageFromURL(_ url: URL) -> Driver<DownloadableImage>
 }
 
 class DefaultImageService: ImageService {
@@ -28,6 +27,8 @@ class DefaultImageService: ImageService {
     
     // 2nd level cache
     private let _imageDataCache = NSCache<AnyObject, AnyObject>()
+    
+    //private let _reachAbilityService = try! DefaultReachabilityService.init()
     
     let loadingImage = ActivityIndicator()
     
@@ -90,10 +91,10 @@ class DefaultImageService: ImageService {
      
      After image is sucessfully downloaded, sequence is completed.
      */
-    func imageFromURL(_ url: URL, reachabilityService: ReachabilityService) -> Driver<DownloadableImage> {
+    func imageFromURL(_ url: URL) -> Driver<DownloadableImage> {
         return _imageFromURL(url)
             .map { DownloadableImage.content(image: $0) }
-            .retryOnBecomesReachable(DownloadableImage.offlinePlaceholder, reachabilityService: reachabilityService)
+            //.retryOnBecomesReachable(DownloadableImage.offlinePlaceholder, reachabilityService: _reachAbilityService)
             .asDriver(onErrorJustReturn: .offlinePlaceholder)
             .startWith(.offlinePlaceholder)
     }

@@ -94,6 +94,9 @@ enum NGAuthenticatedService: NGServiceType {
 }
 
 extension NGService: TargetType{
+    static var imageURL: URL {
+        return URL(string: "https://www.hhakobyan.com/nerdgasm/api/images/")!
+    }
     var baseURL: URL {
         return URL(string: "https://www.hhakobyan.com/nerdgasm/api/v1")!
     }
@@ -203,7 +206,7 @@ extension NGAuthenticatedService: TargetType{
         switch self {
         case .UploadAvatar(let image):
             let data = UIImageJPEGRepresentation(image, 1.0)
-            let multipart = MultipartFormData(provider: .data(data ?? Data()), name: "image")
+            let multipart = MultipartFormData(provider: .data(data ?? Data()), name: "image", fileName: "image.jpg", mimeType: "image/jpeg")
             return .upload(.multipart([multipart]))
         default:
             return .request

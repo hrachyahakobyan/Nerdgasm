@@ -18,13 +18,13 @@ class NGMyProfileViewModel: NGViewModelType {
     let loading: Driver<Bool>
     let disposeBag = DisposeBag()
     
-    init(user: Driver<NGUser>, updateUserTaps: Driver<Void>){
+    init(user: Driver<NGUser>, avatarTaps: Driver<Void>, updateUserTaps: Driver<Void>, vc: UIViewController){
         let networking = NGAuthorizedNetworking.sharedNetworking
+
+        let updatingUser = ActivityIndicator()
+        let updatingUserDriver = updatingUser.asDriver()
         
-        let updating = ActivityIndicator()
-        self.loading = updating.asDriver()
-        
-        results = updateUserTaps.withLatestFrom(user)
+        let updateUserResults: Driver<NGUserUpdateResult> = updateUserTaps.withLatestFrom(user)
             .flatMapLatest{ user in
                 return networking.request(NGAuthenticatedService.UpdateMe(firstname: user.firstname, lastname: user.lastname))
                         .filterSuccessfulStatusCodes()
@@ -36,11 +36,101 @@ class NGMyProfileViewModel: NGViewModelType {
                             return user
                         }
                         .mapToFailable()
-                        .trackActivity(updating)
+                        .trackActivity(updatingUser)
                         .asDriver(onErrorJustReturn: .failure(.NoConnection))
+        }
+        
+        let updatingAvatar = ActivityIndicator()
+        let updatingAvatarDriver = updatingAvatar.asDriver()
+        
+        let removingAvatar = ActivityIndicator()
+        let removingAvatarDriver = removingAvatar.asDriver()
+        
+        let avatarActions: Driver<NGAvatarAction> = avatarTaps
+            .flatMapLatest{ (tap) -> Driver<NGAvatarAction> in
+                print("tap")
+                return DefaultWireframe.sharedInstance.promptFor("", title: "Change avatar", cancelAction: NGAvatarAction.Cancel, actions: [NGAvatarAction.Camera, NGAvatarAction.Photo, NGAvatarAction.Remove])
+                    .filter{ action -> Bool in
+                        if case NGAvatarAction.Cancel = action {
+                            return false
+                        } else {
+                            return true
+                        }
+                    }
+                    .asDriver(onErrorJustReturn: .Cancel)
+            }
+        
+        
+        let removeAvatarActions = avatarActions
+            .filter{ action in
+                if case NGAvatarAction.Remove = action {
+                    return true
+                } else {
+                    return false
                 }
+        }
+        
+        let updateAvatarActions = avatarActions
+            .filter{ action in
+                if case NGAvatarAction.Remove = action {
+                    return false
+                } else {
+                    return true
+                }
+        }
+        
+        let updateAvatarResults: Driver<NGUserUpdateResult> = updateAvatarActions
+            .flatMapLatest { action -> Driver<[String: AnyObject]>  in
+                print(action)
+                return UIImagePickerController.rx.createWithParent(vc) { picker in
+                    if case NGAvatarAction.Camera = action {
+                        picker.sourceType = .camera
+                    } else {
+                        picker.sourceType = .photoLibrary
+                    }
+                    picker.allowsEditing = false
+                    }
+                    .flatMap { $0.rx.didFinishPickingMediaWithInfo }
+                    .take(1)
+                    .asDriver(onErrorJustReturn: [:])
+            }
+            .map { info -> UIImage? in
+                return info[UIImagePickerControllerOriginalImage] as? UIImage
+            }
+            .flatMapLatest{ image in
+                return networking.request(NGAuthenticatedService.UploadAvatar(image: image!))
+                    .filterSuccessfulStatusCodes()
+                    .mapJSONData()
+                    .map{json in
+                        guard let user: NGUser = NGUser(json: json) else {
+                            throw NGNetworkError.Unknown
+                        }
+                        return user
+                    }
+                    .mapToFailable()
+                    .trackActivity(updatingAvatar)
+                    .asDriver(onErrorJustReturn: .failure(.NoConnection))
+                }
+        
+        let removeAvatarResults: Driver<NGUserUpdateResult> = removeAvatarActions
+            .flatMapLatest { _  in
+                return networking.request(NGAuthenticatedService.DeleteAvatar)
+                    .filterSuccessfulStatusCodes()
+                    .mapJSONData()
+                    .map{json in
+                        guard let user: NGUser = NGUser(json: json) else {
+                            throw NGNetworkError.Unknown
+                        }
+                        return user
+                    }
+                    .mapToFailable()
+                    .trackActivity(removingAvatar)
+                    .asDriver(onErrorJustReturn: .failure(.NoConnection))
+            }
+        
+        self.loading = Driver.of(updatingAvatarDriver, removingAvatarDriver, updatingUserDriver).merge()
+        self.results = Driver.of(updateAvatarResults, updateUserResults, removeAvatarResults).merge()
     }
-
 }
 
 extension Reactive where Base: NGUser {

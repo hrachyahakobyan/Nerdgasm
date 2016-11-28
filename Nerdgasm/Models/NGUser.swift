@@ -11,16 +11,18 @@ import Gloss
 
 class NGUser: NSObject, NSCoding, Decodable, Encodable{
     enum Keys: String {
-        case IdKey = "Id"
-        case UsernameKey = "Username"
-        case FirstnameKey = "Firstname"
-        case LastnameKey = "Lastname"
+        case IdKey = "id"
+        case UsernameKey = "username"
+        case FirstnameKey = "firstname"
+        case LastnameKey = "lastname"
+        case ImageKey = "image"
     }
     
     public let username: String
     public let id: Int
     public var firstname: String = ""
     public var lastname: String = ""
+    public var image: String = ""
     public var fullname: String {
         return String(format: "%@ %@", firstname, lastname)
     }
@@ -32,17 +34,19 @@ class NGUser: NSObject, NSCoding, Decodable, Encodable{
     }
     
     convenience required init?(json: JSON){
-        guard let username: String = "username" <~~ json else {return nil}
-        guard let id: Int = ConverterHelper.toInt(val: json["id"]) else {return nil}
+        guard let username: String = Keys.UsernameKey.rawValue <~~ json else {return nil}
+        guard let id: Int = ConverterHelper.toInt(val: json[Keys.IdKey.rawValue]) else {return nil}
         self.init(username: username, id: id)
-        self.firstname = ("firstname" <~~ json ?? "")
-        self.lastname = ("lastname" <~~ json ?? "")
+        self.firstname = (Keys.FirstnameKey.rawValue <~~ json ?? "")
+        self.lastname = (Keys.LastnameKey.rawValue <~~ json ?? "")
+        self.image = (Keys.ImageKey.rawValue <~~ json ?? "")
     }
     
     func toJSON() -> JSON? {
-        return ["username" : self.username,
-                "firstname" : self.firstname,
-                "lastname" : self.lastname]
+        return [Keys.UsernameKey.rawValue : self.username,
+                Keys.FirstnameKey.rawValue : self.firstname,
+                Keys.LastnameKey.rawValue : self.lastname,
+                Keys.ImageKey.rawValue : self.image]
     }
     
     func encode(with aCoder: NSCoder) {
@@ -50,6 +54,7 @@ class NGUser: NSObject, NSCoding, Decodable, Encodable{
         aCoder.encode(username, forKey: Keys.UsernameKey.rawValue)
         aCoder.encode(firstname, forKey: Keys.FirstnameKey.rawValue)
         aCoder.encode(lastname, forKey: Keys.LastnameKey.rawValue)
+        aCoder.encode(image, forKey: Keys.ImageKey.rawValue)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +63,7 @@ class NGUser: NSObject, NSCoding, Decodable, Encodable{
         self.username = username
         self.firstname = aDecoder.decodeObject(forKey: Keys.FirstnameKey.rawValue) as? String ?? ""
         self.lastname = aDecoder.decodeObject(forKey: Keys.LastnameKey.rawValue) as? String ?? ""
+        self.image = aDecoder.decodeObject(forKey: Keys.ImageKey.rawValue) as? String ?? ""
         super.init()
     }
 }
