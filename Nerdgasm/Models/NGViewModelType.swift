@@ -40,3 +40,5 @@ extension NGViewModelType{
             .map{$0.error!}
     }
 }
+
+

@@ -19,44 +19,44 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJb-bt-tOd">
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzN-OL-MGU" customClass="TTTAttributedLabel">
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SW6-eZ-rdl">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SW6-eZ-rdl" customClass="NGImageView" customModule="Nerdgasm" customModuleProvider="target">
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="SW6-eZ-rdl" secondAttribute="height" multiplier="1:1" id="HBw-Wf-Y8f"/>
+                                    <constraint firstAttribute="width" constant="50" id="bzn-YO-pBr"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="0GN-6y-4rF"/>
                             <constraint firstAttribute="bottom" secondItem="WzN-OL-MGU" secondAttribute="bottom" constant="8" id="2aL-85-a7I"/>
-                            <constraint firstItem="SW6-eZ-rdl" firstAttribute="leading" secondItem="NJb-bt-tOd" secondAttribute="leading" constant="20" id="45a-Je-gh6"/>
+                            <constraint firstItem="SW6-eZ-rdl" firstAttribute="leading" secondItem="NJb-bt-tOd" secondAttribute="leading" constant="10" id="45a-Je-gh6"/>
                             <constraint firstItem="SW6-eZ-rdl" firstAttribute="top" secondItem="NJb-bt-tOd" secondAttribute="top" constant="10" id="6oF-QB-kza"/>
                             <constraint firstItem="SW6-eZ-rdl" firstAttribute="centerX" secondItem="NJb-bt-tOd" secondAttribute="centerX" id="cDF-mZ-2G4"/>
                             <constraint firstItem="WzN-OL-MGU" firstAttribute="centerX" secondItem="NJb-bt-tOd" secondAttribute="centerX" id="i9p-Ba-VS5"/>
-                            <constraint firstItem="WzN-OL-MGU" firstAttribute="leading" secondItem="NJb-bt-tOd" secondAttribute="leading" constant="5" id="nSN-z3-Jsc"/>
+                            <constraint firstItem="WzN-OL-MGU" firstAttribute="leading" secondItem="NJb-bt-tOd" secondAttribute="leading" constant="10" id="nSN-z3-Jsc"/>
                             <constraint firstItem="WzN-OL-MGU" firstAttribute="top" secondItem="SW6-eZ-rdl" secondAttribute="bottom" constant="8" id="w3b-rK-WnW"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICg-qh-NKD">
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8JC-3Z-dsT">
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gx4-O3-8cQ" customClass="TTTAttributedLabel">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8JC-3Z-dsT" firstAttribute="top" secondItem="ICg-qh-NKD" secondAttribute="top" constant="10" id="CBd-ZX-1zS"/>
+                            <constraint firstItem="8JC-3Z-dsT" firstAttribute="top" secondItem="ICg-qh-NKD" secondAttribute="top" constant="5" id="CBd-ZX-1zS"/>
                             <constraint firstItem="gx4-O3-8cQ" firstAttribute="centerX" secondItem="ICg-qh-NKD" secondAttribute="centerX" id="DSA-AB-o8X"/>
                             <constraint firstItem="8JC-3Z-dsT" firstAttribute="leading" secondItem="ICg-qh-NKD" secondAttribute="leading" constant="8" id="GNh-6C-pgL"/>
                             <constraint firstAttribute="bottom" secondItem="gx4-O3-8cQ" secondAttribute="bottom" constant="10" id="aR1-Yw-ZRe"/>
@@ -77,6 +77,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="avatarImageView" destination="SW6-eZ-rdl" id="ucG-5G-HQC"/>
                 <outlet property="contentLabel" destination="gx4-O3-8cQ" id="7TH-vP-xic"/>
                 <outlet property="dateLabel" destination="8JC-3Z-dsT" id="hV3-Ii-7as"/>
                 <outlet property="usernameLabel" destination="WzN-OL-MGU" id="cGX-kv-t5M"/>

@@ -8,27 +8,39 @@
 
 import UIKit
 import TTTAttributedLabel
+import RxSwift
 
 class NGPostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var usernameLabel: TTTAttributedLabel!
     @IBOutlet weak var contentLabel: TTTAttributedLabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var avatarImageView: NGImageView!
+    let disposeBag = DisposeBag()
     
     var post: (NGPost, NGUser)! {
         didSet{
             guard let post = post else {return}
-            print(post.1.fullname)
-            usernameLabel.text = post.1.fullname
+            usernameLabel.text = post.1.username
             contentLabel.text = post.0.content
             dateLabel.text = post.0.dateString
+            DefaultImageService.sharedImageService.imageFromURL(imageURLFrom(name: post.1.image))
+            .filter { (img, url) -> Bool in
+                self.post != nil && imageURLFrom(name: self.post.1.image).absoluteString == url.absoluteString
+            }
+            .map{$0.0}
+            .drive(avatarImageView.rx.downloadableImage)
+            .addDisposableTo(disposeBag)
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        avatarImageView.offlinePlaceholder = #imageLiteral(resourceName: "avatar")
         contentLabel.verticalAlignment = .top
         usernameLabel.verticalAlignment = .top
+        avatarImageView.layer.cornerRadius = 25
+        avatarImageView.layer.masksToBounds = true
         // Initialization code
     }
 

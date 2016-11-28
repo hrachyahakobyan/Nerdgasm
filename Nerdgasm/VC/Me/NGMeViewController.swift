@@ -66,6 +66,7 @@ class NGMeViewController: NGAuthenticatedViewController {
                 return DefaultImageService.sharedImageService.imageFromURL(url)
             }
             .observeOn(MainScheduler.instance)
+            .map{$0.0}
             .bindTo(avatarImageView.rx.downloadableImage)
             .addDisposableTo(disposeBag)
         
@@ -106,6 +107,12 @@ class NGMeViewController: NGAuthenticatedViewController {
     
     func editAction(){
         self.performSegue(withIdentifier: R.segue.nGMeViewController.myProfile, sender: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2
+        avatarImageView.layer.masksToBounds = true
     }
     
 

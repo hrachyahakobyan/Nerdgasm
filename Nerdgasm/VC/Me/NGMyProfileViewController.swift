@@ -36,6 +36,7 @@ class NGMyProfileViewController: NGAuthenticatedViewController {
                 DefaultImageService.sharedImageService.imageFromURL(url)
             }
             .observeOn(MainScheduler.instance)
+            .map{$0.0}
             .bindTo(avatarIMageView.rx.downloadableImage)
             .addDisposableTo(disposeBag)
         
@@ -102,7 +103,13 @@ class NGMyProfileViewController: NGAuthenticatedViewController {
     }
 
     func closeAction(){
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        avatarIMageView.layer.cornerRadius = avatarIMageView.frame.size.width/2
+        avatarIMageView.layer.masksToBounds = true
     }
     
     override func didReceiveMemoryWarning() {

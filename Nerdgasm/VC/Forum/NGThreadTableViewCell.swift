@@ -16,7 +16,7 @@ class NGThreadTableViewCell: UITableViewCell {
             guard let thread = thread else {return}
             titleLabel.text = thread.0.title
             dateLabel.text = thread.0.dateString
-            posterLabel.text = "By \(thread.1.fullname)"
+            posterLabel.text = "By \(thread.1.username)"
             postsCountLabel.text = "\(thread.0.post_count)"
             viewsCountLabel.text = "\(thread.0.view_count)"
         }

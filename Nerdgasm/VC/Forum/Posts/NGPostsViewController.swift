@@ -41,7 +41,7 @@ class NGPostsViewController: NGViewController, NGDefaultStatefulVCType {
         
         automaticallyAdjustsScrollViewInsets = false
         tableView.addSubview(refreshControl)
-        tableView.rowHeight = 100
+        tableView.rowHeight = 120
         tableView.allowsSelection = false
         
         let addPostItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
@@ -80,18 +80,10 @@ class NGPostsViewController: NGViewController, NGDefaultStatefulVCType {
             .addDisposableTo(disposeBag)
 
         _ = self.stateMachine
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        
         errorView = ErrorView(frame: tableView.frame)
         emptyView = EmptyView(frame: tableView.frame)
+        // Do any additional setup after loading the view.
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

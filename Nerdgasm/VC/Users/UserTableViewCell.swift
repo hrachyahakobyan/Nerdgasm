@@ -16,7 +16,7 @@ class UserTableViewCell: UITableViewCell {
     var user: NGUser! {
         didSet{
             usernameLabel.text = (user != nil) ? user.username : ""
-            fullnameLabel.text = (user != nil) ? user.firstname : ""
+            fullnameLabel.text = (user != nil) ? user.fullname : ""
         }
     }
 

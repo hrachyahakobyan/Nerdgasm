@@ -21,13 +21,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mYJ-98-ot1">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DD MM YYYY HH:MM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8C-C4-eNu">
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment_icon" translatesAutoresizingMaskIntoConstraints="NO" id="55a-Gr-9Ev">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="Nou-Pr-qeb"/>
+                                            <constraint firstAttribute="height" constant="20" id="Nou-Pr-qeb"/>
                                             <constraint firstAttribute="width" secondItem="55a-Gr-9Ev" secondAttribute="height" multiplier="1:1" id="rTv-XI-qvU"/>
                                         </constraints>
                                     </imageView>
@@ -41,7 +41,7 @@
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="viewed_icon" translatesAutoresizingMaskIntoConstraints="NO" id="LO4-BO-Aj3">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="jwb-Y1-hj3"/>
+                                            <constraint firstAttribute="height" constant="20" id="jwb-Y1-hj3"/>
                                             <constraint firstAttribute="width" secondItem="LO4-BO-Aj3" secondAttribute="height" multiplier="1:1" id="yLc-Qn-NOu"/>
                                         </constraints>
                                     </imageView>
@@ -59,7 +59,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ge-t4-khc" customClass="TTTAttributedLabel">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -67,7 +67,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="UAL-w6-dTp"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>

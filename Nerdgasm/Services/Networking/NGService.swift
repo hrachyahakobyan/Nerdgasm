@@ -82,6 +82,9 @@ enum NGService: NGServiceType{
     case ViewThread(thread_id: Int)
     case SearchUsers(query: String)
     case Image(name: String)
+    case GetCategories
+    case GetCategory(id: Int)
+    case GetCategoryPages(categoryID: Int)
 }
 
 enum NGAuthenticatedService: NGServiceType {
@@ -119,12 +122,18 @@ extension NGService: TargetType{
             return "/threads/\(thread_id)/addview"
         case .Image(_):
             return "/images"
+        case .GetCategories:
+            return "/category"
+        case .GetCategory(let id):
+            return "/category/\(id)"
+        case .GetCategoryPages(let catID):
+            return "/category/\(catID)/pages"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .GetThreads, .GetPosts(_), .SearchUsers(_):
+        case .GetThreads, .GetPosts(_), .SearchUsers(_), .GetCategory(_), .GetCategories, .GetCategoryPages(_):
             return .get
         default:
             return .post
@@ -194,7 +203,7 @@ extension NGAuthenticatedService: TargetType{
         case .UpdateMe(let firstname, let lastname):
             return ["firstname" : firstname, "lastname" : lastname]
         case .CreateThread(let title, let content):
-            return ["title" : title, "content" : content]
+            return ["title" : title, "content" : content, "page_id" : 4]
         case .CreatePost(let thread_id, let content):
             return ["thread_id" : thread_id, "content" : content]
         default:

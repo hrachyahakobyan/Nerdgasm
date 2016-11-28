@@ -10,6 +10,7 @@ import RxSwift
 import Moya
 import RxCocoa
 import Result
+import UIKit
 
 typealias NGUserUpdateResult = Result<NGUser, NGNetworkError>
 
@@ -18,7 +19,9 @@ class NGMyProfileViewModel: NGViewModelType {
     let loading: Driver<Bool>
     let disposeBag = DisposeBag()
     
-    init(user: Driver<NGUser>, avatarTaps: Driver<Void>, updateUserTaps: Driver<Void>, vc: UIViewController){
+    init(user: Driver<NGUser>, avatarTaps: Driver<Void>, updateUserTaps: Driver<Void>,
+         vc: UIViewController, shouldResize:Bool = true,
+         resizeWidth: CGFloat = 150.0){
         let networking = NGAuthorizedNetworking.sharedNetworking
 
         let updatingUser = ActivityIndicator()
@@ -96,6 +99,9 @@ class NGMyProfileViewModel: NGViewModelType {
             }
             .map { info -> UIImage? in
                 return info[UIImagePickerControllerOriginalImage] as? UIImage
+            }
+            .map{ img in
+                shouldResize ? resizeImage(image: img!, newWidth: resizeWidth) : img
             }
             .flatMapLatest{ image in
                 return networking.request(NGAuthenticatedService.UploadAvatar(image: image!))

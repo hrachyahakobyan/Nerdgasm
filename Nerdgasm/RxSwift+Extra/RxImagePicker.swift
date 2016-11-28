@@ -119,6 +119,7 @@ extension Reactive where Base: UIImagePickerController {
     static func createWithParent(_ parent: UIViewController?, animated: Bool = true, configureImagePicker: @escaping (UIImagePickerController) throws -> () = { x in }) -> Observable<UIImagePickerController> {
         return Observable.create { [weak parent] observer in
             let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
             let dismissDisposable = imagePicker.rx
                 .didCancel
                 .subscribe(onNext: { [weak imagePicker] in

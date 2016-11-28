@@ -15,7 +15,7 @@ enum DownloadableImage{
 }
 
 protocol ImageService {
-    func imageFromURL(_ url: URL) -> Driver<DownloadableImage>
+    func imageFromURL(_ url: URL) -> Driver<(DownloadableImage, URL)>
 }
 
 class DefaultImageService: ImageService {
@@ -91,11 +91,11 @@ class DefaultImageService: ImageService {
      
      After image is sucessfully downloaded, sequence is completed.
      */
-    func imageFromURL(_ url: URL) -> Driver<DownloadableImage> {
+    func imageFromURL(_ url: URL) -> Driver<(DownloadableImage, URL)> {
         return _imageFromURL(url)
-            .map { DownloadableImage.content(image: $0) }
+            .map { (DownloadableImage.content(image: $0), url) }
             //.retryOnBecomesReachable(DownloadableImage.offlinePlaceholder, reachabilityService: _reachAbilityService)
-            .asDriver(onErrorJustReturn: .offlinePlaceholder)
-            .startWith(.offlinePlaceholder)
+            .asDriver(onErrorJustReturn: (.offlinePlaceholder, url))
+            .startWith((.offlinePlaceholder, url))
     }
 }
