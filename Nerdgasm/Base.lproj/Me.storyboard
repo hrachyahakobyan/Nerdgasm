@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,7 +22,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m6q-3H-5jP">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="RAb-ds-33P">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="RAb-ds-33P" customClass="NGImageView" customModule="Nerdgasm" customModuleProvider="target">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Cz3-Tv-msj"/>
                                     <constraint firstAttribute="height" constant="100" id="LCC-Lp-QlD"/>
@@ -40,9 +41,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="aIK-fg-ZbP"/>
                     <connections>
-                        <outlet property="avatarImageView" destination="RAb-ds-33P" id="YEW-12-RhR"/>
+                        <outlet property="avatarImageView" destination="RAb-ds-33P" id="cOu-cb-Mlf"/>
                         <outlet property="tableView" destination="m6q-3H-5jP" id="mkn-Iu-n0R"/>
-                        <segue destination="Yx1-yA-u1E" kind="presentation" identifier="MyProfile" id="UHn-DN-gt5"/>
+                        <segue destination="1GI-kk-gVK" kind="show" identifier="MyProfile" id="hJL-LO-Qo0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMe-Ie-sKL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -93,40 +94,53 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BjD-Gu-gtN">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Ba-yq-NYh" customClass="NGImageView" customModule="Nerdgasm" customModuleProvider="target">
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="7Ba-yq-NYh" secondAttribute="height" multiplier="1:1" id="3hT-Zd-JHX"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change your avatar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUI-u5-tqr">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="3RE-8h-9a5"/>
+                                    <constraint firstItem="7Ba-yq-NYh" firstAttribute="centerY" secondItem="BjD-Gu-gtN" secondAttribute="centerY" id="9Za-xe-gcB"/>
+                                    <constraint firstItem="7Ba-yq-NYh" firstAttribute="top" secondItem="BjD-Gu-gtN" secondAttribute="top" id="9z3-uG-wZK"/>
+                                    <constraint firstItem="ZUI-u5-tqr" firstAttribute="centerY" secondItem="BjD-Gu-gtN" secondAttribute="centerY" id="K2j-jA-W2M"/>
+                                    <constraint firstItem="7Ba-yq-NYh" firstAttribute="leading" secondItem="BjD-Gu-gtN" secondAttribute="leading" id="Okw-2G-hPX"/>
+                                    <constraint firstItem="ZUI-u5-tqr" firstAttribute="leading" secondItem="7Ba-yq-NYh" secondAttribute="trailing" constant="10" id="mcy-FT-Rdn"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZUI-u5-tqr" secondAttribute="trailing" constant="10" id="rBF-qc-sGq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wcP-oa-R6s" firstAttribute="leading" secondItem="d5X-h6-hQh" secondAttribute="leading" constant="10" id="6dF-WY-gUX"/>
                             <constraint firstItem="wcP-oa-R6s" firstAttribute="centerX" secondItem="d5X-h6-hQh" secondAttribute="centerX" id="Djb-Uv-DiO"/>
-                            <constraint firstItem="wcP-oa-R6s" firstAttribute="top" secondItem="vim-A2-r8W" secondAttribute="bottom" constant="10" id="FX9-ra-HKl"/>
                             <constraint firstItem="wcP-oa-R6s" firstAttribute="leading" secondItem="d5X-h6-hQh" secondAttribute="leading" constant="10" id="KfD-gB-wdR"/>
+                            <constraint firstItem="BjD-Gu-gtN" firstAttribute="leading" secondItem="d5X-h6-hQh" secondAttribute="leading" constant="5" id="Q8Z-TU-taP"/>
+                            <constraint firstItem="wcP-oa-R6s" firstAttribute="top" secondItem="BjD-Gu-gtN" secondAttribute="bottom" constant="15" id="fNu-HC-D8T"/>
+                            <constraint firstItem="BjD-Gu-gtN" firstAttribute="centerX" secondItem="d5X-h6-hQh" secondAttribute="centerX" id="nAU-jD-n9u"/>
+                            <constraint firstItem="BjD-Gu-gtN" firstAttribute="top" secondItem="vim-A2-r8W" secondAttribute="bottom" constant="5" id="yxm-av-7KR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gAt-wA-RFj"/>
                     <connections>
+                        <outlet property="avatarIMageView" destination="7Ba-yq-NYh" id="nKt-MH-NVf"/>
+                        <outlet property="avatarView" destination="BjD-Gu-gtN" id="gNW-Me-Y5p"/>
                         <outlet property="firstnameTextField" destination="LzG-N7-eD4" id="peX-Jh-r0d"/>
                         <outlet property="lastNameTextField" destination="LCz-f8-7wI" id="PXB-n6-jUL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uhr-Pe-RMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1769" y="2318"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="D3J-G1-RbE">
-            <objects>
-                <navigationController id="Yx1-yA-u1E" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sLl-mH-n04">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="1GI-kk-gVK" kind="relationship" relationship="rootViewController" id="0jB-et-kba"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0ay-WP-rbE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1092" y="2318"/>
+            <point key="canvasLocation" x="1112.8" y="2317.6911544227887"/>
         </scene>
         <!--Me-->
         <scene sceneID="WOh-dp-wMt">

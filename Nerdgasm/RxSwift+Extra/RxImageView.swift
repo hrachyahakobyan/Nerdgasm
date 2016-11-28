@@ -10,7 +10,15 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-extension Reactive where Base: UIImageView {
+protocol NGPlaceholderProviderType: class {
+    var offlinePlaceholder: UIImage {get}
+}
+
+class NGImageView: UIImageView, NGPlaceholderProviderType {
+    var offlinePlaceholder: UIImage = #imageLiteral(resourceName: "placeholder")
+}
+
+extension Reactive where Base: NGImageView {
     
     var downloadableImage: UIBindingObserver<Base, DownloadableImage>{
         return downloadableImageAnimated(nil)
@@ -18,18 +26,12 @@ extension Reactive where Base: UIImageView {
     
     func downloadableImageAnimated(_ transitionType:String?) -> UIBindingObserver<Base, DownloadableImage> {
         return UIBindingObserver(UIElement: base) { imageView, image in
-            for subview in imageView.subviews {
-                subview.removeFromSuperview()
-            }
+            let imageView = imageView as NGImageView
             switch image {
             case .content(let image):
-                (imageView as UIImageView).rx.image.on(.next(image))
+                imageView.rx.image.on(.next(image))
             case .offlinePlaceholder:
-                let label = UILabel(frame: imageView.bounds)
-                label.textAlignment = .center
-                label.font = UIFont.systemFont(ofSize: 35)
-                label.text = "⚠️"
-                imageView.addSubview(label)
+                imageView.rx.image.on(.next(imageView.offlinePlaceholder))
             }
         }
     }
