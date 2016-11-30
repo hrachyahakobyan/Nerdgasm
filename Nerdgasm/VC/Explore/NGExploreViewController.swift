@@ -65,8 +65,8 @@ class NGExploreViewController: NGViewController, NGDefaultStatefulVCType, UIColl
             .addDisposableTo(disposeBag)
         
         errors
-            .drive(onNext: { err in
-                self.handleError(error: err)
+            .drive(onNext: {[weak self] err in
+                self?.handleError(error: err)
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         

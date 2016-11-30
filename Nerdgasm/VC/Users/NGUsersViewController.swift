@@ -53,9 +53,9 @@ class NGUsersViewController: NGViewController, NGDefaultStatefulVCType {
         
         tableView
             .rx.itemSelected
-            .subscribe { indexPath in
-                if self.searchBar.isFirstResponder == true {
-                    self.view.endEditing(true)
+            .subscribe {[weak self] indexPath in
+                if self?.searchBar.isFirstResponder == true {
+                    self?.view.endEditing(true)
                 }
             }
             .addDisposableTo(disposeBag)

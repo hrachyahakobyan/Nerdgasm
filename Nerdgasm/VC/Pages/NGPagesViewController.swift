@@ -79,8 +79,8 @@ class NGPagesViewController: NGViewController, NGDefaultStatefulVCType, UICollec
             .addDisposableTo(disposeBag)
       
         errors
-            .drive(onNext: { err in
-                self.handleError(error: err)
+            .drive(onNext: {[weak self] err in
+                self?.handleError(error: err)
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
@@ -100,7 +100,6 @@ class NGPagesViewController: NGViewController, NGDefaultStatefulVCType, UICollec
         
         viewModel.loading
             .drive(onNext: {[weak self] (loading) in
-                print("Loading")
                 if loading && !(self?.refreshControl.isRefreshing)! {
                     self?.collectionView.setContentOffset(CGPoint(x: 0, y: -1.0 * (self?.refreshControl.frame.size.height)!), animated: true)
                     self?.refreshControl.beginRefreshing()

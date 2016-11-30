@@ -47,10 +47,10 @@ class NGForumViewController: NGViewController, NGDefaultStatefulVCType {
             .addDisposableTo(disposeBag)
         
         addThreadItem.rx.tap
-            .subscribe(onNext: { _ in
-                if self.presentedViewController == nil {
+            .subscribe(onNext: {[weak self] _ in
+                if self?.presentedViewController == nil {
                     DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: R.segue.nGForumViewController.createThread.identifier, sender: nil)
+                        self?.performSegue(withIdentifier: R.segue.nGForumViewController.createThread.identifier, sender: nil)
                     }
                 }
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
@@ -69,12 +69,12 @@ class NGForumViewController: NGViewController, NGDefaultStatefulVCType {
         
         tableView
             .rx.itemSelected
-            .subscribe {indexPath in
-                guard let cell = self.tableView.cellForRow(at: indexPath.element!) as? NGThreadTableViewCell else {return}
+            .subscribe {[weak self] indexPath in
+                guard let cell = self?.tableView.cellForRow(at: indexPath.element!) as? NGThreadTableViewCell else {return}
                 guard let thread = cell.thread else {return}
-                self.tableView.deselectRow(at: indexPath.element!, animated: false)
+                self?.tableView.deselectRow(at: indexPath.element!, animated: false)
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: R.segue.nGForumViewController.posts.identifier, sender: thread)
+                    self?.performSegue(withIdentifier: R.segue.nGForumViewController.posts.identifier, sender: thread)
                 }
             }
             .addDisposableTo(disposeBag)

@@ -32,17 +32,18 @@ class NGCreatePostViewController: NGAuthenticatedViewController {
         
         saveItem.rx.tap
             .asDriver()
-            .drive(onNext: {
+            .drive(onNext: {[weak self] in
                 DispatchQueue.main.async {
-                    self.navigationController?.dismiss(animated: true, completion: nil)
+                    self?.navigationController?.dismiss(animated: true, completion: nil)
                 }
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
         canceItem.rx.tap
             .asDriver()
-            .drive(onNext: { DispatchQueue.main.async {
-                self.navigationController?.dismiss(animated: true, completion: nil)
+            .drive(onNext: {[weak self] in
+                DispatchQueue.main.async {
+                    self?.navigationController?.dismiss(animated: true, completion: nil)
                 }
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)

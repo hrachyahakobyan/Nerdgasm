@@ -61,7 +61,6 @@
 		54626FCB1DEC62A600DFFCD1 /* NGCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54626FCA1DEC62A600DFFCD1 /* NGCategory.swift */; };
 		54626FCE1DEC67DB00DFFCD1 /* NGCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54626FCC1DEC67DB00DFFCD1 /* NGCategoryCollectionViewCell.swift */; };
 		54626FCF1DEC67DB00DFFCD1 /* NGCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54626FCD1DEC67DB00DFFCD1 /* NGCategoryCollectionViewCell.xib */; };
-		54684AD31D9FBCBD00EBE138 /* NGSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54684AD21D9FBCBD00EBE138 /* NGSignupViewController.swift */; };
 		54684AD71D9FD53200EBE138 /* NGSignupValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54684AD61D9FD53200EBE138 /* NGSignupValidationService.swift */; };
 		54684AD91D9FE58200EBE138 /* NGSignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54684AD81D9FE58200EBE138 /* NGSignupViewModel.swift */; };
 		547533961DD0A32300235361 /* NGPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547533941DD0A32300235361 /* NGPostTableViewCell.swift */; };
@@ -167,7 +166,6 @@
 		54626FCA1DEC62A600DFFCD1 /* NGCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGCategory.swift; path = Models/NGCategory.swift; sourceTree = "<group>"; };
 		54626FCC1DEC67DB00DFFCD1 /* NGCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGCategoryCollectionViewCell.swift; path = VC/Explore/NGCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		54626FCD1DEC67DB00DFFCD1 /* NGCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NGCategoryCollectionViewCell.xib; path = VC/Explore/NGCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
-		54684AD21D9FBCBD00EBE138 /* NGSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGSignupViewController.swift; path = VC/Login/NGSignupViewController.swift; sourceTree = "<group>"; };
 		54684AD61D9FD53200EBE138 /* NGSignupValidationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGSignupValidationService.swift; path = VC/Login/NGSignupValidationService.swift; sourceTree = "<group>"; };
 		54684AD81D9FE58200EBE138 /* NGSignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGSignupViewModel.swift; path = VC/Login/NGSignupViewModel.swift; sourceTree = "<group>"; };
 		547533941DD0A32300235361 /* NGPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGPostTableViewCell.swift; path = VC/Forum/Posts/NGPostTableViewCell.swift; sourceTree = "<group>"; };
@@ -353,7 +351,6 @@
 		5414F0B11D97176C00D30EDF /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				54684AD21D9FBCBD00EBE138 /* NGSignupViewController.swift */,
 				54684AD61D9FD53200EBE138 /* NGSignupValidationService.swift */,
 				54684AD81D9FE58200EBE138 /* NGSignupViewModel.swift */,
 				5414F0B21D97178200D30EDF /* NGLoginViewController.swift */,
@@ -757,7 +754,6 @@
 				5411D8051DECB38000BBB441 /* NGPage.swift in Sources */,
 				540A69BA1DCE6F39009B9673 /* NGThreadTableViewCell.swift in Sources */,
 				54D527381DE6DE3500F99E82 /* NGUserCredentials.swift in Sources */,
-				54684AD31D9FBCBD00EBE138 /* NGSignupViewController.swift in Sources */,
 				5414F08E1D9712D100D30EDF /* AppDelegate.swift in Sources */,
 				5413741A1DCD175D0016E5EA /* NGForumViewController.swift in Sources */,
 				540B400B1DCFC4ED002F9FBD /* NGPostsViewController.swift in Sources */,

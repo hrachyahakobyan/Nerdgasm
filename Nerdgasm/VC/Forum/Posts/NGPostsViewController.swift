@@ -52,10 +52,10 @@ class NGPostsViewController: NGViewController, NGDefaultStatefulVCType {
             .addDisposableTo(disposeBag)
         
         addPostItem.rx.tap
-            .subscribe(onNext: { _ in
-                if self.presentedViewController == nil {
+            .subscribe(onNext: {[weak self] _ in
+                if self?.presentedViewController == nil {
                     DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: R.segue.nGPostsViewController.createPost, sender: self.threadVar)
+                        self?.performSegue(withIdentifier: R.segue.nGPostsViewController.createPost, sender: self!.threadVar)
                     }
                 }
                 }, onError: nil, onCompleted: nil, onDisposed: nil)

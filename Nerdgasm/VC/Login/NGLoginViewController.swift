@@ -58,8 +58,8 @@ class NGLoginViewController: NGViewController {
                             .merge()
                             .asDriver(onErrorJustReturn: Void())
         allTaps
-            .drive(onNext: { _ in
-                    self.view.endEditing(true)
+            .drive(onNext: {[weak self] _ in
+                    self?.view.endEditing(true)
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
@@ -221,12 +221,6 @@ class NGLoginViewController: NGViewController {
                  self?.dismiss(animated: true, completion: nil)
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
-        
-        
-        
-        
-        //let x = R.segue.login
-               // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
