@@ -22,7 +22,7 @@ struct NGPage: Decodable {
     }
     
     init?(json: JSON) {
-        guard let id: Int = ConverterHelper.toInt(val: json[Keys.id.rawValue]) else {return nil}
+        guard let id: Int =   toInt(val: json[Keys.id.rawValue]) else {return nil}
         guard let title: String = Keys.title.rawValue <~~ json else {return nil}
         self.image = (Keys.image.rawValue <~~ json ?? "")
         self.id = id

@@ -25,9 +25,9 @@ struct NGPost: Decodable{
     
     init?(json: JSON) {
         guard let content: String = Keys.Content.rawValue <~~ json else {return nil}
-        guard let id: Int = ConverterHelper.toInt(val: json[Keys.Id.rawValue]) else {return nil}
-        guard let thread_id: Int = ConverterHelper.toInt(val: json[Keys.ThreadId.rawValue]) else {return nil}
-        guard let unix: Int = ConverterHelper.toInt(val: json[Keys.Date.rawValue]) else {return nil}
+        guard let id: Int =   toInt(val: json[Keys.Id.rawValue]) else {return nil}
+        guard let thread_id: Int =   toInt(val: json[Keys.ThreadId.rawValue]) else {return nil}
+        guard let unix: Int =   toInt(val: json[Keys.Date.rawValue]) else {return nil}
         self.date = unix
         self.content = content
         self.id = id

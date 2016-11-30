@@ -35,7 +35,7 @@ class NGUser: NSObject, NSCoding, Decodable, Encodable{
     
     convenience required init?(json: JSON){
         guard let username: String = Keys.UsernameKey.rawValue <~~ json else {return nil}
-        guard let id: Int = ConverterHelper.toInt(val: json[Keys.IdKey.rawValue]) else {return nil}
+        guard let id: Int = toInt(val: json[Keys.IdKey.rawValue]) else {return nil}
         self.init(username: username, id: id)
         self.firstname = (Keys.FirstnameKey.rawValue <~~ json ?? "")
         self.lastname = (Keys.LastnameKey.rawValue <~~ json ?? "")

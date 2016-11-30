@@ -20,15 +20,13 @@ struct DateHelper{
     }
 }
 
-struct ConverterHelper{
-    static func toInt(val: Any?) -> Int?{
-        if let _int: Int = val as? Int {
-            return _int
-        } else if let _str: String = val as? String {
-            return Int(_str)
-        } else {
-            return nil
-        }
+func toInt(val: Any?) -> Int?{
+    if let _int: Int = val as? Int {
+        return _int
+    } else if let _str: String = val as? String {
+        return Int(_str)
+    } else {
+        return nil
     }
 }
 

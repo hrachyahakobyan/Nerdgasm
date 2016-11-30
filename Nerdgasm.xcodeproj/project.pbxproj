@@ -46,7 +46,6 @@
 		5414F0B31D97178200D30EDF /* NGLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5414F0B21D97178200D30EDF /* NGLoginViewController.swift */; };
 		5414F0BA1D97190A00D30EDF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5414F0B81D97190A00D30EDF /* Login.storyboard */; };
 		5414F7461DB5EC31004E96F8 /* NGUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5414F7451DB5EC31004E96F8 /* NGUsersViewController.swift */; };
-		541798EF1DE6CFBD00A63330 /* NGAvatarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541798EE1DE6CFBD00A63330 /* NGAvatarViewModel.swift */; };
 		5445959D1DB4AC6A002BD140 /* NGLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5445959C1DB4AC6A002BD140 /* NGLoginViewModel.swift */; };
 		5445959F1DB4AD6B002BD140 /* NGLoginValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5445959E1DB4AD6B002BD140 /* NGLoginValidationService.swift */; };
 		545E79581DE630DA00D27A75 /* RxImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545E79571DE630DA00D27A75 /* RxImagePicker.swift */; };
@@ -153,7 +152,6 @@
 		5414F0B21D97178200D30EDF /* NGLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginViewController.swift; path = VC/Login/NGLoginViewController.swift; sourceTree = "<group>"; };
 		5414F0B91D97190A00D30EDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		5414F7451DB5EC31004E96F8 /* NGUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUsersViewController.swift; path = VC/Users/NGUsersViewController.swift; sourceTree = "<group>"; };
-		541798EE1DE6CFBD00A63330 /* NGAvatarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGAvatarViewModel.swift; path = VC/Me/NGAvatarViewModel.swift; sourceTree = "<group>"; };
 		5445959C1DB4AC6A002BD140 /* NGLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginViewModel.swift; path = VC/Login/NGLoginViewModel.swift; sourceTree = "<group>"; };
 		5445959E1DB4AD6B002BD140 /* NGLoginValidationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginValidationService.swift; path = VC/Login/NGLoginValidationService.swift; sourceTree = "<group>"; };
 		545E79571DE630DA00D27A75 /* RxImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxImagePicker.swift; path = "RxSwift+Extra/RxImagePicker.swift"; sourceTree = "<group>"; };
@@ -507,7 +505,6 @@
 				541433831DB9F5D400E66799 /* NGMeSignoutViewModel.swift */,
 				54F0E0441DBDE78B00F0B2F7 /* NGMeTableViewCell.xib */,
 				540D3AB61DC08BCD00E4433E /* NGMyProfileViewController.swift */,
-				541798EE1DE6CFBD00A63330 /* NGAvatarViewModel.swift */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -783,7 +780,6 @@
 				540DA9711DEEDD57005A59C0 /* NGAvatarImageView.swift in Sources */,
 				54D527321DE6DDDE00F99E82 /* NGStatefulPlaceholderView.swift in Sources */,
 				540B400D1DCFC9A3002F9FBD /* NGPostsViewModel.swift in Sources */,
-				541798EF1DE6CFBD00A63330 /* NGAvatarViewModel.swift in Sources */,
 				54D527341DE6DDDE00F99E82 /* NGStatefulViewControllerType.swift in Sources */,
 				54D527311DE6DDDE00F99E82 /* NGDefaultStatefulVCType.swift in Sources */,
 				54626FCB1DEC62A600DFFCD1 /* NGCategory.swift in Sources */,

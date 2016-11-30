@@ -27,11 +27,11 @@ struct NGThread: Decodable {
     }
     
     init?(json: JSON) {
-        guard let id: Int = ConverterHelper.toInt(val: json[Keys.id.rawValue]) else {return nil}
+        guard let id: Int =   toInt(val: json[Keys.id.rawValue]) else {return nil}
         guard let title: String = Keys.title.rawValue <~~ json else {return nil}
-        guard let date: Int = ConverterHelper.toInt(val: json[Keys.date.rawValue]) else {return nil}
-        guard let post_count: Int = ConverterHelper.toInt(val: json[Keys.post_count.rawValue]) else {return nil}
-        guard let view_count: Int = ConverterHelper.toInt(val: json[Keys.view_count.rawValue]) else {return nil}
+        guard let date: Int =   toInt(val: json[Keys.date.rawValue]) else {return nil}
+        guard let post_count: Int =   toInt(val: json[Keys.post_count.rawValue]) else {return nil}
+        guard let view_count: Int =   toInt(val: json[Keys.view_count.rawValue]) else {return nil}
         self.date = date
         self.id = id
         self.title = title
