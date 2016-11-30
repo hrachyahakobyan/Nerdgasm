@@ -21,6 +21,10 @@
 		540B400D1DCFC9A3002F9FBD /* NGPostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B400C1DCFC9A3002F9FBD /* NGPostsViewModel.swift */; };
 		540D3AB51DC08AF900E4433E /* NGMyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D3AB41DC08AF900E4433E /* NGMyProfileViewModel.swift */; };
 		540D3AB71DC08BCD00E4433E /* NGMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540D3AB61DC08BCD00E4433E /* NGMyProfileViewController.swift */; };
+		540DA9711DEEDD57005A59C0 /* NGAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DA9701DEEDD57005A59C0 /* NGAvatarImageView.swift */; };
+		540DA9751DEF4352005A59C0 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540DA9741DEF4352005A59C0 /* SnapKit.framework */; };
+		540DA9771DEF435E005A59C0 /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540DA9761DEF435E005A59C0 /* TTTAttributedLabel.framework */; };
+		540DA9791DEF49F8005A59C0 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540DA9781DEF49F8005A59C0 /* SVProgressHUD.framework */; };
 		540EC0411DBAB21900F7E9D8 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540EC03F1DBAB21900F7E9D8 /* UserTableViewCell.swift */; };
 		540EC0421DBAB21900F7E9D8 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540EC0401DBAB21900F7E9D8 /* UserTableViewCell.xib */; };
 		541139F81DC12AAD00082498 /* RxSwiftCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541139F71DC12AAC00082498 /* RxSwiftCustom.swift */; };
@@ -120,6 +124,10 @@
 		540B400C1DCFC9A3002F9FBD /* NGPostsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGPostsViewModel.swift; path = VC/Forum/Posts/NGPostsViewModel.swift; sourceTree = "<group>"; };
 		540D3AB41DC08AF900E4433E /* NGMyProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGMyProfileViewModel.swift; path = VC/Me/NGMyProfileViewModel.swift; sourceTree = "<group>"; };
 		540D3AB61DC08BCD00E4433E /* NGMyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGMyProfileViewController.swift; path = VC/Me/NGMyProfileViewController.swift; sourceTree = "<group>"; };
+		540DA9701DEEDD57005A59C0 /* NGAvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGAvatarImageView.swift; path = Views/NGAvatarImageView.swift; sourceTree = "<group>"; };
+		540DA9741DEF4352005A59C0 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		540DA9761DEF435E005A59C0 /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTTAttributedLabel.framework; path = Carthage/Build/iOS/TTTAttributedLabel.framework; sourceTree = "<group>"; };
+		540DA9781DEF49F8005A59C0 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		540EC03F1DBAB21900F7E9D8 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTableViewCell.swift; path = VC/Users/UserTableViewCell.swift; sourceTree = "<group>"; };
 		540EC0401DBAB21900F7E9D8 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserTableViewCell.xib; path = VC/Users/UserTableViewCell.xib; sourceTree = "<group>"; };
 		541139F71DC12AAC00082498 /* RxSwiftCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxSwiftCustom.swift; path = "RxSwift+Extra/RxSwiftCustom.swift"; sourceTree = "<group>"; };
@@ -205,6 +213,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540DA9791DEF49F8005A59C0 /* SVProgressHUD.framework in Frameworks */,
+				540DA9771DEF435E005A59C0 /* TTTAttributedLabel.framework in Frameworks */,
+				540DA9751DEF4352005A59C0 /* SnapKit.framework in Frameworks */,
 				CF15ABB4CFFF1AD3967DF92E /* Pods_Nerdgasm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,6 +236,7 @@
 				540B40081DCFC3EB002F9FBD /* ViewFromNib.swift */,
 				540788AF1DE747AC00F5F080 /* NGLoginView.swift */,
 				540788B11DE747BF00F5F080 /* NGLoginView.xib */,
+				540DA9701DEEDD57005A59C0 /* NGAvatarImageView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -503,6 +515,9 @@
 		79E687DC7442D71F9696835C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				540DA9781DEF49F8005A59C0 /* SVProgressHUD.framework */,
+				540DA9761DEF435E005A59C0 /* TTTAttributedLabel.framework */,
+				540DA9741DEF4352005A59C0 /* SnapKit.framework */,
 				8D1C8F4D28DEC4B34ABDE24D /* Pods_Nerdgasm.framework */,
 			);
 			name = Frameworks;
@@ -531,6 +546,7 @@
 				5414F0881D9712D100D30EDF /* Resources */,
 				D3375F4E29ABF0C337D2CCFC /* [CP] Embed Pods Frameworks */,
 				D08ED3955DBB8937E53F73D1 /* [CP] Copy Pods Resources */,
+				540DA9721DEF4052005A59C0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -632,7 +648,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		54C7FB061DBD239B00BD7430 /* ShellScript */ = {
+		540DA9721DEF4052005A59C0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -643,7 +659,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"";
+			shellScript = "";
+		};
+		54C7FB061DBD239B00BD7430 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/FLEX.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/TTTAttributedLabel.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"\n/usr/local/bin/carthage copy-frameworks\nif [ \"$CONFIGURATION\" == \"Debug\" ]; then\n/usr/local/bin/carthage copy-frameworks\nfi";
 		};
 		D08ED3955DBB8937E53F73D1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -747,6 +780,7 @@
 				5414F7461DB5EC31004E96F8 /* NGUsersViewController.swift in Sources */,
 				54D527041DE6DA5500F99E82 /* RxImage.swift in Sources */,
 				546188161DCF4FB600F03B8D /* NGCreateThreadViewModel.swift in Sources */,
+				540DA9711DEEDD57005A59C0 /* NGAvatarImageView.swift in Sources */,
 				54D527321DE6DDDE00F99E82 /* NGStatefulPlaceholderView.swift in Sources */,
 				540B400D1DCFC9A3002F9FBD /* NGPostsViewModel.swift in Sources */,
 				541798EF1DE6CFBD00A63330 /* NGAvatarViewModel.swift in Sources */,
@@ -927,6 +961,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Gloss\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Moya\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/R.swift.Library\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RxCocoa\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RxDataSources\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/RxSwift\"",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Nerdgasm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -944,6 +990,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Nerdgasm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

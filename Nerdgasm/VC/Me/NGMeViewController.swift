@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
 enum NGAvatarAction {
     case Camera
@@ -34,7 +35,8 @@ extension NGAvatarAction: CustomStringConvertible {
 
 class NGMeViewController: NGAuthenticatedViewController {
 
-    @IBOutlet weak var avatarImageView: NGImageView!
+   
+    @IBOutlet weak var avatarImageView: NGAvatarImageView!
     @IBOutlet weak var tableView: UITableView!
     let rowCount = 1
     let data = Observable<[String]>.just(["Sign out"])
@@ -46,32 +48,25 @@ class NGMeViewController: NGAuthenticatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NGUserCredentials.rxUser
+                    .map{$0 == nil ? "" : $0?.username}
+                    .drive(navigationItem.rx.title)
+                    .addDisposableTo(disposeBag)
+        
         let editItem = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
         navigationItem.rightBarButtonItem = editItem
+        
+        NGUserCredentials.loggedIn
+            .drive(editItem.rx.isEnabled)
+            .addDisposableTo(disposeBag)
         
         editItem.rx.tap
             .asDriver()
             .drive(onNext: {self.editAction()}, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
-        avatarImageView.offlinePlaceholder = #imageLiteral(resourceName: "avatar")
-    
-        let profileURLs = NGUserCredentials.rxCredentials
-            .filter{$0 != nil}
-            .map{NGService.imageURL.appendingPathComponent($0!.user.image)}
-        
-        profileURLs
-            .distinctUntilChanged()
-            .flatMapLatest { (url)  in
-                return DefaultImageService.sharedImageService.imageFromURL(url)
-            }
-            .observeOn(MainScheduler.instance)
-            .map{$0.0}
-            .bindTo(avatarImageView.rx.downloadableImage)
-            .addDisposableTo(disposeBag)
-        
         automaticallyAdjustsScrollViewInsets = false
-        navigationItem.title = NGUserCredentials.credentials()?.user.username
+        
         tableView.allowsMultipleSelection = false
         tableView.register(R.nib.nGMeTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.meCell.identifier)
         data.bindTo(tableView.rx.items(cellIdentifier: R.reuseIdentifier.meCell.identifier)) { index, model, cell in
@@ -80,26 +75,11 @@ class NGMeViewController: NGAuthenticatedViewController {
             }
             .addDisposableTo(disposeBag)
         
-        let signoutTaps = tableView.rx.itemSelected.asDriver()
+        tableView.rx.itemSelected.asDriver()
             .filter{return $0.row == Rows.Signout.rawValue}
-            .map{_ in Void()}
-        
-       let model = NGMeSignoutViewModel(loggingOutTaps: signoutTaps)
-    
-        model.loading
-            .map{!$0}
-            .drive(tableView.rx.allowsSelection)
-            .addDisposableTo(disposeBag)
-        
-        model.results
-            .drive(onNext: { result in
-                switch result {
-                case .success:
-                    NGUserCredentials.reset()
-                case .failure(let error):
-                    self.handleError(error: error)
-                }
-            })
+            .drive(onNext: { (_) in
+                NGUserCredentials.reset()
+                }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
     // Do any additional setup after loading the view.
@@ -108,19 +88,6 @@ class NGMeViewController: NGAuthenticatedViewController {
     func editAction(){
         self.performSegue(withIdentifier: R.segue.nGMeViewController.myProfile, sender: nil)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2
-        avatarImageView.layer.masksToBounds = true
-    }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }
 
 

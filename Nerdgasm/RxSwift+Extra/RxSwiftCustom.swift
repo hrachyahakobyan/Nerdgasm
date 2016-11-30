@@ -10,7 +10,9 @@ import Foundation
 import RxSwift
 import Result
 import Moya
+import RxCocoa
 import Gloss
+import SVProgressHUD
 
 extension ObservableType{
     public func mapToFailable() -> Observable<Result<E, NGNetworkError>>{
@@ -46,6 +48,31 @@ extension ObservableType where E == Response {
         }
     }
 }
+
+extension ObservableType where E == Bool {
+    public func showProgress() -> Observable<E>{
+        return self.do(onNext: { (loading) in
+            if loading && SVProgressHUD.isVisible() == false{
+                SVProgressHUD.show()
+            } else if !loading {
+                SVProgressHUD.dismiss()
+            }
+        }, onCompleted: nil, onSubscribe: nil, onDispose: nil)
+    }
+}
+
+extension SharedSequenceConvertibleType where E == Bool {
+    public func showProgress() -> SharedSequence<SharingStrategy,E>{
+        return self.do(onNext: { (loading) in
+            if loading && SVProgressHUD.isVisible() == false{
+                SVProgressHUD.show()
+            } else if !loading {
+                SVProgressHUD.dismiss()
+            }
+        }, onCompleted: nil, onSubscribe: nil, onDispose: nil)
+    }
+}
+
 
 
 

@@ -42,6 +42,10 @@ class NGForumViewController: NGViewController, NGDefaultStatefulVCType {
         navigationItem.rightBarButtonItem = addThreadItem
         navigationItem.title = "Forum"
         
+        NGUserCredentials.loggedIn
+            .drive(addThreadItem.rx.isEnabled)
+            .addDisposableTo(disposeBag)
+        
         addThreadItem.rx.tap
             .subscribe(onNext: { _ in
                 if self.presentedViewController == nil {

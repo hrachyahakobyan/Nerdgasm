@@ -18,6 +18,11 @@ class NGUserCredentials: NSObject, NSCoding {
     static let loggedIn: Driver<Bool> = rxCredentials.map{
                                     $0 != nil && $0?.access_token.characters.count != 0
                                 }.asDriver(onErrorJustReturn: false)
+    static let rxUser: Driver<NGUser?> = rxCredentials
+                                        .filter {$0 != nil}
+                                        .map{$0!.user}
+                                        .asDriver(onErrorJustReturn: nil)
+    
     private static let queue = DispatchQueue(label: "credentials.queue")
     
     

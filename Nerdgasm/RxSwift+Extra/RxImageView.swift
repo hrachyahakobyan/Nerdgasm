@@ -14,10 +14,6 @@ protocol NGPlaceholderProviderType: class {
     var offlinePlaceholder: UIImage {get}
 }
 
-class NGImageView: UIImageView, NGPlaceholderProviderType {
-    var offlinePlaceholder: UIImage = #imageLiteral(resourceName: "placeholder")
-}
-
 extension Reactive where Base: NGImageView {
     
     var downloadableImage: UIBindingObserver<Base, DownloadableImage>{

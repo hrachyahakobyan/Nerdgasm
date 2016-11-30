@@ -47,6 +47,10 @@ class NGPostsViewController: NGViewController, NGDefaultStatefulVCType {
         let addPostItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
         navigationItem.rightBarButtonItem = addPostItem
         
+        NGUserCredentials.loggedIn
+            .drive(addPostItem.rx.isEnabled)
+            .addDisposableTo(disposeBag)
+        
         addPostItem.rx.tap
             .subscribe(onNext: { _ in
                 if self.presentedViewController == nil {

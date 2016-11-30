@@ -35,7 +35,6 @@ class NGExploreViewController: NGViewController, NGDefaultStatefulVCType, UIColl
             .startWith("")
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Categories"
@@ -44,20 +43,28 @@ class NGExploreViewController: NGViewController, NGDefaultStatefulVCType, UIColl
         collectionView.register(R.nib.nGCategoryCollectionViewCell(), forCellWithReuseIdentifier: R.reuseIdentifier.categoryCell.identifier)
         
         collectionView.addSubview(refreshControl)
-        viewModel = NGCategoryViewModel(query: latestQuery, reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))
         
-        viewModel.loading
-            .drive(refreshControl.rx.refreshing)
+        let reloadSubject = PublishSubject<Void>()
+        refreshControl.rx.controlEvent(.valueChanged)
+            .asDriver()
+            .drive(onNext: {(x) in
+                reloadSubject.onNext(())
+                }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
+
+        viewModel = NGCategoryViewModel(query: latestQuery, reloadAction: reloadSubject.asDriver(onErrorJustReturn: ()))
         
-        viewModel.clean()
+        let clean = viewModel.clean()
+        let errors = viewModel.errors()
+        
+        Driver.of(clean, errors.map{_ in[]}).merge()
             .drive(collectionView.rx.items(cellIdentifier: R.reuseIdentifier.categoryCell.identifier)) { index, model, cell in
                 let categoryCell = cell as! NGCategoryCollectionViewCell
                 categoryCell.category = model
             }
             .addDisposableTo(disposeBag)
         
-        viewModel.errors()
+        errors
             .drive(onNext: { err in
                 self.handleError(error: err)
                 }, onCompleted: nil, onDisposed: nil)
@@ -76,6 +83,21 @@ class NGExploreViewController: NGViewController, NGDefaultStatefulVCType, UIColl
         
         errorView = ErrorView(frame: collectionView.frame)
         emptyView = EmptyView(frame: collectionView.frame)
+        
+        viewModel.loading
+            .drive(onNext: {[weak self] (loading) in
+                print("Loading")
+                if loading && !(self?.refreshControl.isRefreshing)! {
+                    self?.collectionView.setContentOffset(CGPoint(x: 0, y: -1.0 * (self?.refreshControl.frame.size.height)!), animated: true)
+                    self?.refreshControl.beginRefreshing()
+                } else if !loading {
+                    self?.refreshControl.endRefreshing()
+                }
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
+        reloadSubject.onNext(())
+
         // Do any additional setup after loading the view.
     }
 

@@ -26,9 +26,7 @@ class NGPagesViewModel: NGViewModelType {
                     .filterSuccessfulStatusCodes()
                     .mapJSONDataArray()
                     .map { jsons -> [NGPage] in
-                        let data = [NGPage].from(jsonArray: jsons) ?? []
-                        print(data)
-                        return data
+                        [NGPage].from(jsonArray: jsons) ?? []
                     }
                     .mapToFailable()
                     .trackActivity(searching)

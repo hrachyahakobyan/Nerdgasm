@@ -22,11 +22,17 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="m6q-3H-5jP">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="RAb-ds-33P" customClass="NGImageView" customModule="Nerdgasm" customModuleProvider="target">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="RAb-ds-33P" customClass="NGAvatarImageView" customModule="Nerdgasm" customModuleProvider="target">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Cz3-Tv-msj"/>
                                     <constraint firstAttribute="height" constant="100" id="LCC-Lp-QlD"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,7 +47,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="aIK-fg-ZbP"/>
                     <connections>
-                        <outlet property="avatarImageView" destination="RAb-ds-33P" id="cOu-cb-Mlf"/>
+                        <outlet property="avatarImageView" destination="RAb-ds-33P" id="f8A-qc-SOt"/>
                         <outlet property="tableView" destination="m6q-3H-5jP" id="mkn-Iu-n0R"/>
                         <segue destination="1GI-kk-gVK" kind="show" identifier="MyProfile" id="hJL-LO-Qo0"/>
                     </connections>
@@ -96,10 +102,17 @@
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BjD-Gu-gtN">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Ba-yq-NYh" customClass="NGImageView" customModule="Nerdgasm" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Ba-yq-NYh" customClass="NGAvatarImageView" customModule="Nerdgasm" customModuleProvider="target">
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="7Ba-yq-NYh" secondAttribute="height" multiplier="1:1" id="3hT-Zd-JHX"/>
+                                            <constraint firstAttribute="width" constant="50" id="kY3-vT-Jhs"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change your avatar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZUI-u5-tqr">
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -109,7 +122,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="3RE-8h-9a5"/>
                                     <constraint firstItem="7Ba-yq-NYh" firstAttribute="centerY" secondItem="BjD-Gu-gtN" secondAttribute="centerY" id="9Za-xe-gcB"/>
                                     <constraint firstItem="7Ba-yq-NYh" firstAttribute="top" secondItem="BjD-Gu-gtN" secondAttribute="top" id="9z3-uG-wZK"/>
                                     <constraint firstItem="ZUI-u5-tqr" firstAttribute="centerY" secondItem="BjD-Gu-gtN" secondAttribute="centerY" id="K2j-jA-W2M"/>
@@ -132,7 +144,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gAt-wA-RFj"/>
                     <connections>
-                        <outlet property="avatarIMageView" destination="7Ba-yq-NYh" id="nKt-MH-NVf"/>
+                        <outlet property="avatarImageView" destination="7Ba-yq-NYh" id="2tI-qz-OIQ"/>
                         <outlet property="avatarView" destination="BjD-Gu-gtN" id="gNW-Me-Y5p"/>
                         <outlet property="firstnameTextField" destination="LzG-N7-eD4" id="peX-Jh-r0d"/>
                         <outlet property="lastNameTextField" destination="LCz-f8-7wI" id="PXB-n6-jUL"/>

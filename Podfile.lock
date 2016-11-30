@@ -1,6 +1,5 @@
 PODS:
   - Alamofire (4.0.1)
-  - FLEX (2.4.0)
   - Gloss (1.0.0)
   - Moya (8.0.0-beta.3):
     - Moya/Core (= 8.0.0-beta.3)
@@ -20,11 +19,8 @@ PODS:
     - RxCocoa (~> 3.0)
     - RxSwift (~> 3.0)
   - RxSwift (3.0.0)
-  - SnapKit (3.0.2)
-  - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
-  - FLEX (~> 2.0)
   - Gloss (~> 1.0)
   - Moya (= 8.0.0-beta.3)
   - Moya/RxSwift
@@ -32,12 +28,9 @@ DEPENDENCIES:
   - RxCocoa (~> 3.0)
   - RxDataSources (~> 1.0)
   - RxSwift (~> 3.0)
-  - SnapKit (~> 3.0.2)
-  - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
   Gloss: 014789e9e69ca18f127eacca999f4c9b0bff6d58
   Moya: f83c7f81eaa28cb0151549dfcf1f3fda4440bb50
   R.swift: 14400e5784224d1e4e59a8fc5549198c7e8fe360
@@ -46,9 +39,7 @@ SPEC CHECKSUMS:
   RxCocoa: 0a2f3ae381cf16f4021a4cee7a4420f83058a965
   RxDataSources: 824693e84d00781d0a5e5cedc1ff95ce9250aacd
   RxSwift: a930cd662f5b4a7ca9dc3518585dba91dadf497c
-  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
-  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 9558ab43b7fbbfbbcca5e4871cda69bdc6eadad0
+PODFILE CHECKSUM: 24d19aa973321c819e569dd0f59f8512de6c4204
 
 COCOAPODS: 1.2.0.beta.1

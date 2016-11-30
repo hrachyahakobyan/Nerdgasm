@@ -49,27 +49,36 @@ class NGPagesViewController: NGViewController, NGDefaultStatefulVCType, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        automaticallyAdjustsScrollViewInsets = false
+        
         navigationItem.title = category.title
         searchBar.placeholder = "Search in \(category.title)"
         collectionView.delegate = self
         collectionView.alwaysBounceVertical = true
         collectionView.register(R.nib.nGPageCollectionViewCell(), forCellWithReuseIdentifier: R.reuseIdentifier.pageCell.identifier)
-        
         collectionView.addSubview(refreshControl)
-        viewModel = NGPagesViewModel(category: categoryVar.asDriver(), query: latestQuery, reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))
         
-        viewModel.loading
-            .drive(refreshControl.rx.refreshing)
+        let reloadSubject = PublishSubject<Void>()
+        refreshControl.rx.controlEvent(.valueChanged)
+            .asDriver()
+            .drive(onNext: {(x) in
+                reloadSubject.onNext(())
+                }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
-        viewModel.clean()
-            .drive(collectionView.rx.items(cellIdentifier: R.reuseIdentifier.pageCell.identifier)) { index, model, cell in
+        viewModel = NGPagesViewModel(category: categoryVar.asDriver(), query: latestQuery, reloadAction: reloadSubject.asDriver(onErrorJustReturn: Void()))
+        
+        let clean = viewModel.clean()
+        let errors = viewModel.errors()
+        
+        Driver.of(clean, errors.map{_ in[]}).merge()
+        .drive(collectionView.rx.items(cellIdentifier: R.reuseIdentifier.pageCell.identifier)) { index, model, cell in
                 let pageCell = cell as! NGPageCollectionViewCell
                 pageCell.page = model
             }
             .addDisposableTo(disposeBag)
-        
-        viewModel.errors()
+      
+        errors
             .drive(onNext: { err in
                 self.handleError(error: err)
                 }, onCompleted: nil, onDisposed: nil)
@@ -88,6 +97,20 @@ class NGPagesViewController: NGViewController, NGDefaultStatefulVCType, UICollec
         
         errorView = ErrorView(frame: collectionView.frame)
         emptyView = EmptyView(frame: collectionView.frame)
+        
+        viewModel.loading
+            .drive(onNext: {[weak self] (loading) in
+                print("Loading")
+                if loading && !(self?.refreshControl.isRefreshing)! {
+                    self?.collectionView.setContentOffset(CGPoint(x: 0, y: -1.0 * (self?.refreshControl.frame.size.height)!), animated: true)
+                    self?.refreshControl.beginRefreshing()
+                } else if !loading {
+                    self?.refreshControl.endRefreshing()
+                }
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
+        
+        reloadSubject.onNext(())
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
