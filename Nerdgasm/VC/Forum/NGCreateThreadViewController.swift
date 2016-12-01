@@ -65,7 +65,7 @@ class NGCreateThreadViewController: NGAuthenticatedViewController {
                 case .success(_):
                     print("Created thread")
                 case .failure(let err):
-                    self.handleError(error: err)
+                    self.handleError(error: err, showError: true)
                 }
                 }, onCompleted: nil, onDisposed: nil)
                 .addDisposableTo(disposeBag)

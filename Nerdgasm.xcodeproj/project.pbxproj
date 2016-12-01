@@ -25,6 +25,11 @@
 		540DA9751DEF4352005A59C0 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540DA9741DEF4352005A59C0 /* SnapKit.framework */; };
 		540DA9771DEF435E005A59C0 /* TTTAttributedLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540DA9761DEF435E005A59C0 /* TTTAttributedLabel.framework */; };
 		540DA9791DEF49F8005A59C0 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540DA9781DEF49F8005A59C0 /* SVProgressHUD.framework */; };
+		540DA97B1DEF6010005A59C0 /* RxPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DA97A1DEF6010005A59C0 /* RxPageMenu.swift */; };
+		540DA97E1DEF678E005A59C0 /* Page.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 540DA97C1DEF678E005A59C0 /* Page.storyboard */; };
+		540DA9811DEF67C7005A59C0 /* NGPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DA9801DEF67C7005A59C0 /* NGPageViewController.swift */; };
+		540DA9851DEF684F005A59C0 /* NGTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540DA9831DEF684F005A59C0 /* NGTimelineViewController.swift */; };
+		540DA9861DEF684F005A59C0 /* NGTimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540DA9841DEF684F005A59C0 /* NGTimelineViewController.xib */; };
 		540EC0411DBAB21900F7E9D8 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540EC03F1DBAB21900F7E9D8 /* UserTableViewCell.swift */; };
 		540EC0421DBAB21900F7E9D8 /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 540EC0401DBAB21900F7E9D8 /* UserTableViewCell.xib */; };
 		541139F81DC12AAD00082498 /* RxSwiftCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541139F71DC12AAC00082498 /* RxSwiftCustom.swift */; };
@@ -48,6 +53,7 @@
 		5414F7461DB5EC31004E96F8 /* NGUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5414F7451DB5EC31004E96F8 /* NGUsersViewController.swift */; };
 		5445959D1DB4AC6A002BD140 /* NGLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5445959C1DB4AC6A002BD140 /* NGLoginViewModel.swift */; };
 		5445959F1DB4AD6B002BD140 /* NGLoginValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5445959E1DB4AD6B002BD140 /* NGLoginValidationService.swift */; };
+		545357201DEFF61D0021F061 /* PagingMenuController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5453571F1DEFF61D0021F061 /* PagingMenuController.framework */; };
 		545E79581DE630DA00D27A75 /* RxImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545E79571DE630DA00D27A75 /* RxImagePicker.swift */; };
 		5461880E1DCF3C0900F03B8D /* NGCreateThreadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5461880D1DCF3C0900F03B8D /* NGCreateThreadViewController.swift */; };
 		546188111DCF42A400F03B8D /* Forum.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5461880F1DCF42A400F03B8D /* Forum.storyboard */; };
@@ -126,6 +132,11 @@
 		540DA9741DEF4352005A59C0 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		540DA9761DEF435E005A59C0 /* TTTAttributedLabel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTTAttributedLabel.framework; path = Carthage/Build/iOS/TTTAttributedLabel.framework; sourceTree = "<group>"; };
 		540DA9781DEF49F8005A59C0 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		540DA97A1DEF6010005A59C0 /* RxPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxPageMenu.swift; path = "RxSwift+Extra/RxPageMenu.swift"; sourceTree = "<group>"; };
+		540DA97D1DEF678E005A59C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Page.storyboard; sourceTree = "<group>"; };
+		540DA9801DEF67C7005A59C0 /* NGPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGPageViewController.swift; path = VC/Page/NGPageViewController.swift; sourceTree = "<group>"; };
+		540DA9831DEF684F005A59C0 /* NGTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGTimelineViewController.swift; path = VC/Page/Timeline/NGTimelineViewController.swift; sourceTree = "<group>"; };
+		540DA9841DEF684F005A59C0 /* NGTimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NGTimelineViewController.xib; path = VC/Page/Timeline/NGTimelineViewController.xib; sourceTree = "<group>"; };
 		540EC03F1DBAB21900F7E9D8 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserTableViewCell.swift; path = VC/Users/UserTableViewCell.swift; sourceTree = "<group>"; };
 		540EC0401DBAB21900F7E9D8 /* UserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserTableViewCell.xib; path = VC/Users/UserTableViewCell.xib; sourceTree = "<group>"; };
 		541139F71DC12AAC00082498 /* RxSwiftCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxSwiftCustom.swift; path = "RxSwift+Extra/RxSwiftCustom.swift"; sourceTree = "<group>"; };
@@ -153,6 +164,7 @@
 		5414F7451DB5EC31004E96F8 /* NGUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUsersViewController.swift; path = VC/Users/NGUsersViewController.swift; sourceTree = "<group>"; };
 		5445959C1DB4AC6A002BD140 /* NGLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginViewModel.swift; path = VC/Login/NGLoginViewModel.swift; sourceTree = "<group>"; };
 		5445959E1DB4AD6B002BD140 /* NGLoginValidationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGLoginValidationService.swift; path = VC/Login/NGLoginValidationService.swift; sourceTree = "<group>"; };
+		5453571F1DEFF61D0021F061 /* PagingMenuController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PagingMenuController.framework; path = Carthage/Build/iOS/PagingMenuController.framework; sourceTree = "<group>"; };
 		545E79571DE630DA00D27A75 /* RxImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxImagePicker.swift; path = "RxSwift+Extra/RxImagePicker.swift"; sourceTree = "<group>"; };
 		5461880D1DCF3C0900F03B8D /* NGCreateThreadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGCreateThreadViewController.swift; path = VC/Forum/NGCreateThreadViewController.swift; sourceTree = "<group>"; };
 		546188101DCF42A400F03B8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Forum.storyboard; sourceTree = "<group>"; };
@@ -209,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				545357201DEFF61D0021F061 /* PagingMenuController.framework in Frameworks */,
 				540DA9791DEF49F8005A59C0 /* SVProgressHUD.framework in Frameworks */,
 				540DA9771DEF435E005A59C0 /* TTTAttributedLabel.framework in Frameworks */,
 				540DA9751DEF4352005A59C0 /* SnapKit.framework in Frameworks */,
@@ -260,6 +273,24 @@
 				5405B3841DD0BA2E00C770FB /* NGCreatePostViewModel.swift */,
 			);
 			name = Posts;
+			sourceTree = "<group>";
+		};
+		540DA97F1DEF67A0005A59C0 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				540DA9821DEF6828005A59C0 /* Timeline */,
+				540DA9801DEF67C7005A59C0 /* NGPageViewController.swift */,
+			);
+			name = Page;
+			sourceTree = "<group>";
+		};
+		540DA9821DEF6828005A59C0 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				540DA9831DEF684F005A59C0 /* NGTimelineViewController.swift */,
+				540DA9841DEF684F005A59C0 /* NGTimelineViewController.xib */,
+			);
+			name = Timeline;
 			sourceTree = "<group>";
 		};
 		5411D7FF1DECB14600BBB441 /* Pages */ = {
@@ -335,7 +366,7 @@
 		5414F0AD1D97146300D30EDF /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				5411D7FF1DECB14600BBB441 /* Pages */,
+				540DA97F1DEF67A0005A59C0 /* Page */,
 				54626FC51DEC611A00DFFCD1 /* Explore */,
 				541374181DCD16F60016E5EA /* Forum */,
 				54F0E0401DBDE5EF00F0B2F7 /* Me */,
@@ -366,6 +397,7 @@
 				5414F0B81D97190A00D30EDF /* Login.storyboard */,
 				5414F0911D9712D100D30EDF /* Main.storyboard */,
 				54626FC21DEC60A200DFFCD1 /* Explore.storyboard */,
+				540DA97C1DEF678E005A59C0 /* Page.storyboard */,
 				546188121DCF434A00F03B8D /* Me.storyboard */,
 				5461880F1DCF42A400F03B8D /* Forum.storyboard */,
 			);
@@ -386,6 +418,7 @@
 		54626FC51DEC611A00DFFCD1 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
+				5411D7FF1DECB14600BBB441 /* Pages */,
 				54626FC61DEC613700DFFCD1 /* NGExploreViewController.swift */,
 				54626FC81DEC625500DFFCD1 /* NGCategoryViewModel.swift */,
 				54626FCC1DEC67DB00DFFCD1 /* NGCategoryCollectionViewCell.swift */,
@@ -403,6 +436,7 @@
 				54D527031DE6DA5500F99E82 /* RxImage.swift */,
 				54D527051DE6DC9100F99E82 /* RxImageView.swift */,
 				54D527071DE6DCDD00F99E82 /* RxTableView.swift */,
+				540DA97A1DEF6010005A59C0 /* RxPageMenu.swift */,
 			);
 			name = "RxSwift+Extra";
 			sourceTree = "<group>";
@@ -509,6 +543,7 @@
 		79E687DC7442D71F9696835C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5453571F1DEFF61D0021F061 /* PagingMenuController.framework */,
 				540DA9781DEF49F8005A59C0 /* SVProgressHUD.framework */,
 				540DA9761DEF435E005A59C0 /* TTTAttributedLabel.framework */,
 				540DA9741DEF4352005A59C0 /* SnapKit.framework */,
@@ -623,12 +658,14 @@
 				54626FC41DEC60A200DFFCD1 /* Explore.storyboard in Resources */,
 				540B40051DCFC188002F9FBD /* NGPostsHeaderView.xib in Resources */,
 				547533971DD0A32300235361 /* NGPostTableViewCell.xib in Resources */,
+				540DA9861DEF684F005A59C0 /* NGTimelineViewController.xib in Resources */,
 				5414F0951D9712D100D30EDF /* Assets.xcassets in Resources */,
 				546188141DCF434A00F03B8D /* Me.storyboard in Resources */,
 				540EC0421DBAB21900F7E9D8 /* UserTableViewCell.xib in Resources */,
 				54626FCF1DEC67DB00DFFCD1 /* NGCategoryCollectionViewCell.xib in Resources */,
 				540A69BB1DCE6F39009B9673 /* NGThreadTableViewCell.xib in Resources */,
 				5414F0931D9712D100D30EDF /* Main.storyboard in Resources */,
+				540DA97E1DEF678E005A59C0 /* Page.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +702,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/TTTAttributedLabel.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PagingMenuController.framework",
 			);
 			outputPaths = (
 			);
@@ -728,6 +766,7 @@
 				54124FE01DD3B6B200A62722 /* NGAuthenticatedViewController.swift in Sources */,
 				5461881A1DCF52F400F03B8D /* NGCreateThreadValidationService.swift in Sources */,
 				54D527301DE6DDDE00F99E82 /* LoadingView.swift in Sources */,
+				540DA9851DEF684F005A59C0 /* NGTimelineViewController.swift in Sources */,
 				540A69BD1DCE6F80009B9673 /* NGThread.swift in Sources */,
 				54D527351DE6DDDE00F99E82 /* NGViewStateMachine.swift in Sources */,
 				5461880E1DCF3C0900F03B8D /* NGCreateThreadViewController.swift in Sources */,
@@ -789,7 +828,9 @@
 				545E79581DE630DA00D27A75 /* RxImagePicker.swift in Sources */,
 				5411D8031DECB2B600BBB441 /* NGPagesViewModel.swift in Sources */,
 				540788B01DE747AC00F5F080 /* NGLoginView.swift in Sources */,
+				540DA97B1DEF6010005A59C0 /* RxPageMenu.swift in Sources */,
 				5445959D1DB4AC6A002BD140 /* NGLoginViewModel.swift in Sources */,
+				540DA9811DEF67C7005A59C0 /* NGPageViewController.swift in Sources */,
 				540A69C11DCE7344009B9673 /* NGThreadsViewModel.swift in Sources */,
 				54D5272B1DE6DDDE00F99E82 /* Reachability.swift in Sources */,
 				5412AE961DD3994F00177AA0 /* NGViewModelType.swift in Sources */,
@@ -815,6 +856,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		540DA97C1DEF678E005A59C0 /* Page.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				540DA97D1DEF678E005A59C0 /* Base */,
+			);
+			name = Page.storyboard;
+			sourceTree = "<group>";
+		};
 		5414F0911D9712D100D30EDF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

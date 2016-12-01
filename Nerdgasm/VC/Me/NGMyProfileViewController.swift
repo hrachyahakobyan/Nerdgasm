@@ -77,11 +77,11 @@ class NGMyProfileViewController: NGAuthenticatedViewController {
             .drive(onNext:{result in
                 switch result {
                 case .success(let user):
-                    let cred = NGUserCredentials.credentials()
+                    let cred = NGUserCredentials.rxCredentials.value
                     cred?.user = user
                     cred?.synchronize()
                 case .failure(let err):
-                    self.handleError(error: err)
+                    self.handleError(error: err, showError: true)
                 }
                 }, onCompleted: nil, onDisposed: {print("Dismposed")})
             .addDisposableTo(disposeBag)

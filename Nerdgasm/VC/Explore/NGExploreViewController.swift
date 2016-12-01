@@ -86,7 +86,6 @@ class NGExploreViewController: NGViewController, NGDefaultStatefulVCType, UIColl
         
         viewModel.loading
             .drive(onNext: {[weak self] (loading) in
-                print("Loading")
                 if loading && !(self?.refreshControl.isRefreshing)! {
                     self?.collectionView.setContentOffset(CGPoint(x: 0, y: -1.0 * (self?.refreshControl.frame.size.height)!), animated: true)
                     self?.refreshControl.beginRefreshing()
@@ -108,7 +107,6 @@ class NGExploreViewController: NGViewController, NGDefaultStatefulVCType, UIColl
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.size.width
-        print(indexPath)
         return CGSize(width: (width - 40)/2, height: 250)
     }
     

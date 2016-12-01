@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class NGViewController: UIViewController {
     
@@ -18,11 +19,23 @@ class NGViewController: UIViewController {
         return (presentedViewController != nil)
     }
     
-    func handleError(error: NGNetworkError) {
-        guard isVisible && !isPresenting else { return }
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
-        self.present(alert, animated: true)
+    func handleError(error: NGNetworkError, showError: Bool = false) {
+        if !showError {
+            return
+        }
+        if SVProgressHUD.isVisible() {
+            SVProgressHUD.dismiss(completion: { 
+                DispatchQueue.main.async {
+                    SVProgressHUD.setBackgroundColor(UIColor.red)
+                    SVProgressHUD.showError(withStatus: error.description)
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+               SVProgressHUD.setBackgroundColor(UIColor.red)
+               SVProgressHUD.showError(withStatus: error.description)
+            }
+        }
     }
     
 }

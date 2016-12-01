@@ -14,14 +14,14 @@ class NGUserCredentials: NSObject, NSCoding {
     var user: NGUser
     var access_token: String
     private static let userDefaults = UserDefaults.standard
-    static let rxCredentials = BehaviorSubject<NGUserCredentials?>(value: credentials())
-    static let loggedIn: Driver<Bool> = rxCredentials.map{
+    static let rxCredentials = Variable<NGUserCredentials?>.init(credentials())
+    static let rxDriver = rxCredentials.asDriver()
+    static let loggedIn: Driver<Bool> = rxDriver.map{
                                     $0 != nil && $0?.access_token.characters.count != 0
                                 }.asDriver(onErrorJustReturn: false)
-    static let rxUser: Driver<NGUser?> = rxCredentials
+    static let rxUser: Driver<NGUser?> = rxDriver
                                         .filter {$0 != nil}
                                         .map{$0!.user}
-                                        .asDriver(onErrorJustReturn: nil)
     
     private static let queue = DispatchQueue(label: "credentials.queue")
     
@@ -41,11 +41,11 @@ class NGUserCredentials: NSObject, NSCoding {
     static func reset(){
         queue.async {
             userDefaults.removeObject(forKey: Keys.Credentials.rawValue)
-            rxCredentials.onNext(nil)
+            rxCredentials.value = nil
         }
     }
     
-    static func credentials() -> NGUserCredentials? {
+    private static func credentials() -> NGUserCredentials? {
         guard let data = userDefaults.object(forKey: Keys.Credentials.rawValue) as? Data else {return nil}
         return (NSKeyedUnarchiver.unarchiveObject(with: data) as? NGUserCredentials)
     }
@@ -54,7 +54,7 @@ class NGUserCredentials: NSObject, NSCoding {
         NGUserCredentials.queue.async {
             let data = NSKeyedArchiver.archivedData(withRootObject: self)
             NGUserCredentials.userDefaults.set(data, forKey: Keys.Credentials.rawValue)
-            NGUserCredentials.rxCredentials.onNext(self)
+            NGUserCredentials.rxCredentials.value = self
         }
     }
     

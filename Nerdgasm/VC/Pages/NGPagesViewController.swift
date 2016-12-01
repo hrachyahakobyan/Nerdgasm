@@ -109,6 +109,15 @@ class NGPagesViewController: NGViewController, NGDefaultStatefulVCType, UICollec
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
+        collectionView
+            .rx.itemSelected
+            .subscribe {[weak self] indexPath in
+                DispatchQueue.main.async {
+                    self?.performSegue(withIdentifier: R.segue.nGPagesViewController.pageSegue.identifier, sender: nil)
+                }
+            }
+            .addDisposableTo(disposeBag)
+        
         reloadSubject.onNext(())
     }
 

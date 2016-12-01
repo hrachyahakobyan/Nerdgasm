@@ -41,11 +41,10 @@ class NGAuthenticatedViewController: NGViewController {
             .addDisposableTo(disposeBag)
     }
     
-    override func handleError(error: NGNetworkError) {
-        guard case NGNetworkError.Unauthorized = error else {
-            super.handleError(error: error)
-            return
+    override func handleError(error: NGNetworkError, showError: Bool = false) {
+        if case NGNetworkError.Unauthorized = error  {
+            NGUserCredentials.reset()
         }
-        NGUserCredentials.reset()
+        super.handleError(error: error, showError: showError)
     }
 }

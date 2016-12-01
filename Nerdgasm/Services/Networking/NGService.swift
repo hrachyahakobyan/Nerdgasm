@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import Result
 
-public enum NGNetworkError: Swift.Error{
+public enum NGNetworkError: Swift.Error, CustomStringConvertible{
     case NoConnection
     case ValidationFailed([String:String])
     case Error(Swift.Error)
@@ -30,6 +30,24 @@ public enum NGNetworkError: Swift.Error{
         guard type(of: error) == NSError.self else { return nil }
         return error as NSError
     }
+    
+    public var description: String {
+        switch self {
+        case .NoConnection:
+            return "Sorry, could not reach Nerdgasm"
+        case .NotFound:
+            return "Could not find that"
+        case .ValidationFailed(let dict):
+            return "Invalid parameters \(dict)"
+        case .Unauthorized:
+            return "Please sign in"
+        case .Unknown:
+            return "Something went wrong"
+        case .Error(let err):
+            return err.localizedDescription
+        }
+    }
+    
 }
 
 func toNgError(err: Swift.Error) -> NGNetworkError{

@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let disposeBag = DisposeBag()
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
-        NGUserCredentials.rxCredentials
-            .subscribe(onNext: { cred in
-                NGAuthorizedNetworking.accessToken = cred?.access_token
-                }, onError: nil, onCompleted: nil, onDisposed: nil)
+        NGUserCredentials.rxDriver
+            .drive(onNext: { (cred) in
+                 NGAuthorizedNetworking.accessToken = cred?.access_token
+                }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
     }
 

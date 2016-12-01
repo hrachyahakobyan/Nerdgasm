@@ -60,7 +60,7 @@ class NGCreatePostViewController: NGAuthenticatedViewController {
                 case .success(_):
                     print("Created post")
                 case .failure(let err):
-                    self.handleError(error: err)
+                    self.handleError(error: err, showError: true)
                 }
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)

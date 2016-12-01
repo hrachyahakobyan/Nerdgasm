@@ -26,9 +26,7 @@ class NGCategoryViewModel: NGViewModelType {
                     .filterSuccessfulStatusCodes()
                     .mapJSONDataArray()
                     .map { jsons -> [NGCategory] in
-                        let data = [NGCategory].from(jsonArray: jsons) ?? []
-                        print(data)
-                        return data
+                        [NGCategory].from(jsonArray: jsons) ?? []
                     }
                     .mapToFailable()
                     .trackActivity(searching)

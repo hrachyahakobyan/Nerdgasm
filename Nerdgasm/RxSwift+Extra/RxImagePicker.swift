@@ -42,50 +42,6 @@ public class RxImagePickerDelegateProxy
     
 }
 
-private func castOrFatalError<T>(_ value: Any!) -> T {
-    let maybeResult: T? = value as? T
-    guard let result = maybeResult else {
-        rxFatalError("Failure converting from \(value) to \(T.self)")
-    }
-    
-    return result
-}
-
-private func castOptionalOrFatalError<T>(_ value: AnyObject?) -> T? {
-    if value == nil {
-        return nil
-    }
-    let v: T = castOrFatalError(value)
-    return v
-}
-
-private func rxFatalError(_ lastMessage: String) -> Never {
-    // The temptation to comment this line is great, but please don't, it's for your own good. The choice is yours.
-    fatalError(lastMessage)
-}
-
-fileprivate func castOrThrow<T>(_ resultType: T.Type, _ object: Any) throws -> T {
-    guard let returnValue = object as? T else {
-        throw RxCocoaError.castingError(object: object, targetType: resultType)
-    }
-    
-    return returnValue
-}
-
-func dismissViewController(_ viewController: UIViewController, animated: Bool) {
-    if viewController.isBeingDismissed || viewController.isBeingPresented {
-        DispatchQueue.main.async {
-            dismissViewController(viewController, animated: animated)
-        }
-        
-        return
-    }
-    
-    if viewController.presentingViewController != nil {
-        viewController.dismiss(animated: animated, completion: nil)
-    }
-}
-
 extension Reactive where Base: UIImagePickerController {
     
     /**

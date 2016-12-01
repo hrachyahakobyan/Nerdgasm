@@ -51,8 +51,11 @@ class NGMyProfileViewModel: NGViewModelType {
         
         let avatarActions: Driver<NGAvatarAction> = avatarTaps
             .flatMapLatest{ (tap) -> Driver<NGAvatarAction> in
-                print("tap")
-                return DefaultWireframe.sharedInstance.promptFor("", title: "Change avatar", cancelAction: NGAvatarAction.Cancel, actions: [NGAvatarAction.Camera, NGAvatarAction.Photo, NGAvatarAction.Remove])
+                var actions = [NGAvatarAction.Camera, NGAvatarAction.Photo]
+                if (NGUserCredentials.rxCredentials.value?.user.image.characters.count ?? 0) > 0 {
+                    actions.append(NGAvatarAction.Remove)
+                }
+                return DefaultWireframe.sharedInstance.promptFor("", title: "Change avatar", cancelAction: NGAvatarAction.Cancel, actions: actions)
                     .filter{ action -> Bool in
                         if case NGAvatarAction.Cancel = action {
                             return false
@@ -134,7 +137,7 @@ class NGMyProfileViewModel: NGViewModelType {
                     .asDriver(onErrorJustReturn: .failure(.NoConnection))
             }
         
-        self.loading = Driver.of(updatingAvatarDriver, removingAvatarDriver, updatingUserDriver).merge()
+        self.loading = Driver.combineLatest(removingAvatarDriver, updatingAvatarDriver, updatingUserDriver, resultSelector: { $0 || $1 || $2})
         self.results = Driver.of(updateAvatarResults, updateUserResults, removeAvatarResults).merge()
     }
 }
