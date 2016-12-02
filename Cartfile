@@ -2,4 +2,3 @@ github "SnapKit/SnapKit" ~> 3.0.2
 github "Flipboard/FLEX"
 github "TTTAttributedLabel/TTTAttributedLabel"
 github "SVProgressHUD/SVProgressHUD"
-github "kitasuke/PagingMenuController"

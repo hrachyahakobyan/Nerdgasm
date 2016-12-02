@@ -12,18 +12,8 @@ class NGTimelineViewController: NGViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor.red
         // Do any additional setup after loading the view.
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        title = "Timeline"
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 

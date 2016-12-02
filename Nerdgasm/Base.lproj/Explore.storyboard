@@ -9,7 +9,6 @@
         <!--Explore-->
         <scene sceneID="6Q9-8D-6m6">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bwN-P0-m63" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="FU9-dD-TpY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Explore" id="jNZ-n6-TuY"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -21,6 +20,7 @@
                         <segue destination="D3r-V8-9ea" kind="relationship" relationship="rootViewController" id="6hf-yG-lWu"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bwN-P0-m63" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-359" y="1548"/>
         </scene>
@@ -128,7 +128,7 @@
                         <outlet property="collectionView" destination="Tbo-iK-YOc" id="UIu-ap-YtN"/>
                         <outlet property="searchBar" destination="s5i-vo-YBw" id="ngh-o5-OIA"/>
                         <outlet property="stateView" destination="CNo-BX-G5j" id="rzc-3h-086"/>
-                        <segue destination="qMi-Gx-1qJ" kind="presentation" identifier="PageSegue" id="IRF-Qn-YRi"/>
+                        <segue destination="qMi-Gx-1qJ" kind="show" identifier="PageSegue" id="IRF-Qn-YRi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXy-kf-c5N" userLabel="First Responder" sceneMemberID="firstResponder"/>

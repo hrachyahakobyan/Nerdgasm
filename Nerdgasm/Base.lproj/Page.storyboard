@@ -36,12 +36,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Eo-fa-dJn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3097" y="1548"/>
+            <point key="canvasLocation" x="3068" y="1548"/>
         </scene>
         <!--Paging Menu Controller-->
         <scene sceneID="G1t-vP-aFZ">
             <objects>
-                <viewController id="p4G-qf-cG2" customClass="PagingMenuController" sceneMemberID="viewController">
+                <viewController id="p4G-qf-cG2" customClass="PagingMenuController" customModule="PagingMenuController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uOE-cA-h9Y"/>
                         <viewControllerLayoutGuide type="bottom" id="UEZ-F4-iQo"/>
@@ -54,7 +54,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l0b-we-hdw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3813" y="1548"/>
+            <point key="canvasLocation" x="3922" y="1548"/>
         </scene>
     </scenes>
 </document>
