@@ -37,24 +37,27 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYB-vv-8D6">
                                                 <state key="normal" title="Sign in"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dex-kx-jAD">
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="T9x-r4-hep"/>
                                         </constraints>
                                     </stackView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="WG9-Vo-eMX"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dex-kx-jAD">
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="YMG-iN-u3Q" firstAttribute="centerX" secondItem="r4j-N1-brC" secondAttribute="centerX" id="510-1g-wMm"/>
                                     <constraint firstItem="WG9-Vo-eMX" firstAttribute="centerX" secondItem="r4j-N1-brC" secondAttribute="centerX" id="9iO-mk-JbX"/>
+                                    <constraint firstItem="Dex-kx-jAD" firstAttribute="top" secondItem="YMG-iN-u3Q" secondAttribute="bottom" id="HaY-kv-qBM"/>
+                                    <constraint firstItem="Dex-kx-jAD" firstAttribute="centerX" secondItem="r4j-N1-brC" secondAttribute="centerX" id="IZA-lc-XUk"/>
                                     <constraint firstItem="WG9-Vo-eMX" firstAttribute="top" secondItem="YMG-iN-u3Q" secondAttribute="bottom" id="Ps5-JJ-aMN"/>
                                     <constraint firstItem="YMG-iN-u3Q" firstAttribute="top" secondItem="r4j-N1-brC" secondAttribute="top" constant="20" id="Z3d-vx-iJb"/>
+                                    <constraint firstItem="Dex-kx-jAD" firstAttribute="width" secondItem="YMG-iN-u3Q" secondAttribute="width" id="qUi-c5-0JE"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CXM-ib-oYY">
@@ -140,13 +143,21 @@
                                         </constraints>
                                     </stackView>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="YXF-zR-X2e"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Frf-fR-O2D">
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="YXF-zR-X2e" firstAttribute="centerX" secondItem="jOa-3i-WU6" secondAttribute="centerX" id="7tQ-CG-bbw"/>
                                     <constraint firstItem="jOa-3i-WU6" firstAttribute="centerX" secondItem="CXM-ib-oYY" secondAttribute="centerX" id="BCd-8p-1a2"/>
+                                    <constraint firstItem="Frf-fR-O2D" firstAttribute="centerY" secondItem="YXF-zR-X2e" secondAttribute="centerY" id="De9-gW-0ns"/>
+                                    <constraint firstItem="Frf-fR-O2D" firstAttribute="width" secondItem="i3l-ef-Fsh" secondAttribute="width" id="W9O-lM-f2q"/>
                                     <constraint firstItem="jOa-3i-WU6" firstAttribute="top" secondItem="CXM-ib-oYY" secondAttribute="top" constant="20" id="ofi-kM-dMi"/>
                                     <constraint firstItem="YXF-zR-X2e" firstAttribute="top" secondItem="jOa-3i-WU6" secondAttribute="bottom" id="r3s-Gd-bv0"/>
+                                    <constraint firstItem="Frf-fR-O2D" firstAttribute="centerX" secondItem="YXF-zR-X2e" secondAttribute="centerX" id="upM-sc-3bL"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kn1-Lg-Mj6">
@@ -196,6 +207,7 @@
                         <outlet property="signupPasswordValidLabel" destination="sZg-qR-NRe" id="bcC-nu-CbK"/>
                         <outlet property="signupRepeatPasswordTextField" destination="i3l-ef-Fsh" id="BVt-AH-X4Z"/>
                         <outlet property="signupRepeatPasswordValidLabel" destination="O79-79-Scv" id="WhX-Xc-yHq"/>
+                        <outlet property="signupResultLabel" destination="Frf-fR-O2D" id="sbG-wM-6CD"/>
                         <outlet property="signupUsernameTextField" destination="E84-4f-rXA" id="ppr-M2-OAt"/>
                         <outlet property="signupView" destination="CXM-ib-oYY" id="5V1-oj-Xt5"/>
                         <outlet property="usernameAvailableLabel" destination="LDp-Nh-tkW" id="r5R-wB-1xr"/>

@@ -73,6 +73,11 @@ extension SharedSequenceConvertibleType where E == Bool {
     }
 }
 
-
+extension UITextField {
+    func setRxText(text: String?){
+        self.text = text
+        self.sendActions(for: .valueChanged)
+    }
+}
 
 

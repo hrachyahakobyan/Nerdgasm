@@ -36,7 +36,7 @@ class NGLoginViewController: NGViewController {
     @IBOutlet weak var openSigninButton: UIButton!
     @IBOutlet weak var checkUsernameActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var signupActivityIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var signupResultLabel: UILabel!
     let signinVisible = Variable<Bool>(true)
     private let disposeBag = DisposeBag()
     
@@ -53,6 +53,7 @@ class NGLoginViewController: NGViewController {
         activityIndicator.hidesWhenStopped = true
         passwordTextField.isSecureTextEntry = true
         signInResultLabel.textColor = UIColor.red
+        signupResultLabel.textColor = UIColor.red
         
         let allTaps = Observable.of(signInButton.rx.tap, signupButton.rx.tap, openSignupButton.rx.tap, openSignupButton.rx.tap)
                             .merge()
@@ -60,6 +61,9 @@ class NGLoginViewController: NGViewController {
         allTaps
             .drive(onNext: {[weak self] _ in
                     self?.view.endEditing(true)
+                    print(self?.signInResultLabel.text)
+                    self?.signInResultLabel.text = ""
+                    self?.signupResultLabel.text = ""
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
@@ -76,16 +80,11 @@ class NGLoginViewController: NGViewController {
             .drive(onNext: { [weak self] valid  in
             self?.signInButton.isEnabled = valid
             self?.signInButton.alpha = valid ? 1.0 : 0.5
-            })
+        })
         .addDisposableTo(disposeBag)
 
         viewModel.loading
             .drive(activityIndicator.rx.isAnimating)
-            .addDisposableTo(disposeBag)
-        
-        viewModel.loading
-            .map{!$0}
-            .drive(signInButton.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
         viewModel.loading
@@ -109,6 +108,7 @@ class NGLoginViewController: NGViewController {
                     default:
                         self?.signInResultLabel.text = "Unknown error"
                     }
+                    self?.handleError(error: error)
                 }
             })
             .addDisposableTo(disposeBag)
@@ -140,11 +140,6 @@ class NGLoginViewController: NGViewController {
             .addDisposableTo(disposeBag)
         
         signupModel.loading
-            .map{!$0}
-            .drive(signupButton.rx.isEnabled)
-            .addDisposableTo(disposeBag)
-        
-        signupModel.loading
             .drive(signupActivityIndicator.rx.isAnimating)
             .addDisposableTo(disposeBag)
         
@@ -172,9 +167,21 @@ class NGLoginViewController: NGViewController {
             .drive(onNext: {[weak self] result in
                 switch result {
                 case .success(let user):
-                    self?.usernameTextField.text = user.username
+                    self?.usernameTextField.setRxText(text: user.username)
                     self?.signinVisible.value = true
+                    self?.signupUsernameTextField.setRxText(text: "")
+                    self?.signupPasswordTextField.setRxText(text: "")
+                    self?.signupRepeatPasswordTextField.setRxText(text: "")
+                    self?.signupResultLabel.text = ""
                 case .failure(let error):
+                    switch error {
+                    case .NoConnection:
+                        self?.signupResultLabel.text = "Could not connect to the Internet"
+                    case .ValidationFailed(_):
+                        self?.signupResultLabel.text = "Username already taken"
+                    default:
+                        self?.signupResultLabel.text = "Unknown error"
+                    }
                     self?.handleError(error: error)
                 }
             })

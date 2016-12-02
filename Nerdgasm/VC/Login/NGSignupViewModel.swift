@@ -78,15 +78,14 @@ class NGSignupViewModel: NGViewModelType {
                                     .filterSuccessfulStatusCodes()
                                     .mapJSON()
                                     .map { json in
-                                        guard let data: JSON = "data" <~~ (json as! JSON) else { return .failure(.Unknown) }
+                                        guard let data: JSON = "data" <~~ (json as! JSON) else { throw NGNetworkError.Unknown }
                                         if let user: NGUser = NGUser(json: data) {
-                                            return .success(user)
-                                        } else if let error: [String: String] = "error" <~~ (json as! JSON) {
-                                            return .failure(.ValidationFailed(error))
+                                            return user
                                         } else {
-                                            return .failure(.Unknown)
+                                            throw NGNetworkError.Unknown
                                         }
                                     }
+                                    .mapToFailable()
                                     .trackActivity(signingUp)
                                     .asDriver(onErrorJustReturn: .failure(.NoConnection))
             }

@@ -60,6 +60,8 @@ func toNgError(err: Swift.Error) -> NGNetworkError{
                 return .NotFound
             case 401:
                 return .Unauthorized
+            case 422:
+                return .ValidationFailed([:])
             default:
                 return .Unknown
             }
