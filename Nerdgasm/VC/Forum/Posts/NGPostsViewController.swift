@@ -73,8 +73,8 @@ class NGPostsViewController: NGViewController, NGDefaultStatefulVCType {
             .addDisposableTo(disposeBag)
         
         viewModel.errors()
-            .drive(onNext: { err in
-                self.handleError(error: err)
+            .drive(onNext: {[weak self] err in
+                self?.handleError(error: err)
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         

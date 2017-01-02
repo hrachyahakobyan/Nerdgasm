@@ -43,15 +43,15 @@ class NGForumViewController: NGPageChildViewController, NGDefaultStatefulVCType 
         refreshControl = UIRefreshControl()
         tableView.addSubview(refreshControl)
 //        
-//        addItemTaps
-//            .drive(onNext: {[weak self] _ in
-//                if self?.presentedViewController == nil {
-//                    DispatchQueue.main.async {
-//                        self?.performSegue(withIdentifier: R.segue.nGForumViewController.createThread.identifier, sender: nil)
-//                    }
-//                }
-//                },onCompleted: nil, onDisposed: nil)
-//            .addDisposableTo(disposeBag)
+        addItemTaps
+            .drive(onNext: {[weak self] _ in
+                if self?.presentedViewController == nil {
+                    DispatchQueue.main.async {
+                        self?.performSegue(withIdentifier: R.segue.nGForumViewController.createThread.identifier, sender: nil)
+                    }
+                }
+                },onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
         
         
         viewModel = NGThreadsViewModel(pageID: page.id, query: latestQuery, reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))

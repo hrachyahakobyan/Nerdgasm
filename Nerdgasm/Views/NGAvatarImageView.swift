@@ -39,6 +39,9 @@ class NGImageView: UIImageView, NGPlaceholderProviderType {
     }
 }
 
+protocol NGPlaceholderProviderType: class {
+    var offlinePlaceholder: UIImage {get}
+}
 
 class NGAvatarImageView: NGImageView {
     override var offlinePlaceholder: UIImage {

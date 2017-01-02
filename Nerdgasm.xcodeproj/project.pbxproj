@@ -84,11 +84,9 @@
 		54C7FB081DBD244E00BD7430 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C7FB071DBD244E00BD7430 /* R.generated.swift */; };
 		54CC1B3E1DB4081D008568F5 /* NGUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54CC1B3D1DB4081D008568F5 /* NGUser.swift */; };
 		54D527041DE6DA5500F99E82 /* RxImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D527031DE6DA5500F99E82 /* RxImage.swift */; };
-		54D527061DE6DC9100F99E82 /* RxImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D527051DE6DC9100F99E82 /* RxImageView.swift */; };
 		54D527081DE6DCDD00F99E82 /* RxTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D527071DE6DCDD00F99E82 /* RxTableView.swift */; };
 		54D5270D1DE6DDD500F99E82 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D5270C1DE6DDD500F99E82 /* ActivityIndicator.swift */; };
 		54D527261DE6DDDE00F99E82 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D5270F1DE6DDDE00F99E82 /* GlobalFunctions.swift */; };
-		54D527271DE6DDDE00F99E82 /* NGImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D527111DE6DDDE00F99E82 /* NGImageService.swift */; };
 		54D527281DE6DDDE00F99E82 /* NGNetworking .swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D527131DE6DDDE00F99E82 /* NGNetworking .swift */; };
 		54D527291DE6DDDE00F99E82 /* NGService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D527141DE6DDDE00F99E82 /* NGService.swift */; };
 		54D5272A1DE6DDDE00F99E82 /* NGValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D527151DE6DDDE00F99E82 /* NGValidation.swift */; };
@@ -203,11 +201,9 @@
 		54C7FB071DBD244E00BD7430 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		54CC1B3D1DB4081D008568F5 /* NGUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NGUser.swift; path = Models/NGUser.swift; sourceTree = "<group>"; };
 		54D527031DE6DA5500F99E82 /* RxImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxImage.swift; path = "RxSwift+Extra/RxImage.swift"; sourceTree = "<group>"; };
-		54D527051DE6DC9100F99E82 /* RxImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxImageView.swift; path = "RxSwift+Extra/RxImageView.swift"; sourceTree = "<group>"; };
 		54D527071DE6DCDD00F99E82 /* RxTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RxTableView.swift; path = "RxSwift+Extra/RxTableView.swift"; sourceTree = "<group>"; };
 		54D5270C1DE6DDD500F99E82 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = "RxSwift+Extra/ActivityIndicator.swift"; sourceTree = "<group>"; };
 		54D5270F1DE6DDDE00F99E82 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
-		54D527111DE6DDDE00F99E82 /* NGImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGImageService.swift; sourceTree = "<group>"; };
 		54D527131DE6DDDE00F99E82 /* NGNetworking .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NGNetworking .swift"; sourceTree = "<group>"; };
 		54D527141DE6DDDE00F99E82 /* NGService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGService.swift; sourceTree = "<group>"; };
 		54D527151DE6DDDE00F99E82 /* NGValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NGValidation.swift; sourceTree = "<group>"; };
@@ -456,7 +452,6 @@
 				541139F71DC12AAC00082498 /* RxSwiftCustom.swift */,
 				545E79571DE630DA00D27A75 /* RxImagePicker.swift */,
 				54D527031DE6DA5500F99E82 /* RxImage.swift */,
-				54D527051DE6DC9100F99E82 /* RxImageView.swift */,
 				54D527071DE6DCDD00F99E82 /* RxTableView.swift */,
 				540DA97A1DEF6010005A59C0 /* RxPageMenu.swift */,
 			);
@@ -483,21 +478,12 @@
 			children = (
 				54D527371DE6DE3500F99E82 /* NGUserCredentials.swift */,
 				54D5270F1DE6DDDE00F99E82 /* GlobalFunctions.swift */,
-				54D527101DE6DDDE00F99E82 /* Images */,
 				54D527121DE6DDDE00F99E82 /* Networking */,
 				54D527161DE6DDDE00F99E82 /* Reachability */,
 				54D527191DE6DDDE00F99E82 /* Stateful */,
 				54D527241DE6DDDE00F99E82 /* Wireframe */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		54D527101DE6DDDE00F99E82 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				54D527111DE6DDDE00F99E82 /* NGImageService.swift */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		54D527121DE6DDDE00F99E82 /* Networking */ = {
@@ -836,7 +822,6 @@
 				54D5272E1DE6DDDE00F99E82 /* EmptyView.swift in Sources */,
 				546188181DCF501300F03B8D /* NGPost.swift in Sources */,
 				54D527291DE6DDDE00F99E82 /* NGService.swift in Sources */,
-				54D527271DE6DDDE00F99E82 /* NGImageService.swift in Sources */,
 				54D5272C1DE6DDDE00F99E82 /* RxReachability.swift in Sources */,
 				5414F7461DB5EC31004E96F8 /* NGUsersViewController.swift in Sources */,
 				54D527041DE6DA5500F99E82 /* RxImage.swift in Sources */,
@@ -854,7 +839,6 @@
 				54626FCE1DEC67DB00DFFCD1 /* NGCategoryCollectionViewCell.swift in Sources */,
 				5455D8F81DF1CFB5002750BF /* NGContent.swift in Sources */,
 				54626FC71DEC613700DFFCD1 /* NGExploreViewController.swift in Sources */,
-				54D527061DE6DC9100F99E82 /* RxImageView.swift in Sources */,
 				540F97C21DF9816D007CE3C6 /* NGTimelineViewModel.swift in Sources */,
 				5413741C1DCD1B1D0016E5EA /* NGTabBarController.swift in Sources */,
 				54D527281DE6DDDE00F99E82 /* NGNetworking .swift in Sources */,

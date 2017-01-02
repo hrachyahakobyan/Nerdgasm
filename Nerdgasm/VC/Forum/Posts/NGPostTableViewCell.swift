@@ -24,13 +24,7 @@ class NGPostTableViewCell: UITableViewCell {
             usernameLabel.text = post.1.username
             contentLabel.text = post.0.content
             dateLabel.text = post.0.dateString
-            DefaultImageService.sharedImageService.imageFromURL(imageURLFrom(name: post.1.image))
-            .filter { (img, url) -> Bool in
-                self.post != nil && imageURLFrom(name: self.post.1.image).absoluteString == url.absoluteString
-            }
-            .map{$0.0}
-            .drive(avatarImageView.rx.downloadableImage)
-            .addDisposableTo(disposeBag)
+            avatarImageView.images.value = post.1.image
         }
     }
     
