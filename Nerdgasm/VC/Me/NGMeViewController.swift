@@ -48,10 +48,13 @@ class NGMeViewController: NGAuthenticatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NGUserCredentials.rxUser
-                    .map{$0 == nil ? "" : $0?.username}
-                    .drive(navigationItem.rx.title)
-                    .addDisposableTo(disposeBag)
+        NGUserCredentials.rxDriver
+                .map { (cred) -> String in
+                    return cred?.user.username ?? ""
+                }
+                .drive(navigationItem.rx.title)
+                .addDisposableTo(disposeBag)
+        
         
         let editItem = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
         navigationItem.rightBarButtonItem = editItem

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContentCell" rowHeight="246" id="KGk-i7-Jjw" customClass="NGContentTableViewCell" customModule="Nerdgasm" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="215" height="246"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="215" height="245"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfO-Td-7KX" customClass="TTTAttributedLabel">
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label ooooooooooooooooooooooooooooooooooooooooo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-QP-Fzk" customClass="TTTAttributedLabel">
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="exT-iW-BWM">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="i6o-lr-r5g"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="KYK-7l-Sj4" customClass="NGImageView" customModule="Nerdgasm" customModuleProvider="target"/>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="g7x-QP-Fzk" firstAttribute="leading" secondItem="zfO-Td-7KX" secondAttribute="leading" id="1GU-1d-DFN"/>
+                    <constraint firstItem="g7x-QP-Fzk" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="2Sn-cW-b6b"/>
+                    <constraint firstItem="exT-iW-BWM" firstAttribute="top" secondItem="KYK-7l-Sj4" secondAttribute="bottom" id="5Tj-pe-QzJ"/>
+                    <constraint firstItem="KYK-7l-Sj4" firstAttribute="top" secondItem="g7x-QP-Fzk" secondAttribute="bottom" id="Bhv-4f-KTT"/>
+                    <constraint firstItem="zfO-Td-7KX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="FMH-Ue-j7X"/>
+                    <constraint firstItem="exT-iW-BWM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="I96-yF-Mjd"/>
+                    <constraint firstItem="exT-iW-BWM" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="NKS-i4-ZgS"/>
+                    <constraint firstItem="KYK-7l-Sj4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Qfi-pW-OWr"/>
+                    <constraint firstItem="g7x-QP-Fzk" firstAttribute="top" secondItem="zfO-Td-7KX" secondAttribute="bottom" constant="5" id="UTf-wc-lqB"/>
+                    <constraint firstItem="KYK-7l-Sj4" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="X2k-aU-BQz"/>
+                    <constraint firstItem="zfO-Td-7KX" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="b2b-5P-VoM"/>
+                    <constraint firstAttribute="bottom" secondItem="exT-iW-BWM" secondAttribute="bottom" constant="5" id="oV0-7W-0cx"/>
+                    <constraint firstItem="zfO-Td-7KX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="sC8-vi-c5t"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="zfO-Td-7KX" id="Fu3-fp-j29"/>
+                <outlet property="titleImageView" destination="KYK-7l-Sj4" id="bxH-Oj-f9A"/>
+                <outlet property="titleLabel" destination="g7x-QP-Fzk" id="UaO-tW-Brl"/>
+            </connections>
+            <point key="canvasLocation" x="-454.5" y="16"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="placeholder" width="160" height="102"/>
+    </resources>
+</document>

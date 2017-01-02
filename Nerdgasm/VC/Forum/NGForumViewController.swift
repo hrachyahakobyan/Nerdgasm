@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class NGForumViewController: NGViewController, NGDefaultStatefulVCType {
+class NGForumViewController: NGPageChildViewController, NGDefaultStatefulVCType {
 
     typealias M = NGThreadsViewModel
     
@@ -22,7 +22,6 @@ class NGForumViewController: NGViewController, NGDefaultStatefulVCType {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var refreshControl: UIRefreshControl!
-    let disposeBag = DisposeBag()
     var viewModel: M!
     
     private var latestQuery: Driver<String> {
@@ -36,32 +35,26 @@ class NGForumViewController: NGViewController, NGDefaultStatefulVCType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         automaticallyAdjustsScrollViewInsets = false
         tableView.rowHeight = 120
-        let addThreadItem = UIBarButtonItem(barButtonSystemItem: .add, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = addThreadItem
-        navigationItem.title = "Forum"
-        
-        NGUserCredentials.loggedIn
-            .drive(addThreadItem.rx.isEnabled)
-            .addDisposableTo(disposeBag)
-        
-        addThreadItem.rx.tap
-            .subscribe(onNext: {[weak self] _ in
-                if self?.presentedViewController == nil {
-                    DispatchQueue.main.async {
-                        self?.performSegue(withIdentifier: R.segue.nGForumViewController.createThread.identifier, sender: nil)
-                    }
-                }
-                }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .addDisposableTo(disposeBag)
         
         tableView.register(R.nib.nGThreadTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.threadCell.identifier)
         refreshControl = UIRefreshControl()
         tableView.addSubview(refreshControl)
-    
+//        
+//        addItemTaps
+//            .drive(onNext: {[weak self] _ in
+//                if self?.presentedViewController == nil {
+//                    DispatchQueue.main.async {
+//                        self?.performSegue(withIdentifier: R.segue.nGForumViewController.createThread.identifier, sender: nil)
+//                    }
+//                }
+//                },onCompleted: nil, onDisposed: nil)
+//            .addDisposableTo(disposeBag)
         
-        viewModel = NGThreadsViewModel(query: latestQuery, reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))
+        
+        viewModel = NGThreadsViewModel(pageID: page.id, query: latestQuery, reloadAction: refreshControl.rx.controlEvent(.valueChanged).asDriver().startWith(Void()))
         
         viewModel.loading
             .drive(refreshControl.rx.refreshing)
@@ -87,8 +80,8 @@ class NGForumViewController: NGViewController, NGDefaultStatefulVCType {
             .addDisposableTo(disposeBag)
 
         viewModel.errors()
-            .drive(onNext: { err in
-               self.handleError(error: err)
+            .drive(onNext: {[weak self] err in
+               self?.handleError(error: err)
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
 
@@ -114,6 +107,8 @@ class NGForumViewController: NGViewController, NGDefaultStatefulVCType {
         if segue.identifier == R.segue.nGForumViewController.posts.identifier {
             let thread = sender as! NGThread
             (segue.destination as! NGPostsViewController).thread = thread
+        } else if segue.identifier == R.segue.nGForumViewController.createThread.identifier {
+            (segue.destination as! NGCreateThreadViewController).pageID = page.id
         }
         
     }

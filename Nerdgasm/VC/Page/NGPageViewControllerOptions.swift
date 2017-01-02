@@ -11,9 +11,14 @@ import PagingMenuController
 
 struct NGPageViewControllerOptions: PagingMenuControllerCustomizable {
     let timelineVC: NGTimelineViewController = NGTimelineViewController(nib: R.nib.nGTimelineViewController)
+    let forumVC: NGForumViewController = R.storyboard.forum.instantiateInitialViewController()!
+    
+    var controllers: [UIViewController] {
+        return [timelineVC, forumVC]
+    }
     
     var componentType: ComponentType {
-        return .all(menuOptions: MenuOptions(), pagingControllers: [timelineVC])
+        return .all(menuOptions: MenuOptions(), pagingControllers: [timelineVC, forumVC])
     }
     var lazyLoadingPage: LazyLoadingPage {
         return .all
@@ -27,18 +32,22 @@ struct NGPageViewControllerOptions: PagingMenuControllerCustomizable {
             return .none
         }
         var height: CGFloat {
-            return 60
+            return 40
         }
         var itemsOptions: [MenuItemViewCustomizable] {
-            return [MenuItemTimeline()]
+            return [MenuItemTimeline(), MenuItemForum()]
         }
     }
     
     struct MenuItemTimeline: MenuItemViewCustomizable {
         var displayMode: MenuItemDisplayMode {
-            let title = MenuItemText(text: "Timeline")
-            let description = MenuItemText(text: "Timeline")
-            return .multilineText(title: title, description: description)
+            return .text(title: MenuItemText(text: "Timeline"))
+        }
+    }
+    
+    struct MenuItemForum: MenuItemViewCustomizable {
+        var displayMode: MenuItemDisplayMode {
+            return .text(title: MenuItemText(text: "Forum"))
         }
     }
 }

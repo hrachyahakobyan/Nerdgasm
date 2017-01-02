@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NGForumViewController" customModule="Nerdgasm" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="6ko-GZ-uia" id="VeM-bU-YVE"/>
+                <outlet property="stateView" destination="mAn-1D-KsY" id="LXb-Vh-Pg8"/>
+                <outlet property="tableView" destination="zHT-EV-YGt" id="NeR-29-mrA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="zHT-EV-YGt">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+                <searchBar contentMode="redraw" placeholder="Search threads" translatesAutoresizingMaskIntoConstraints="NO" id="6ko-GZ-uia">
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAn-1D-KsY">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="mAn-1D-KsY" firstAttribute="width" secondItem="zHT-EV-YGt" secondAttribute="width" id="52Q-62-825"/>
+                <constraint firstItem="6ko-GZ-uia" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Da6-fW-lz0"/>
+                <constraint firstItem="zHT-EV-YGt" firstAttribute="top" secondItem="6ko-GZ-uia" secondAttribute="bottom" id="FQU-UD-waG"/>
+                <constraint firstItem="mAn-1D-KsY" firstAttribute="centerX" secondItem="zHT-EV-YGt" secondAttribute="centerX" id="RC7-xR-Khi"/>
+                <constraint firstItem="6ko-GZ-uia" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RrT-5C-TX5"/>
+                <constraint firstItem="zHT-EV-YGt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TnZ-cv-ijt"/>
+                <constraint firstAttribute="bottom" secondItem="zHT-EV-YGt" secondAttribute="bottom" id="i5B-JY-3g5"/>
+                <constraint firstItem="zHT-EV-YGt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kJn-Fh-qvc"/>
+                <constraint firstItem="mAn-1D-KsY" firstAttribute="centerY" secondItem="zHT-EV-YGt" secondAttribute="centerY" id="vb3-RH-Igk"/>
+                <constraint firstItem="6ko-GZ-uia" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vhA-uO-rL0"/>
+                <constraint firstItem="mAn-1D-KsY" firstAttribute="height" secondItem="zHT-EV-YGt" secondAttribute="height" id="x5g-6C-86G"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

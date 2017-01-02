@@ -8,28 +8,60 @@
 
 import RxSwift
 import RxCocoa
+import WebImage
 
 class NGImageView: UIImageView, NGPlaceholderProviderType {
     var offlinePlaceholder: UIImage = #imageLiteral(resourceName: "placeholder")
+    let images = Variable<String>("")
+    let disposeBag = DisposeBag()
+    var options: SDWebImageOptions = [.cacheMemoryOnly, .avoidAutoSetImage]
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        images.asDriver()
+            .distinctUntilChanged()
+            .drive(onNext: {[weak self] (img) in
+                guard img.characters.count > 0 else {
+                    self?.sd_cancelCurrentImageLoad()
+                    self?.image = self?.offlinePlaceholder
+                    return
+                }
+                let url = NGService.imageURL.appendingPathComponent(img)
+                self?.sd_setImage(with: url, placeholderImage: self!.offlinePlaceholder,
+                          options: self!.options,
+                          completed: { (img, err, type, url) in
+                            guard let image = img else {return}
+                            guard imageURLFrom(name: self!.images.value).absoluteString == url?.absoluteString else {return}
+                            self!.image = image
+                })
+                }, onCompleted: nil, onDisposed: nil)
+            .addDisposableTo(disposeBag)
+    }
 }
 
 
 class NGAvatarImageView: NGImageView {
-    
-    let disposeBag = DisposeBag()
-    
+    override var offlinePlaceholder: UIImage {
+        get {
+            return #imageLiteral(resourceName: "avatar")
+        }
+        set {
+            
+        }
+    }
+    override var options: SDWebImageOptions{
+        get {
+            return [SDWebImageOptions.avoidAutoSetImage]
+        }
+        set {
+            
+        }
+    }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.offlinePlaceholder = #imageLiteral(resourceName: "avatar")
-        NGUserCredentials.rxUser
-            .filter{$0 != nil}
-            .map{NGService.imageURL.appendingPathComponent($0!.image)}
-            .distinctUntilChanged()
-            .flatMapLatest { (url)  in
-                return DefaultImageService.sharedImageService.imageFromURL(url)
-            }
-            .map{$0.0}
-            .drive(self.rx.downloadableImage)
+        NGUserCredentials.rxDriver
+            .map{$0?.user.image ?? ""}
+            .drive(images)
             .addDisposableTo(disposeBag)
     }
 }

@@ -12,7 +12,7 @@ import Moya
 import Gloss
 import Result
 
-typealias NGCreateThreadResult = Result<(NGThread, NGPost), NGNetworkError>
+typealias NGCreateThreadResult = Result<Void, NGNetworkError>
 
 struct NGCreateThreadViewModel: NGViewModelType {
     
@@ -22,7 +22,7 @@ struct NGCreateThreadViewModel: NGViewModelType {
     let validatedTitle: Driver<NGValidationResult>
     let validatedContent: Driver<NGValidationResult>
     
-    init(title: Driver<String>, content: Driver<String>, createTaps: Driver<Void>){
+    init(pageID: Int, title: Driver<String>, content: Driver<String>, createTaps: Driver<Void>){
         let networking = NGAuthorizedNetworking.sharedNetworking
         let validationService = NGCreateThreadValidationService()
         validationService.optionalContent = true
@@ -51,16 +51,9 @@ struct NGCreateThreadViewModel: NGViewModelType {
         results = validTaps.withLatestFrom(titleAndContent)
             .flatMapLatest({ (title, content) in
                 print("Creating thread \(title) content \(content)")
-                return networking.request(NGAuthenticatedService.CreateThread(title: title, content: content))
+                return networking.request(NGAuthenticatedService.CreateThread(page_id: pageID, title: title, content: content))
                     .filterSuccessfulStatusCodes()
-                    .mapJSONData()
-                    .map{ json -> (NGThread, NGPost) in
-                        guard let threadJson: JSON = "thread" <~~ json else {throw NGNetworkError.Unknown}
-                        guard let postJson: JSON = "post" <~~ json else {throw NGNetworkError.Unknown}
-                        guard let thread = NGThread(json: threadJson) else {throw NGNetworkError.Unknown}
-                        guard let post = NGPost(json: postJson) else {throw NGNetworkError.Unknown}
-                        return (thread, post)
-                    }
+                    .map{_ in Void()}
                     .mapToFailable()
                     .trackActivity(creating)
                     .asDriver(onErrorJustReturn: .failure(.NoConnection))

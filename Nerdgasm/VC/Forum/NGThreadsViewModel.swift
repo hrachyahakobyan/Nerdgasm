@@ -22,7 +22,7 @@ class NGThreadsViewModel: NGViewModelType {
     let loading: Driver<Bool>
     private let query: Driver<String>
     
-    init(query: Driver<String>, reloadAction: Driver<Void>){
+    init(pageID: Int, query: Driver<String>, reloadAction: Driver<Void>){
         let networking = NGNetworking.sharedNetworking
         self.query = query
         let searching = ActivityIndicator()
@@ -30,7 +30,7 @@ class NGThreadsViewModel: NGViewModelType {
         
         results = reloadAction
                     .flatMapLatest{ _ in
-                        return networking.request(NGService.GetThreads)
+                        return networking.request(NGService.GetPageThreads(pageID: pageID))
                                 .filterSuccessfulStatusCodes()
                                 .mapJSONDataArray()
                                 .map { jsons -> [(NGThread, NGUser)] in

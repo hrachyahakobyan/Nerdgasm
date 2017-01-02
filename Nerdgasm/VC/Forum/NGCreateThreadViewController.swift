@@ -13,19 +13,16 @@ import RxCocoa
 
 class NGCreateThreadViewController: NGAuthenticatedViewController {
 
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var titleTextView: UITextView!
 
+    var pageID: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Create Thread"
         automaticallyAdjustsScrollViewInsets = false
-        let saveItem = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
-        let canceItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
-        navigationItem.rightBarButtonItem = saveItem
-        navigationItem.leftBarButtonItem = canceItem
-        
         let titleInput = titleTextView.rx.text.orEmpty
                          .map{$0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)}
                          .asDriver(onErrorJustReturn: "")
@@ -36,27 +33,28 @@ class NGCreateThreadViewController: NGAuthenticatedViewController {
             .map{$0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)}
             .asDriver(onErrorJustReturn: "")
         
-        saveItem.rx.tap
+        postButton.rx.tap
             .asDriver()
             .drive(onNext: {
-                DispatchQueue.main.async {
-                    self.navigationController?.dismiss(animated: true, completion: nil)
+                DispatchQueue.main.async { [weak self] in
+                    self?.dismiss(animated: true, completion: nil)
                 }
                 }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
-        canceItem.rx.tap
+        cancelButton.rx.tap
             .asDriver()
-            .drive(onNext: { DispatchQueue.main.async {
-                self.navigationController?.dismiss(animated: true, completion: nil)
+            .drive(onNext: {
+                DispatchQueue.main.async {[weak self] in
+                    self?.dismiss(animated: true, completion: nil)
                 }
              }, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
-        let model = NGCreateThreadViewModel(title: titleInput, content: contentInput, createTaps: saveItem.rx.tap.asDriver())
+        let model = NGCreateThreadViewModel(pageID: pageID, title: titleInput, content: contentInput, createTaps: postButton.rx.tap.asDriver())
         
         model.createEnabled
-            .drive(saveItem.rx.isEnabled)
+            .drive(postButton.rx.isEnabled)
             .addDisposableTo(disposeBag)
         
         model.results

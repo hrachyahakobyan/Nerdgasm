@@ -22,6 +22,7 @@ class NGMyProfileViewModel: NGViewModelType {
     init(user: Driver<NGUser>, avatarTaps: Driver<Void>, updateUserTaps: Driver<Void>,
          vc: UIViewController, shouldResize:Bool = true,
          resizeWidth: CGFloat = 150.0){
+        weak var weakVC = vc
         let networking = NGAuthorizedNetworking.sharedNetworking
 
         let updatingUser = ActivityIndicator()
@@ -88,7 +89,7 @@ class NGMyProfileViewModel: NGViewModelType {
         let updateAvatarResults: Driver<NGUserUpdateResult> = updateAvatarActions
             .flatMapLatest { action -> Driver<[String: AnyObject]>  in
                 print(action)
-                return UIImagePickerController.rx.createWithParent(vc) { picker in
+                return UIImagePickerController.rx.createWithParent(weakVC) { picker in
                     if case NGAvatarAction.Camera = action {
                         picker.sourceType = .camera
                     } else {

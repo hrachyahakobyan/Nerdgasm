@@ -17,6 +17,7 @@ struct NGThread: Decodable {
     let post_count: Int
     let view_count: Int
     let date: Int
+    let pageID: Int
     
     enum Keys: String {
         case id = "id"
@@ -24,6 +25,7 @@ struct NGThread: Decodable {
         case date = "created_at"
         case post_count = "post_count"
         case view_count = "views"
+        case pageID = "page_id"
     }
     
     init?(json: JSON) {
@@ -32,12 +34,14 @@ struct NGThread: Decodable {
         guard let date: Int =   toInt(val: json[Keys.date.rawValue]) else {return nil}
         guard let post_count: Int =   toInt(val: json[Keys.post_count.rawValue]) else {return nil}
         guard let view_count: Int =   toInt(val: json[Keys.view_count.rawValue]) else {return nil}
+        guard let pageID: Int = toInt(val: json[Keys.pageID.rawValue]) else {return nil}
         self.date = date
         self.id = id
         self.title = title
         self.post_count = post_count
         self.view_count = view_count
         self.dateString = DateHelper.stringFromUnitTimestamp(unix: date)
+        self.pageID = pageID
     }
     
 

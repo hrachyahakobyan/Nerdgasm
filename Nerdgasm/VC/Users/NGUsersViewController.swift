@@ -23,7 +23,6 @@ class NGUsersViewController: NGViewController, NGDefaultStatefulVCType {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var viewModel: NGUserViewModel!
-    let disposeBag = DisposeBag()
     private var latestQuery: Driver<String> {
         return searchBar.rx.text.orEmpty
             .throttle(0.4, scheduler: MainScheduler.instance)

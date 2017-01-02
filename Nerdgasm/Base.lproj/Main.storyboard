@@ -75,7 +75,6 @@
                     <connections>
                         <segue destination="X8o-7T-yPN" kind="presentation" identifier="login" modalPresentationStyle="overFullScreen" id="fjl-ye-Ded"/>
                         <segue destination="uY1-SV-b4K" kind="relationship" relationship="viewControllers" id="ble-tn-WPk"/>
-                        <segue destination="eXs-1u-jom" kind="relationship" relationship="viewControllers" id="kqz-yI-Tj9"/>
                         <segue destination="qIQ-Ld-irL" kind="relationship" relationship="viewControllers" id="ZAj-bA-3AU"/>
                         <segue destination="ecO-an-aKG" kind="relationship" relationship="viewControllers" id="ovT-W5-AUP"/>
                     </connections>
@@ -102,16 +101,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFw-eg-lUr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3047.1999999999998" y="1727.5862068965519"/>
-        </scene>
-        <!--Forum-->
-        <scene sceneID="eBv-r7-QZk">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Forum" id="eXs-1u-jom" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="PdN-VF-yLK"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ISj-D1-L0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2678" y="1027"/>
         </scene>
         <!--Me-->
         <scene sceneID="GO6-Hg-hh0">

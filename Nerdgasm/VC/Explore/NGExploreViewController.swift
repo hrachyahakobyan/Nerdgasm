@@ -23,7 +23,6 @@ class NGExploreViewController: NGViewController, NGDefaultStatefulVCType, UIColl
     @IBOutlet weak var stateView: UIView!
     
     let refreshControl = UIRefreshControl()
-    let disposeBag = DisposeBag()
     var viewModel: M!
     
     private var latestQuery: Driver<String> {

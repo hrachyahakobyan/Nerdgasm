@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import WebImage
 
 class NGCategoryCollectionViewCell: UICollectionViewCell {
     
@@ -17,15 +18,8 @@ class NGCategoryCollectionViewCell: UICollectionViewCell {
     let disposeBag = DisposeBag()
     var category: NGCategory? {
         didSet{
-            guard let category = category else {return}
-            titleLabel.text = category.title
-            DefaultImageService.sharedImageService.imageFromURL(imageURLFrom(name: category.image))
-                .filter { (img, url) -> Bool in
-                    self.category != nil && imageURLFrom(name: self.category!.image).absoluteString == url.absoluteString
-                }
-                .map{$0.0}
-                .drive(imageView.rx.downloadableImage)
-                .addDisposableTo(disposeBag)
+            titleLabel.text = category?.title ?? ""
+            imageView.images.value = category?.image ?? ""
         }
     }
 

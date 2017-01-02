@@ -17,15 +17,8 @@ class NGPageCollectionViewCell: UICollectionViewCell {
     let disposeBag = DisposeBag()
     var page: NGPage? {
         didSet{
-            guard let page = page else {return}
-            titleLabel.text = page.title
-            DefaultImageService.sharedImageService.imageFromURL(imageURLFrom(name: page.image))
-                .filter { (img, url) -> Bool in
-                    self.page != nil && imageURLFrom(name: self.page!.image).absoluteString == url.absoluteString
-                }
-                .map{$0.0}
-                .drive(imageView.rx.downloadableImage)
-                .addDisposableTo(disposeBag)
+            titleLabel.text = page?.title ?? ""
+            imageView.images.value = page?.image ?? ""
         }
     }
     

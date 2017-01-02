@@ -8,8 +8,11 @@
 
 import UIKit
 import SVProgressHUD
+import RxSwift
 
 class NGViewController: UIViewController {
+    
+    let disposeBag = DisposeBag()
     
     var isVisible: Bool {
         return isViewLoaded && (view.window != nil)

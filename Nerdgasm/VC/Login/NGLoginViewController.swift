@@ -38,7 +38,6 @@ class NGLoginViewController: NGViewController {
     @IBOutlet weak var signupActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var signupResultLabel: UILabel!
     let signinVisible = Variable<Bool>(true)
-    private let disposeBag = DisposeBag()
     
     private var latestSignupUsername: Driver<String> {
         return signupUsernameTextField.rx.text.orEmpty

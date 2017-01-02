@@ -97,7 +97,6 @@ enum NGService: NGServiceType{
     case Signin(username: String, password: String)
     case Signup(username: String, password: String)
     case UsernameAvailable(username: String)
-    case GetThreads
     case GetPosts(thread_id: Int)
     case ViewThread(thread_id: Int)
     case SearchUsers(query: String)
@@ -105,12 +104,14 @@ enum NGService: NGServiceType{
     case GetCategories
     case GetCategory(id: Int)
     case GetCategoryPages(categoryID: Int)
+    case GetPageArticles(pageID: Int)
+    case GetPageThreads(pageID: Int)
 }
 
 enum NGAuthenticatedService: NGServiceType {
     case Signout
     case UpdateMe(firstname: String, lastname: String)
-    case CreateThread(title: String, content: String)
+    case CreateThread(page_id: Int, title: String, content: String)
     case CreatePost(thread_id: Int, content: String)
     case UploadAvatar(image: UIImage)
     case DeleteAvatar
@@ -134,8 +135,6 @@ extension NGService: TargetType{
             return "/users/username"
         case .SearchUsers(_):
             return "/users/search"
-        case .GetThreads:
-            return "/threads"
         case .GetPosts(let thread_id):
             return "/threads/\(thread_id)/posts"
         case .ViewThread(let thread_id):
@@ -148,12 +147,18 @@ extension NGService: TargetType{
             return "/category/\(id)"
         case .GetCategoryPages(let catID):
             return "/category/\(catID)/pages"
+        case .GetPageArticles(let pageID):
+            return "/page/\(pageID)/articles"
+        case .GetPageThreads(let pageID):
+            return "/page/\(pageID)/threads"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .GetThreads, .GetPosts(_), .SearchUsers(_), .GetCategory(_), .GetCategories, .GetCategoryPages(_):
+        case .GetPosts(_), .SearchUsers(_),
+             .GetCategory(_), .GetCategories, .GetCategoryPages(_),
+             .GetPageThreads(_), .GetPageArticles(_):
             return .get
         default:
             return .post
@@ -195,7 +200,7 @@ extension NGAuthenticatedService: TargetType{
             return "/users/logout"
         case .UpdateMe(_, _):
             return "/me"
-        case .CreateThread(_, _):
+        case .CreateThread(_, _, _):
             return "/me/thread"
         case .CreatePost(_, _):
             return "/me/post"
@@ -222,8 +227,8 @@ extension NGAuthenticatedService: TargetType{
         switch self {
         case .UpdateMe(let firstname, let lastname):
             return ["firstname" : firstname, "lastname" : lastname]
-        case .CreateThread(let title, let content):
-            return ["title" : title, "content" : content, "page_id" : 4]
+        case .CreateThread(let pageID, let title, let content):
+            return ["title" : title, "content" : content, "page_id" : pageID]
         case .CreatePost(let thread_id, let content):
             return ["thread_id" : thread_id, "content" : content]
         default:

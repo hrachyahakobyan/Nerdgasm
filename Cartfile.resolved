@@ -1,5 +1,5 @@
 github "Flipboard/FLEX" "2.4.0"
-github "kitasuke/PagingMenuController" "2.1.1"
-github "SVProgressHUD/SVProgressHUD" "2.0.4"
+github "rs/SDWebImage" "3.8.2"
+github "SVProgressHUD/SVProgressHUD" "2.1.2"
 github "SnapKit/SnapKit" "3.1.1"
 github "TTTAttributedLabel/TTTAttributedLabel" "2.0.0"

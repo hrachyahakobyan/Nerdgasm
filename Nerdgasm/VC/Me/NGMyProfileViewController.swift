@@ -38,12 +38,12 @@ class NGMyProfileViewController: NGAuthenticatedViewController {
         
         saveItem.rx.tap
             .asDriver()
-            .drive(onNext: {self.closeAction()}, onCompleted: nil, onDisposed: nil)
+            .drive(onNext: {[weak self] in self?.closeAction()}, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
         canceItem.rx.tap
             .asDriver()
-            .drive(onNext: {self.closeAction()}, onCompleted: nil, onDisposed: nil)
+            .drive(onNext: {[weak self] in self?.closeAction()}, onCompleted: nil, onDisposed: nil)
             .addDisposableTo(disposeBag)
         
         let fname: Driver<String> = firstnameTextField.rx.text.orEmpty.asDriver()
@@ -74,14 +74,14 @@ class NGMyProfileViewController: NGAuthenticatedViewController {
             .addDisposableTo(disposeBag)
         
         model.results
-            .drive(onNext:{result in
+            .drive(onNext:{[weak self] result in
                 switch result {
                 case .success(let user):
                     let cred = NGUserCredentials.rxCredentials.value
                     cred?.user = user
                     cred?.synchronize()
                 case .failure(let err):
-                    self.handleError(error: err, showError: true)
+                    self?.handleError(error: err, showError: true)
                 }
                 }, onCompleted: nil, onDisposed: {print("Dismposed")})
             .addDisposableTo(disposeBag)

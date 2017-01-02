@@ -9,7 +9,7 @@
         <!--Page View Controller-->
         <scene sceneID="kwa-Mc-n60">
             <objects>
-                <viewController id="Z6I-qz-LqL" customClass="NGPageViewController" customModule="Nerdgasm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="Z6I-qz-LqL" customClass="NGPageViewController" customModule="Nerdgasm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0O3-Pk-EFa"/>
                         <viewControllerLayoutGuide type="bottom" id="4hD-Cm-NeX"/>
@@ -26,9 +26,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4hD-Cm-NeX" firstAttribute="top" secondItem="bq8-bb-uPq" secondAttribute="bottom" id="3MK-tC-7wS"/>
                             <constraint firstItem="bq8-bb-uPq" firstAttribute="top" secondItem="0O3-Pk-EFa" secondAttribute="bottom" id="Jsf-iY-z0y"/>
                             <constraint firstItem="bq8-bb-uPq" firstAttribute="leading" secondItem="7F5-8N-njA" secondAttribute="leading" id="VeE-4I-OYk"/>
-                            <constraint firstItem="bq8-bb-uPq" firstAttribute="centerY" secondItem="7F5-8N-njA" secondAttribute="centerY" id="dSY-x2-PF5"/>
                             <constraint firstItem="bq8-bb-uPq" firstAttribute="centerX" secondItem="7F5-8N-njA" secondAttribute="centerX" id="ngB-yJ-gfj"/>
                         </constraints>
                     </view>
@@ -47,7 +47,7 @@
                         <viewControllerLayoutGuide type="bottom" id="UEZ-F4-iQo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="JG9-Wv-5AM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="627"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

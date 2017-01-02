@@ -22,7 +22,6 @@ class NGPagesViewController: NGViewController, NGDefaultStatefulVCType, UICollec
     @IBOutlet weak var searchBar: UISearchBar!
     
     let refreshControl = UIRefreshControl()
-    let disposeBag = DisposeBag()
     var viewModel: M!
     
     private var latestQuery: Driver<String> {
@@ -112,8 +111,10 @@ class NGPagesViewController: NGViewController, NGDefaultStatefulVCType, UICollec
         collectionView
             .rx.itemSelected
             .subscribe {[weak self] indexPath in
+                guard let cell = self?.collectionView.cellForItem(at: indexPath.element!) as? NGPageCollectionViewCell else {return}
+                guard let page = cell.page else {return}
                 DispatchQueue.main.async {
-                    self?.performSegue(withIdentifier: R.segue.nGPagesViewController.pageSegue.identifier, sender: nil)
+                    self?.performSegue(withIdentifier: R.segue.nGPagesViewController.pageSegue.identifier, sender: page)
                 }
             }
             .addDisposableTo(disposeBag)
@@ -126,6 +127,12 @@ class NGPagesViewController: NGViewController, NGDefaultStatefulVCType, UICollec
         return CGSize(width: (width - 40)/2, height: 250)
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == R.segue.nGPagesViewController.pageSegue.identifier {
+            let page = sender as! NGPage
+            (segue.destination as! NGPageViewController).page = page
+        }
+    }
 
 }

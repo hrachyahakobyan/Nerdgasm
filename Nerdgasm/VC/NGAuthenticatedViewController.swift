@@ -14,7 +14,6 @@ import RxCocoa
 class NGAuthenticatedViewController: NGViewController {
     
     var loginView: NGLoginView!
-    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

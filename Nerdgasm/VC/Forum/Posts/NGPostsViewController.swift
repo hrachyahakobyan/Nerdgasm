@@ -18,7 +18,6 @@ class NGPostsViewController: NGViewController, NGDefaultStatefulVCType {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let disposeBag = DisposeBag()
     let refreshControl = UIRefreshControl()
     var viewModel: NGPostsViewModel!
     

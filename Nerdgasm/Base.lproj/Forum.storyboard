@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YvB-pr-joI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PpT-To-gys">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -48,29 +48,13 @@
                         <outlet property="searchBar" destination="Xvd-gv-Z21" id="dCF-Y8-LdF"/>
                         <outlet property="stateView" destination="h3Y-er-VgW" id="t55-vR-W0m"/>
                         <outlet property="tableView" destination="ynk-LO-DEc" id="m4A-Ah-Y60"/>
-                        <segue destination="lNS-tQ-h8B" kind="presentation" identifier="CreateThread" id="NCc-AP-EnS"/>
                         <segue destination="jkF-QK-O51" kind="show" identifier="Posts" id="I3G-d1-sk1"/>
+                        <segue destination="P0o-tr-Kgf" kind="presentation" identifier="CreateThread" id="Qof-kZ-vph"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fuR-1r-O00" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2740" y="1024"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="4v1-3t-XYR">
-            <objects>
-                <navigationController id="lNS-tQ-h8B" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h4x-Mk-UDG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="P0o-tr-Kgf" kind="relationship" relationship="rootViewController" id="aL9-ey-bgm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xlR-EA-vDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3452" y="1024"/>
+            <point key="canvasLocation" x="3319" y="1022"/>
         </scene>
         <!--Create Thread View Controller-->
         <scene sceneID="lL9-Fk-GEd">
@@ -106,6 +90,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WqN-BE-yzq">
+                                <state key="normal" title="Cancel"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLJ-L4-4bg">
+                                <state key="normal" title="Post"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -114,25 +104,31 @@
                             <constraint firstItem="Dgf-pl-riY" firstAttribute="leading" secondItem="vjL-Rf-LSn" secondAttribute="leading" id="3uw-Le-d2E"/>
                             <constraint firstAttribute="bottom" secondItem="qT0-jQ-Zm7" secondAttribute="bottom" constant="10" id="J5g-Up-AIc"/>
                             <constraint firstItem="qT0-jQ-Zm7" firstAttribute="top" secondItem="fZG-cG-8p4" secondAttribute="bottom" constant="10" id="LGF-hk-Dcl"/>
+                            <constraint firstItem="HLJ-L4-4bg" firstAttribute="top" secondItem="WqN-BE-yzq" secondAttribute="top" id="M2u-aS-ocr"/>
                             <constraint firstItem="fZG-cG-8p4" firstAttribute="centerX" secondItem="J91-sj-J0q" secondAttribute="centerX" id="Ozm-Yp-DeR"/>
+                            <constraint firstItem="vjL-Rf-LSn" firstAttribute="top" secondItem="WqN-BE-yzq" secondAttribute="bottom" constant="15" id="S9k-h9-onR"/>
                             <constraint firstItem="Dgf-pl-riY" firstAttribute="top" secondItem="vjL-Rf-LSn" secondAttribute="bottom" constant="10" id="TTb-vx-PdB"/>
+                            <constraint firstItem="HLJ-L4-4bg" firstAttribute="trailing" secondItem="vjL-Rf-LSn" secondAttribute="trailing" id="Uas-eg-b6o"/>
                             <constraint firstItem="Dgf-pl-riY" firstAttribute="centerX" secondItem="J91-sj-J0q" secondAttribute="centerX" id="cA1-CX-iJb"/>
-                            <constraint firstItem="vjL-Rf-LSn" firstAttribute="top" secondItem="Y1O-Yq-3j5" secondAttribute="bottom" constant="15" id="cPb-WF-3V4"/>
+                            <constraint firstItem="WqN-BE-yzq" firstAttribute="leading" secondItem="vjL-Rf-LSn" secondAttribute="leading" id="fto-PZ-HMX"/>
                             <constraint firstItem="qT0-jQ-Zm7" firstAttribute="leading" secondItem="vjL-Rf-LSn" secondAttribute="leading" id="l7k-OS-548"/>
                             <constraint firstItem="vjL-Rf-LSn" firstAttribute="centerX" secondItem="J91-sj-J0q" secondAttribute="centerX" id="qaL-rt-crm"/>
+                            <constraint firstItem="WqN-BE-yzq" firstAttribute="top" secondItem="Y1O-Yq-3j5" secondAttribute="bottom" constant="5" id="t3j-xn-Kmw"/>
                             <constraint firstItem="fZG-cG-8p4" firstAttribute="top" secondItem="Dgf-pl-riY" secondAttribute="bottom" constant="20" id="u5L-66-7L4"/>
                             <constraint firstItem="qT0-jQ-Zm7" firstAttribute="centerX" secondItem="J91-sj-J0q" secondAttribute="centerX" id="uA4-GU-Chi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OxP-0E-N9A"/>
                     <connections>
+                        <outlet property="cancelButton" destination="WqN-BE-yzq" id="QO7-bk-LWc"/>
                         <outlet property="contentTextView" destination="qT0-jQ-Zm7" id="fMw-uC-rEh"/>
+                        <outlet property="postButton" destination="HLJ-L4-4bg" id="cSg-Ki-Jl8"/>
                         <outlet property="titleTextView" destination="Dgf-pl-riY" id="TN1-aw-2H5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2be-yI-drI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4258" y="1023"/>
+            <point key="canvasLocation" x="4093.5999999999999" y="1020.5397301349326"/>
         </scene>
         <!--Posts View Controller-->
         <scene sceneID="3XY-VM-JFu">
@@ -174,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lW2-km-nws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2740" y="1744.6776611694154"/>
+            <point key="canvasLocation" x="3318" y="1826"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dL0-HH-m0F">
@@ -236,26 +232,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oFW-yo-rll" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3550" y="2473"/>
-        </scene>
-        <!--Forum-->
-        <scene sceneID="vZk-WP-LQu">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YvB-pr-joI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Forum" id="0Yh-SK-tqC"/>
-                    <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ndw-xM-IBk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="PpT-To-gys" kind="relationship" relationship="rootViewController" id="MXY-Gg-nk3"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e4q-hC-Ljp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1769" y="1035"/>
         </scene>
     </scenes>
 </document>
